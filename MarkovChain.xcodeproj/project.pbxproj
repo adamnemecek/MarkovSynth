@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B85B57A18F8361E00B7BBA2 /* AYAConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B85B57918F8361E00B7BBA2 /* AYAConnection.m */; };
+		6B85B58718F86AAF00B7BBA2 /* AYACustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B85B58618F86AAE00B7BBA2 /* AYACustomCell.m */; };
+		6B85B58D18F8843600B7BBA2 /* AYATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B85B58C18F8843600B7BBA2 /* AYATableViewController.m */; };
 		6B97D87F18F75AF700DF1590 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B97D87E18F75AF700DF1590 /* Foundation.framework */; };
 		6B97D88118F75AF700DF1590 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B97D88018F75AF700DF1590 /* CoreGraphics.framework */; };
 		6B97D88318F75AF700DF1590 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B97D88218F75AF700DF1590 /* UIKit.framework */; };
@@ -19,6 +22,13 @@
 		6B97D89A18F75AF700DF1590 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B97D88218F75AF700DF1590 /* UIKit.framework */; };
 		6B97D8A218F75AF700DF1590 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6B97D8A018F75AF700DF1590 /* InfoPlist.strings */; };
 		6B97D8A418F75AF700DF1590 /* MarkovChainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8A318F75AF700DF1590 /* MarkovChainTests.m */; };
+		6B97D8B018F75B1A00DF1590 /* AYAMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8AE18F75B1A00DF1590 /* AYAMainViewController.m */; };
+		6B97D8B118F75B1A00DF1590 /* AYAMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B97D8AF18F75B1A00DF1590 /* AYAMainViewController.xib */; };
+		6B97D8B418F75CCE00DF1590 /* AYAConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8B318F75CCE00DF1590 /* AYAConnectionManager.m */; };
+		6B97D8B718F75E0000DF1590 /* AYANodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8B618F75E0000DF1590 /* AYANodeView.m */; };
+		6B97D8BA18F76ABD00DF1590 /* TRPLeftDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8B918F76ABD00DF1590 /* TRPLeftDrawerViewController.m */; };
+		6B97D8BC18F7826800DF1590 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B97D8BB18F7826800DF1590 /* Reveal.framework */; };
+		D1EFA3562AB443BFA0AC73CA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 215231B2D73E4797BED48EB4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +42,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		215231B2D73E4797BED48EB4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		65CF91E232134A20A97F8078 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6B85B57818F8361E00B7BBA2 /* AYAConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAConnection.h; sourceTree = "<group>"; };
+		6B85B57918F8361E00B7BBA2 /* AYAConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYAConnection.m; sourceTree = "<group>"; };
+		6B85B58518F86AAE00B7BBA2 /* AYACustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYACustomCell.h; sourceTree = "<group>"; };
+		6B85B58618F86AAE00B7BBA2 /* AYACustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYACustomCell.m; sourceTree = "<group>"; };
+		6B85B58B18F8843600B7BBA2 /* AYATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYATableViewController.h; sourceTree = "<group>"; };
+		6B85B58C18F8843600B7BBA2 /* AYATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYATableViewController.m; sourceTree = "<group>"; };
 		6B97D87B18F75AF700DF1590 /* MarkovChain.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkovChain.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B97D87E18F75AF700DF1590 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6B97D88018F75AF700DF1590 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -48,6 +66,16 @@
 		6B97D89F18F75AF700DF1590 /* MarkovChainTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarkovChainTests-Info.plist"; sourceTree = "<group>"; };
 		6B97D8A118F75AF700DF1590 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6B97D8A318F75AF700DF1590 /* MarkovChainTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarkovChainTests.m; sourceTree = "<group>"; };
+		6B97D8AD18F75B1A00DF1590 /* AYAMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAMainViewController.h; sourceTree = "<group>"; };
+		6B97D8AE18F75B1A00DF1590 /* AYAMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYAMainViewController.m; sourceTree = "<group>"; };
+		6B97D8AF18F75B1A00DF1590 /* AYAMainViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AYAMainViewController.xib; sourceTree = "<group>"; };
+		6B97D8B218F75CCE00DF1590 /* AYAConnectionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAConnectionManager.h; sourceTree = "<group>"; };
+		6B97D8B318F75CCE00DF1590 /* AYAConnectionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYAConnectionManager.m; sourceTree = "<group>"; };
+		6B97D8B518F75E0000DF1590 /* AYANodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYANodeView.h; sourceTree = "<group>"; };
+		6B97D8B618F75E0000DF1590 /* AYANodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYANodeView.m; sourceTree = "<group>"; };
+		6B97D8B818F76ABD00DF1590 /* TRPLeftDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRPLeftDrawerViewController.h; sourceTree = "<group>"; };
+		6B97D8B918F76ABD00DF1590 /* TRPLeftDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRPLeftDrawerViewController.m; sourceTree = "<group>"; };
+		6B97D8BB18F7826800DF1590 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,7 +85,9 @@
 			files = (
 				6B97D88118F75AF700DF1590 /* CoreGraphics.framework in Frameworks */,
 				6B97D88318F75AF700DF1590 /* UIKit.framework in Frameworks */,
+				6B97D8BC18F7826800DF1590 /* Reveal.framework in Frameworks */,
 				6B97D87F18F75AF700DF1590 /* Foundation.framework in Frameworks */,
+				D1EFA3562AB443BFA0AC73CA /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,10 +107,12 @@
 		6B97D87218F75AF700DF1590 = {
 			isa = PBXGroup;
 			children = (
+				6B97D8BB18F7826800DF1590 /* Reveal.framework */,
 				6B97D88418F75AF700DF1590 /* MarkovChain */,
 				6B97D89D18F75AF700DF1590 /* MarkovChainTests */,
 				6B97D87D18F75AF700DF1590 /* Frameworks */,
 				6B97D87C18F75AF700DF1590 /* Products */,
+				65CF91E232134A20A97F8078 /* Pods.xcconfig */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +132,7 @@
 				6B97D88018F75AF700DF1590 /* CoreGraphics.framework */,
 				6B97D88218F75AF700DF1590 /* UIKit.framework */,
 				6B97D89718F75AF700DF1590 /* XCTest.framework */,
+				215231B2D73E4797BED48EB4 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -107,8 +140,14 @@
 		6B97D88418F75AF700DF1590 /* MarkovChain */ = {
 			isa = PBXGroup;
 			children = (
-				6B97D88D18F75AF700DF1590 /* AYAAppDelegate.h */,
-				6B97D88E18F75AF700DF1590 /* AYAAppDelegate.m */,
+				6B85B58518F86AAE00B7BBA2 /* AYACustomCell.h */,
+				6B85B58618F86AAE00B7BBA2 /* AYACustomCell.m */,
+				6B97D8B818F76ABD00DF1590 /* TRPLeftDrawerViewController.h */,
+				6B97D8B918F76ABD00DF1590 /* TRPLeftDrawerViewController.m */,
+				6BDE379118F99A7D00B4095D /* Nodes */,
+				6BDE379218F99A8900B4095D /* Connections */,
+				6BDE379318F99A9500B4095D /* AppDeli */,
+				6BDE379418F99A9E00B4095D /* MainVC */,
 				6B97D89018F75AF700DF1590 /* Images.xcassets */,
 				6B97D88518F75AF700DF1590 /* Supporting Files */,
 			);
@@ -144,6 +183,47 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		6BDE379118F99A7D00B4095D /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				6B85B58B18F8843600B7BBA2 /* AYATableViewController.h */,
+				6B85B58C18F8843600B7BBA2 /* AYATableViewController.m */,
+				6B97D8B518F75E0000DF1590 /* AYANodeView.h */,
+				6B97D8B618F75E0000DF1590 /* AYANodeView.m */,
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
+		6BDE379218F99A8900B4095D /* Connections */ = {
+			isa = PBXGroup;
+			children = (
+				6B97D8B218F75CCE00DF1590 /* AYAConnectionManager.h */,
+				6B97D8B318F75CCE00DF1590 /* AYAConnectionManager.m */,
+				6B85B57818F8361E00B7BBA2 /* AYAConnection.h */,
+				6B85B57918F8361E00B7BBA2 /* AYAConnection.m */,
+			);
+			name = Connections;
+			sourceTree = "<group>";
+		};
+		6BDE379318F99A9500B4095D /* AppDeli */ = {
+			isa = PBXGroup;
+			children = (
+				6B97D88D18F75AF700DF1590 /* AYAAppDelegate.h */,
+				6B97D88E18F75AF700DF1590 /* AYAAppDelegate.m */,
+			);
+			name = AppDeli;
+			sourceTree = "<group>";
+		};
+		6BDE379418F99A9E00B4095D /* MainVC */ = {
+			isa = PBXGroup;
+			children = (
+				6B97D8AD18F75B1A00DF1590 /* AYAMainViewController.h */,
+				6B97D8AE18F75B1A00DF1590 /* AYAMainViewController.m */,
+				6B97D8AF18F75B1A00DF1590 /* AYAMainViewController.xib */,
+			);
+			name = MainVC;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -151,9 +231,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B97D8A718F75AF700DF1590 /* Build configuration list for PBXNativeTarget "MarkovChain" */;
 			buildPhases = (
+				C1DBEC235A26408685E7C4A5 /* Check Pods Manifest.lock */,
 				6B97D87718F75AF700DF1590 /* Sources */,
 				6B97D87818F75AF700DF1590 /* Frameworks */,
 				6B97D87918F75AF700DF1590 /* Resources */,
+				64188894ACFC44718D59EC5E /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -221,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B97D88918F75AF700DF1590 /* InfoPlist.strings in Resources */,
+				6B97D8B118F75B1A00DF1590 /* AYAMainViewController.xib in Resources */,
 				6B97D89118F75AF700DF1590 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,13 +318,53 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		64188894ACFC44718D59EC5E /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C1DBEC235A26408685E7C4A5 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		6B97D87718F75AF700DF1590 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B97D8B018F75B1A00DF1590 /* AYAMainViewController.m in Sources */,
+				6B85B57A18F8361E00B7BBA2 /* AYAConnection.m in Sources */,
+				6B85B58D18F8843600B7BBA2 /* AYATableViewController.m in Sources */,
 				6B97D88F18F75AF700DF1590 /* AYAAppDelegate.m in Sources */,
+				6B97D8B718F75E0000DF1590 /* AYANodeView.m in Sources */,
 				6B97D88B18F75AF700DF1590 /* main.m in Sources */,
+				6B97D8B418F75CCE00DF1590 /* AYAConnectionManager.m in Sources */,
+				6B85B58718F86AAF00B7BBA2 /* AYACustomCell.m in Sources */,
+				6B97D8BA18F76ABD00DF1590 /* TRPLeftDrawerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -357,9 +480,14 @@
 		};
 		6B97D8A818F75AF700DF1590 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65CF91E232134A20A97F8078 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MarkovChain/MarkovChain-Prefix.pch";
 				INFOPLIST_FILE = "MarkovChain/MarkovChain-Info.plist";
@@ -370,9 +498,14 @@
 		};
 		6B97D8A918F75AF700DF1590 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 65CF91E232134A20A97F8078 /* Pods.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MarkovChain/MarkovChain-Prefix.pch";
 				INFOPLIST_FILE = "MarkovChain/MarkovChain-Info.plist";
@@ -440,6 +573,7 @@
 				6B97D8A918F75AF700DF1590 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6B97D8AA18F75AF700DF1590 /* Build configuration list for PBXNativeTarget "MarkovChainTests" */ = {
 			isa = XCConfigurationList;
@@ -448,6 +582,7 @@
 				6B97D8AC18F75AF700DF1590 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

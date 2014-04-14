@@ -8,15 +8,48 @@
 
 #import "AYAAppDelegate.h"
 
+
 @implementation AYAAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    _rootViewController = [[MSDynamicsDrawerViewController alloc] init];
+    [_rootViewController setDelegate:self];
+    _rootViewController.paneDragRequiresScreenEdgePan = YES;
+    [_rootViewController setDrawerViewController:self.leftDrawerViewController
+                                    forDirection:MSDynamicsDrawerDirectionLeft];
+    AYAMainViewController  *mainVC = [[AYAMainViewController alloc] init];
+    UINavigationController *navController = [[UINavigationController alloc]
+                                             initWithRootViewController:mainVC];
+    
+    
+    navController.navigationBar.translucent = YES;
+    navController.navigationBarHidden = NO;
+    _rootViewController.paneViewController = navController;
+    
+    self.window.rootViewController = _rootViewController;
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (TRPLeftDrawerViewController*)leftDrawerViewController
+{
+    if (_leftDrawerViewController) {
+        return _leftDrawerViewController;
+    }
+    
+    _leftDrawerViewController = [[TRPLeftDrawerViewController alloc] initWithStyle:UITableViewStyleGrouped];
+    
+    return _leftDrawerViewController;
+}
+- (BOOL)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController
+                  shouldBeginPanePan:(UIPanGestureRecognizer *)panGestureRecognizer
+{
+    UINavigationController *rootNavigationController = (UINavigationController*)drawerViewController.paneViewController;
+    return [rootNavigationController.viewControllers count] == 1;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

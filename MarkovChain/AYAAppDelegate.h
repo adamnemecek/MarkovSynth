@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AYAMainViewController.h"
+#import <MSDynamicsDrawerViewController/MSDynamicsDrawerViewController.h>
+#import "TRPLeftDrawerViewController.h"
 
-@interface AYAAppDelegate : UIResponder <UIApplicationDelegate>
+
+@interface AYAAppDelegate : UIResponder <UIApplicationDelegate,MSDynamicsDrawerViewControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) MSDynamicsDrawerViewController *rootViewController;
+@property (strong, nonatomic) TRPLeftDrawerViewController *leftDrawerViewController;
+
+
 
 @end
