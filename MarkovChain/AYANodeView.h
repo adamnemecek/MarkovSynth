@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "AYAConnection.h"
+@protocol AYANodeDelegate <NSObject>
+
+-(void)noteOn:(int)notenumber;
+-(void)noteOff:(int)notenumber;
+
+@end
+
 
 @interface AYANodeView : UIView
 
@@ -20,6 +27,8 @@
 @property (strong, nonatomic) CAGradientLayer* backgroundLayer;
 
 @property (strong, nonatomic) CATextLayer *noteNameLayer;
+
+@property (weak, nonatomic) id <AYANodeDelegate> delegate;
 
 -(void)recievedEvent;
 

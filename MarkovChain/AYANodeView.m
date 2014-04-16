@@ -88,6 +88,7 @@
 }
 
 -(void)recievedEvent{
+    [self.delegate noteOn:self.note];
     CALayer *eventLayer = [[CALayer alloc] init];
     [eventLayer setCornerRadius:self.frame.size.height/2];
     eventLayer.frame = self.bounds;
@@ -125,8 +126,11 @@
     [group setRepeatCount:1.0f];
     [group setDelegate:self];
     [group setValue:eventLayer forKey:@"layer"];
+    [group setValue:@(self.note) forKeyPath:@"notenumber"];
     group.animations = [NSArray arrayWithObjects:eventAnimation,eventOpacityAnimation, nil];
-    [eventLayer addAnimation:group forKey:@"pulse"];
+    [eventLayer addAnimation:group forKey:@"grouppulse"];
+    
+    
     [self.layer insertSublayer:eventLayer atIndex:0];
     for (AYAConnection *connection in connectionArray) {
         if ([[connection.lineLayer valueForKeyPath:@"connectionType"] intValue] == 0) {
@@ -197,6 +201,10 @@
         AYAConnection *connection = [anim valueForKey:@"connection"];
         [connection.endView recievedEvent];
     }
+    if ([[anim valueForKey:@"notenumber"]intValue]) {
+        [self.delegate noteOff:[[anim valueForKey:@"notenumber"]intValue]];
+    }
+    
 }
 
 /*
