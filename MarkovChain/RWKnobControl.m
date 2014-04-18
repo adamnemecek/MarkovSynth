@@ -45,7 +45,7 @@
         // Save the value to the backing ivar
         // Make sure we limit it to the requested bounds
         _value = MIN(self.maximumValue, MAX(self.minimumValue, value));
-        _textlayer.string = [NSString stringWithFormat:@"%.2f",_value];
+//        _textlayer.string = [NSString stringWithFormat:@"%.2f",_value];
         // Now let's update the knob with the correct angle
         CGFloat angleRange = self.endAngle - self.startAngle;
         CGFloat valueRange = self.maximumValue - self.minimumValue;
@@ -162,14 +162,14 @@
     
     
     
-    _textlayer = [[CATextLayer alloc] init];
-    [_textlayer setFont:@"Helvetica"];
-    [_textlayer setFontSize:20];
-    [_textlayer setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y+self.frame.size.height/3, self.frame.size.width, self.frame.size.height)];
-    [_textlayer setString:[NSString stringWithFormat:@"%.2f",_value]];
-    [_textlayer setAlignmentMode:kCAAlignmentCenter];
-    [_textlayer setForegroundColor:[[UIColor blackColor] CGColor]];
-    [self.layer addSublayer:_textlayer];
+//    _textlayer = [[CATextLayer alloc] init];
+//    [_textlayer setFont:@"Helvetica"];
+//    [_textlayer setFontSize:20];
+//    [_textlayer setFrame:CGRectMake(self.frame.origin.x, self.frame.origin.y+self.frame.size.height/3, self.frame.size.width, self.frame.size.height)];
+//    [_textlayer setString:[NSString stringWithFormat:@"%.2f",_value]];
+//    [_textlayer setAlignmentMode:kCAAlignmentCenter];
+//    [_textlayer setForegroundColor:[[UIColor blackColor] CGColor]];
+//    [self.layer addSublayer:_textlayer];
     
     
 

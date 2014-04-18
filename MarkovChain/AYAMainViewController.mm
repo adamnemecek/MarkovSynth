@@ -47,12 +47,12 @@ typedef NS_ENUM(NSInteger, connectionType){
         m_fOsc2Level = 66.0;
         m_uDetuneSemitones = 0;
         m_nOctave = 0;
-        m_dFcControl = 2100.0;
+        m_dFcControl = 800.0;
         m_dRate_LFO = 2.0;
-        m_dAttackTime_mSec = 2000.0;
+        m_dAttackTime_mSec = 50.0;
         m_dPulseWidth_Pct = 20;
         m_dPortamentoTime_mSec = 0;
-        m_dQControl = 1.0;
+        m_dQControl = 5.0;
         m_dOscLFOIntensity = 0.0;
         m_dDecayReleaseTime_mSec = 1000.0;
         m_uModMode = 0;
@@ -254,7 +254,10 @@ typedef NS_ENUM(NSInteger, connectionType){
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    path = [UIBezierPath bezierPath];
+    tempHitArray = [[NSMutableArray alloc] init];
+    drawView = [[AYADrawView alloc] initWithFrame:self.view.bounds];
+    [self.view addSubview:drawView];
     // Initialize the engine to render our synthesizer
     auEngine = [[AudioUnitsEngine alloc] init];
     // Call the initial update to set the parameters to the values defined in this class
@@ -292,7 +295,12 @@ typedef NS_ENUM(NSInteger, connectionType){
     [self.view.layer addSublayer:backgroundLayer];
     
     // Make sure that the mode selection view is always in front of the background layer
+    
+    [self.view bringSubviewToFront:drawView];
+    
     [self.view bringSubviewToFront:modeSelection];
+    
+
     
 }
 
@@ -304,12 +312,11 @@ typedef NS_ENUM(NSInteger, connectionType){
     [tapGestureRecognizer addTarget:self action:@selector(handleTap:)];
     [self.view addGestureRecognizer:tapGestureRecognizer];
     
-    // Pan gesture to move node. I don't think we need this.
-//    UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
-//    [panGestureRecognizer setMinimumNumberOfTouches:1];
-//    [panGestureRecognizer setMaximumNumberOfTouches:1];
-//    [panGestureRecognizer addTarget:self action:@selector(handlePan:)];
-//    [self.view addGestureRecognizer:panGestureRecognizer];
+    UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
+    [panGestureRecognizer setMinimumNumberOfTouches:1];
+    [panGestureRecognizer setMaximumNumberOfTouches:1];
+    [panGestureRecognizer addTarget:self action:@selector(handleDrawPan:)];
+    [self.view addGestureRecognizer:panGestureRecognizer];
 }
 
 -(void)handleTap:(UITapGestureRecognizer*)sender{
@@ -317,7 +324,7 @@ typedef NS_ENUM(NSInteger, connectionType){
     // If the mode selection is 0, we are in node mode, so we'll create a node for a double tap
     if (modeSelection.selectedSegmentIndex == 0) {
         // Init our node view and assign it to the place that was tapped.
-        AYANodeView *nodeView = [[AYANodeView alloc] initWithFrame:CGRectMake(100, 100, 75, 75)];
+        AYANodeView *nodeView = [[AYANodeView alloc] initWithFrame:CGRectMake(0, 0, 76, 76)];
         [nodeView setCenter:[sender locationInView:self.view]];
         // We need to be the node's delegate as well.
         [nodeView setDelegate:self];
@@ -329,12 +336,6 @@ typedef NS_ENUM(NSInteger, connectionType){
         [panGestureRecognizer addTarget:self action:@selector(handlePan:)];
         [nodeView addGestureRecognizer:panGestureRecognizer];
         
-        // Single tap recognizer to activate nodes
-        UITapGestureRecognizer* nodeTapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
-        [nodeTapGestureRecognizer setNumberOfTouchesRequired:1];
-        [nodeTapGestureRecognizer setNumberOfTapsRequired:1];
-        [nodeTapGestureRecognizer addTarget:self action:@selector(handleNodeTap:)];
-        [nodeView addGestureRecognizer:nodeTapGestureRecognizer];
         
         // Double tap for connection creation, this is only until I get drawing connections done.
         UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
@@ -360,119 +361,8 @@ typedef NS_ENUM(NSInteger, connectionType){
     // modeselection 1 is the connection part
     }else if(modeSelection.selectedSegmentIndex == 1){
         
-        // If no startview, set startview so we know where the connection will come from.
-        if (startView == nil && [sender.view isKindOfClass:[AYANodeView class]]) {
-            startView = (AYANodeView*)[sender view];
-            // Change the startview's background as a visual helper.
-            [startView.backgroundLayer setBackgroundColor:[UIColor colorWithRed:100.0/255.0 green:149.0/255.0 blue:155.0/255.0 alpha:1.0].CGColor];
-        
-        // Or, we already have a startview and we need to create the connection (not to ourselves).
-        }else if([sender.view isKindOfClass:[AYANodeView class]] && !CGRectEqualToRect(sender.view.frame,startView.frame)){
-            [CATransaction setDisableActions:YES];
-            
-            // Create a line layer
-            CALayer *lineLayer = [CALayer layer];
-            lineLayer.opacity = 0.2;
-            lineLayer.backgroundColor = [UIColor orangeColor].CGColor;
-            
-            // It will be a line connection
-            [lineLayer setValue:@(kConnectionTypeLine) forKeyPath:@"connectionType"];
-            
-            // This is the data model of a connection that lives behind the visualization conceptually
-            AYAConnection *connection = [[AYAConnection alloc] init];
-            [connection setLineLayer:lineLayer];
-            [connection setStartView:startView];
-            [connection setEndView:(AYANodeView*)[sender view]];
-            [connection setProbability:(arc4random_uniform(500)/1000.0 + 0.5)];
-            [[startView connectionArray] addObject:connection];
-            
-            // Add our layer
-            [startView.layer addSublayer:lineLayer];
-            
-            // Get it set up to be positioned and referenced
-            CGPoint pos = startView.center;
-            CGPoint target = [sender view].center;
-            target.x -= pos.x;
-            target.y -= pos.y;
-            // Put the layer in the right place.
-            [self setLayerToLineFromAToB:lineLayer forA:CGPointZero andB:target andLineWidth:8];
-            
-            // Add the nice gradient animation to the lines as well.
-            UIColor *colorOne = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0];
-            UIColor *colorTwo = [UIColor colorWithRed:255.0/255.0 green:94.0/255.0 blue:58.0/255.0 alpha:1.0];
-            
-            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
-            animation.duration = 5.0f;
-            animation.delegate =self;
-            animation.fromValue = colorOne;
-            animation.toValue = colorTwo;
-            [animation setAutoreverses:YES];
-            [animation setRepeatCount:10000];
-            [lineLayer addAnimation:animation forKey:@"animateColors"];
-            
-            [CATransaction setDisableActions:NO];
-            
-            // Remove the special coloring on the startview's background
-            [startView.backgroundLayer setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0].CGColor];
-            
-            // reset startview to nil
-            startView = nil;
-            
-        // We're making a connection, but to self.
-        }else if([sender.view isKindOfClass:[AYANodeView class]] && CGRectEqualToRect(sender.view.frame,startView.frame)){
-            // Set up the shape of the circle
-            int radius = 60;
-            CAShapeLayer *circle = [CAShapeLayer layer];
-            // Make a circular shape
-            circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(sender.view.bounds.size.width-radius, sender.view.bounds.size.height/2.0, 1.5*radius, 2.0*radius)
-                                                     cornerRadius:radius].CGPath;
-            // Center the shape in self.view
-            circle.position = CGPointMake(0.0, 0.0);
-            
-            // Configure the apperence of the circle
-            circle.opacity = 0.2;
-            circle.fillColor = [UIColor clearColor].CGColor;
-            circle.strokeColor = [UIColor orangeColor].CGColor;
-            circle.lineWidth = 5;
-            
-            // set the connection type.
-            [circle setValue:@(kConnectionTypeCircle) forKeyPath:@"connectionType"];
-
-            //add to connection array;
-            AYAConnection *connection = [[AYAConnection alloc] init];
-            [connection setLineLayer:circle];
-            [connection setStartView:startView];
-            [connection setEndView:(AYANodeView*)[sender view]];
-            [connection setProbability:(arc4random_uniform(1000)/1000.0)];
-
-            [[startView connectionArray] addObject:connection];
-            // Add to parent layer
-            [sender.view.layer addSublayer:circle];
-            
-            //Gradient stuff
-            UIColor *colorOne = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0];
-            UIColor *colorTwo = [UIColor colorWithRed:255.0/255.0 green:94.0/255.0 blue:58.0/255.0 alpha:1.0];
-            
-            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
-            animation.duration = 5.0f;
-            animation.delegate =self;
-            animation.fromValue = colorOne;
-            animation.toValue = colorTwo;
-            [animation setAutoreverses:YES];
-            [animation setRepeatCount:10000];
-            [circle addAnimation:animation forKey:@"animateColors"];
-            
-            [startView.backgroundLayer setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0].CGColor];
-
-            startView = nil;
-
-        }
-    }
+           }
     
-}
-
--(void)handleNodeTap:(UITapGestureRecognizer*)sender{
-    [(AYANodeView*)sender.view recievedEvent];
 }
 
 -(void)setLayerToLineFromAToB:(CALayer *)layer forA:(CGPoint)a andB:(CGPoint)b andLineWidth:(CGFloat)lineWidth
@@ -487,13 +377,153 @@ typedef NS_ENUM(NSInteger, connectionType){
 }
 
 -(void)handlePan:(UIPanGestureRecognizer*)sender{
-    if (modeSelection.selectedSegmentIndex == 0 && [sender.view isKindOfClass:[AYANodeView class]]) {
+    if (modeSelection.selectedSegmentIndex == 0) {
         CGPoint translation = [sender translationInView:self.view];
         sender.view.center = CGPointMake(sender.view.center.x + translation.x,sender.view.center.y + translation.y);
         [sender setTranslation:CGPointMake(0, 0) inView:self.view];
         [self updateLinesForView:(AYANodeView*)sender.view];
     }
+}
 
+-(void)handleDrawPan:(UIPanGestureRecognizer *)sender{
+    if(modeSelection.selectedSegmentIndex ==1){
+        CGPoint currentPoint = [sender locationInView:self.view];
+        [drawView handleDrawPan:sender];
+        for (AYANodeView *node in nodes){
+            BOOL prevhit = CGRectContainsPoint(node.frame, previousPoint);
+            BOOL hit = CGRectContainsPoint(node.frame, currentPoint);
+            if (hit && !prevhit) {
+                [tempHitArray addObject:node];
+            }
+            
+        }
+        if (sender.state == UIGestureRecognizerStateEnded) {
+            [self handlehits];
+        }
+        previousPoint = currentPoint;
+    }
+}
+
+
+
+-(void)handlehits{
+    for (int i=0; i<[tempHitArray count]-1; i++) {
+        [self makeConnectionFromView:tempHitArray[i] toView:tempHitArray[i+1]];
+    }
+    
+    
+    [tempHitArray removeAllObjects];
+}
+
+-(void)makeConnectionFromView:(AYANodeView*)startView toView:(AYANodeView*)endView
+{
+        // Or, we already have a startview and we need to create the connection (not to ourselves).
+    if([endView isKindOfClass:[AYANodeView class]] && !CGRectEqualToRect(endView.frame,startView.frame)){
+        [CATransaction setDisableActions:YES];
+        
+        // Create a line layer
+        CALayer *lineLayer = [CALayer layer];
+        lineLayer.opacity = 0.2;
+        lineLayer.backgroundColor = [UIColor orangeColor].CGColor;
+        
+        // It will be a line connection
+        [lineLayer setValue:@(kConnectionTypeLine) forKeyPath:@"connectionType"];
+        
+        // This is the data model of a connection that lives behind the visualization conceptually
+        AYAConnection *connection = [[AYAConnection alloc] init];
+        [connection setLineLayer:lineLayer];
+        [connection setStartView:startView];
+        [connection setEndView:(AYANodeView*)endView];
+        [connection setProbability:(arc4random_uniform(500)/1000.0 + 0.5)];
+        [[startView connectionArray] addObject:connection];
+        
+        // Add our layer
+        [startView.layer addSublayer:lineLayer];
+        
+        // Get it set up to be positioned and referenced
+        CGPoint pos = startView.center;
+        CGPoint target = endView.center;
+        target.x -= pos.x;
+        target.y -= pos.y;
+        // Put the layer in the right place.
+        [self setLayerToLineFromAToB:lineLayer forA:CGPointZero andB:target andLineWidth:8];
+        
+        // Add the nice gradient animation to the lines as well.
+        UIColor *colorOne = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0];
+        UIColor *colorTwo = [UIColor colorWithRed:255.0/255.0 green:94.0/255.0 blue:58.0/255.0 alpha:1.0];
+        
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
+        animation.duration = 5.0f;
+        animation.delegate =self;
+        animation.fromValue = colorOne;
+        animation.toValue = colorTwo;
+        [animation setAutoreverses:YES];
+        [animation setRepeatCount:10000];
+        [lineLayer addAnimation:animation forKey:@"animateColors"];
+        
+        [CATransaction setDisableActions:NO];
+        
+        // Remove the special coloring on the startview's background
+        [startView.backgroundLayer setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0].CGColor];
+        
+        // reset startview to nil
+        startView = nil;
+        
+        // We're making a connection, but to self.
+    }else if([endView isKindOfClass:[AYANodeView class]] && CGRectEqualToRect(endView.frame,startView.frame)){
+        // Set up the shape of the circle
+        int radius = 60;
+        CAShapeLayer *circle = [CAShapeLayer layer];
+        // Make a circular shape
+        circle.path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(endView.bounds.size.width-radius, endView.bounds.size.height/2.0, 1.5*radius, 2.0*radius)
+                                                 cornerRadius:radius].CGPath;
+        // Center the shape in self.view
+        circle.position = CGPointMake(0.0, 0.0);
+        
+        // Configure the apperence of the circle
+        circle.opacity = 0.2;
+        circle.fillColor = [UIColor clearColor].CGColor;
+        circle.strokeColor = [UIColor orangeColor].CGColor;
+        circle.lineWidth = 5;
+        
+        // set the connection type.
+        [circle setValue:@(kConnectionTypeCircle) forKeyPath:@"connectionType"];
+        
+        //add to connection array;
+        AYAConnection *connection = [[AYAConnection alloc] init];
+        [connection setLineLayer:circle];
+        [connection setStartView:startView];
+        [connection setEndView:endView];
+        [connection setProbability:(arc4random_uniform(1000)/1000.0)];
+        
+        [[startView connectionArray] addObject:connection];
+        // Add to parent layer
+        [endView.layer addSublayer:circle];
+        
+        //Gradient stuff
+        UIColor *colorOne = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0];
+        UIColor *colorTwo = [UIColor colorWithRed:255.0/255.0 green:94.0/255.0 blue:58.0/255.0 alpha:1.0];
+        
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
+        animation.duration = 5.0f;
+        animation.delegate =self;
+        animation.fromValue = colorOne;
+        animation.toValue = colorTwo;
+        [animation setAutoreverses:YES];
+        [animation setRepeatCount:10000];
+        [circle addAnimation:animation forKey:@"animateColors"];
+        
+        [startView.backgroundLayer setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0].CGColor];
+        
+        startView = nil;
+    
+    }
+}
+
+-(CGPoint) midpointFromPoint:(CGPoint)p0 andPoint:(CGPoint) p1
+{
+    CGPoint point = CGPointMake((p0.x + p1.x) / 2.0, (p0.y + p1.y) / 2.0);
+    return point;
 }
 
 -(void)handlePress:(UILongPressGestureRecognizer*)sender{
@@ -544,8 +574,6 @@ typedef NS_ENUM(NSInteger, connectionType){
     NSLog(@"Note OFF: %d",notenumber);
     [auEngine setNoteOff:notenumber];
 }
-
-
 
 
 @end

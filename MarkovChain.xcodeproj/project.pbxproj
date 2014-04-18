@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6B0A498819003F9E007858CA /* KnobControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498719003F9E007858CA /* KnobControlView.m */; };
+		6B0A498B190049A4007858CA /* TouchDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498A190049A4007858CA /* TouchDrawingView.m */; };
+		6B0A498E1900518B007858CA /* AYADrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498D1900518B007858CA /* AYADrawView.m */; };
 		6B602E2B18FCC529002AF69B /* 9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6B602E2A18FCC529002AF69B /* 9.wav */; };
 		6B85B57A18F8361E00B7BBA2 /* AYAConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B85B57918F8361E00B7BBA2 /* AYAConnection.m */; };
 		6B85B58718F86AAF00B7BBA2 /* AYACustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B85B58618F86AAE00B7BBA2 /* AYACustomCell.m */; };
@@ -62,6 +65,12 @@
 /* Begin PBXFileReference section */
 		215231B2D73E4797BED48EB4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		65CF91E232134A20A97F8078 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		6B0A498619003F9E007858CA /* KnobControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnobControlView.h; sourceTree = "<group>"; };
+		6B0A498719003F9E007858CA /* KnobControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnobControlView.m; sourceTree = "<group>"; };
+		6B0A4989190049A4007858CA /* TouchDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchDrawingView.h; sourceTree = "<group>"; };
+		6B0A498A190049A4007858CA /* TouchDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchDrawingView.m; sourceTree = "<group>"; };
+		6B0A498C1900518B007858CA /* AYADrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYADrawView.h; sourceTree = "<group>"; };
+		6B0A498D1900518B007858CA /* AYADrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYADrawView.m; sourceTree = "<group>"; };
 		6B602E2A18FCC529002AF69B /* 9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 9.wav; sourceTree = "<group>"; };
 		6B85B57818F8361E00B7BBA2 /* AYAConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAConnection.h; sourceTree = "<group>"; };
 		6B85B57918F8361E00B7BBA2 /* AYAConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYAConnection.m; sourceTree = "<group>"; };
@@ -253,6 +262,14 @@
 		6BDE379118F99A7D00B4095D /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				6B0A498619003F9E007858CA /* KnobControlView.h */,
+				6B0A498719003F9E007858CA /* KnobControlView.m */,
+				6BEABACC18FCBB7100CA24E4 /* RWKnobControl.h */,
+				6BEABACD18FCBB7100CA24E4 /* RWKnobControl.m */,
+				6BEABACE18FCBB7100CA24E4 /* RWKnobRenderer.h */,
+				6BEABACF18FCBB7100CA24E4 /* RWKnobRenderer.m */,
+				6BEABAD018FCBB7100CA24E4 /* RWRotationGestureRecognizer.h */,
+				6BEABAD118FCBB7100CA24E4 /* RWRotationGestureRecognizer.m */,
 				6B85B58B18F8843600B7BBA2 /* AYATableViewController.h */,
 				6B85B58C18F8843600B7BBA2 /* AYATableViewController.m */,
 				6B97D8B518F75E0000DF1590 /* AYANodeView.h */,
@@ -284,9 +301,13 @@
 		6BDE379418F99A9E00B4095D /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
+				6B0A4989190049A4007858CA /* TouchDrawingView.h */,
+				6B0A498A190049A4007858CA /* TouchDrawingView.m */,
 				6B97D8AD18F75B1A00DF1590 /* AYAMainViewController.h */,
 				6B97D8AE18F75B1A00DF1590 /* AYAMainViewController.mm */,
 				6B97D8AF18F75B1A00DF1590 /* AYAMainViewController.xib */,
+				6B0A498C1900518B007858CA /* AYADrawView.h */,
+				6B0A498D1900518B007858CA /* AYADrawView.m */,
 			);
 			name = MainVC;
 			sourceTree = "<group>";
@@ -294,10 +315,10 @@
 		6BEABAE818FCBB8600CA24E4 /* SynthStuff */ = {
 			isa = PBXGroup;
 			children = (
-				6BEABAB418FCBB7000CA24E4 /* AlgorithmicOscillator.cpp */,
-				6BEABAB518FCBB7000CA24E4 /* AlgorithmicOscillator.h */,
 				6BEABAB618FCBB7000CA24E4 /* AudioUnitsEngine.h */,
 				6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */,
+				6BEABAB418FCBB7000CA24E4 /* AlgorithmicOscillator.cpp */,
+				6BEABAB518FCBB7000CA24E4 /* AlgorithmicOscillator.h */,
 				6BEABABA18FCBB7000CA24E4 /* DCA.cpp */,
 				6BEABABB18FCBB7100CA24E4 /* DCA.h */,
 				6BEABABC18FCBB7100CA24E4 /* EnvelopeGenerator.cpp */,
@@ -316,12 +337,6 @@
 				6BEABAC918FCBB7100CA24E4 /* Oscillator.cpp */,
 				6BEABACA18FCBB7100CA24E4 /* Oscillator.h */,
 				6BEABACB18FCBB7100CA24E4 /* pluginconstants.h */,
-				6BEABACC18FCBB7100CA24E4 /* RWKnobControl.h */,
-				6BEABACD18FCBB7100CA24E4 /* RWKnobControl.m */,
-				6BEABACE18FCBB7100CA24E4 /* RWKnobRenderer.h */,
-				6BEABACF18FCBB7100CA24E4 /* RWKnobRenderer.m */,
-				6BEABAD018FCBB7100CA24E4 /* RWRotationGestureRecognizer.h */,
-				6BEABAD118FCBB7100CA24E4 /* RWRotationGestureRecognizer.m */,
 				6BEABAD218FCBB7100CA24E4 /* synthfunctions.h */,
 				6BEABAD318FCBB7100CA24E4 /* VAOnePoleFilter.cpp */,
 				6BEABAD418FCBB7100CA24E4 /* VAOnePoleFilter.h */,
@@ -476,18 +491,21 @@
 				6BEABAE018FCBB7100CA24E4 /* MoogLadderFilter.cpp in Sources */,
 				6B97D88F18F75AF700DF1590 /* AYAAppDelegate.mm in Sources */,
 				6B97D8B718F75E0000DF1590 /* AYANodeView.m in Sources */,
+				6B0A498E1900518B007858CA /* AYADrawView.m in Sources */,
 				6BEABADD18FCBB7100CA24E4 /* LFO.cpp in Sources */,
 				6BEABAE118FCBB7100CA24E4 /* Oscillator.cpp in Sources */,
 				6B97D88B18F75AF700DF1590 /* main.mm in Sources */,
 				6BEABADC18FCBB7100CA24E4 /* Filter.cpp in Sources */,
 				6BEABADF18FCBB7100CA24E4 /* ModulationMatrix.cpp in Sources */,
 				6BEABAD818FCBB7100CA24E4 /* AudioUnitsEngine.mm in Sources */,
+				6B0A498819003F9E007858CA /* KnobControlView.m in Sources */,
 				6BEABAE618FCBB7100CA24E4 /* Voice.cpp in Sources */,
 				6B97D8B418F75CCE00DF1590 /* AYAConnectionManager.m in Sources */,
 				6BEABADE18FCBB7100CA24E4 /* MiniSynthVoice.cpp in Sources */,
 				6B85B58718F86AAF00B7BBA2 /* AYACustomCell.m in Sources */,
 				6B97D8BA18F76ABD00DF1590 /* TRPLeftDrawerViewController.m in Sources */,
 				6BEABAE418FCBB7100CA24E4 /* RWRotationGestureRecognizer.m in Sources */,
+				6B0A498B190049A4007858CA /* TouchDrawingView.m in Sources */,
 				6BEABAE318FCBB7100CA24E4 /* RWKnobRenderer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

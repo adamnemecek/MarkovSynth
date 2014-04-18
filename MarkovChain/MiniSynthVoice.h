@@ -208,27 +208,27 @@ public:
 		// --- ARTICULATION BLOCK --- //
 		// layer 1 modulators
 		double env1 = m_EG1.doEnvelope();
-		double env2 = m_EG2.doEnvelope();
-		m_EG3.doEnvelope();
-		m_EG4.doEnvelope();
+//		double env2 = m_EG2.doEnvelope();
+//		m_EG3.doEnvelope();
+//		m_EG4.doEnvelope();
 
 		// update and do LFO	
 
-		m_LFO1.updateOscillator();	
-		double lfo = m_LFO1.doOscillate();
+//		m_LFO1.updateOscillator();	
+//		double lfo = m_LFO1.doOscillate();
 	
 		// apply modulatora
-		m_ModulationMatrix.doModulationMatrix();
+//		m_ModulationMatrix.doModulationMatrix();
 		
 		// update for attack/decay mods
-		m_EG1.updateEG();
-		m_EG2.updateEG();
-		m_EG3.updateEG();
-		m_EG4.updateEG();
+//		m_EG1.updateEG();
+//		m_EG2.updateEG();
+//		m_EG3.updateEG();
+//		m_EG4.updateEG();
 
 		// update DCA and Filter
-		m_DCA.updateDCA();	
-		m_LPF.updateFilter();
+//		m_DCA.updateDCA();	
+//		m_LPF.updateFilter();
 
 		// slave is osc2 (running at higher freq)
 		if(m_Osc1.m_uWaveform == SAW1 || m_Osc1.m_uWaveform == SAW2 || m_Osc1.m_uWaveform == SAW3)

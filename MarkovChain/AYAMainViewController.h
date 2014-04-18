@@ -11,6 +11,7 @@
 #import "AYAConnectionManager.h"
 #import "AYANodeView.h"
 #import "AYATableViewController.h"
+#import "AYADrawView.h"
 
 #import "AudioUnitsEngine.h"
 struct timbre
@@ -68,13 +69,22 @@ struct timbre
     
     AYAConnectionManager *connectionManager;
     
+    AYADrawView *drawView;
+    
     __weak IBOutlet UISegmentedControl *modeSelection;
     
-    AYANodeView* startView;
+    CGPoint previouspoint;
+    
+//    AYANodeView* startView;
+    
+    NSMutableArray *tempHitArray;
     
     NSMutableArray *nodes;
     
     NSTimer *m_AnimationTimer;
+    
+    UIBezierPath *path;
+    CGPoint previousPoint;
     
     AudioUnitsEngine *auEngine;
     

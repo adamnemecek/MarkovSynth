@@ -26,9 +26,7 @@ struct AUPlayFileInfoStruct {
     CAStreamBasicDescription        m_CSABD;
     
     std::vector<CMiniSynthVoice*> m_VoicePtrStack1;
-//	std::vector<CMiniSynthVoice*> m_VoicePtrStack2;
 	std::vector<CMiniSynthVoice*>::iterator m_VoiceIterator1;
-//	std::vector<CMiniSynthVoice*>::iterator m_VoiceIterator2;
     bool                            m_bNoteOn;
     UINT                    m_uTimbreSelection;
     UINT                            MAX_VOICES;

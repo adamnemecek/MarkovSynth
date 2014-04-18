@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "AYAConnection.h"
+#import "KnobControlView.h"
 @protocol AYANodeDelegate <NSObject>
 
 -(void)noteOn:(int)notenumber;
@@ -16,7 +17,9 @@
 @end
 
 
-@interface AYANodeView : UIView
+@interface AYANodeView : UIView{
+    KnobControlView *knobControlView;
+}
 
 @property (strong, nonatomic) NSMutableArray *connectionArray;
 

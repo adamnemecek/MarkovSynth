@@ -2,7 +2,7 @@
 #include "fastapprox.h"
 #include "pluginconstants.h"
 #include "time.h"
-#include <cmath>
+//#include <cmath>
 
 #define CONVEX_LIMIT 0.00398107
 #define CONCAVE_LIMIT 0.99601893

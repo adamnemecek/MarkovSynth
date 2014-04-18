@@ -22,7 +22,6 @@
 		// end init
         // load up voices
         CMiniSynthVoice* pVoice;
-//        CMiniSynthVoice* pVoice2;
         MAX_VOICES = 8;
         auTrack_1_PlaybackInfo.MAX_VOICES = 8;
         for(int i=0; i<MAX_VOICES; i++)
@@ -32,11 +31,6 @@
             pVoice->prepareForPlay();
             pVoice->update();
             auTrack_1_PlaybackInfo.m_VoicePtrStack1.push_back(pVoice);
-//            pVoice2 = new CMiniSynthVoice;
-//            pVoice2->setSampleRate((double)44100);
-//            pVoice2->prepareForPlay();
-//            pVoice2->update();
-//            auTrack_1_PlaybackInfo.m_VoicePtrStack2.push_back(pVoice2);
         }
     }
 	
@@ -48,44 +42,30 @@
 -(void)setOscillatorWave:(int)wave{
 }
 -(void)setTimbreSelection:(UINT)sel{
-    auTrack_1_PlaybackInfo.m_uTimbreSelection = sel;
-    if (sel==0 || sel==1){
         MAX_VOICES = 4;
         auTrack_1_PlaybackInfo.MAX_VOICES = 4;
-    }
-//    else if (sel==2){
-//        MAX_VOICES = 2;
-//        auTrack_1_PlaybackInfo.MAX_VOICES = 2;
-//    }
 }
 
 -(void)setNoteOn:(int)notenumber{
     auTrack_1_PlaybackInfo.m_bNoteOn = TRUE;
     
     CMiniSynthVoice* pVoice;
-//	CMiniSynthVoice* pVoice2;
 	auTrack_1_PlaybackInfo.m_VoiceIterator1 = auTrack_1_PlaybackInfo.m_VoicePtrStack1.begin();
-//	auTrack_1_PlaybackInfo.m_VoiceIterator2 = auTrack_1_PlaybackInfo.m_VoicePtrStack2.begin();
     
 	bool bStealNote = true;
 	for(int i=0; i<MAX_VOICES; i++)
 	{
 		pVoice =  auTrack_1_PlaybackInfo.m_VoicePtrStack1[i];
-//		pVoice2 = auTrack_1_PlaybackInfo.m_VoicePtrStack2[i];
 		
 		// if we have a free voice, turn on
 		if(!pVoice->m_bNoteOn)
 		{
 			auTrack_1_PlaybackInfo.m_VoiceIterator1 = auTrack_1_PlaybackInfo.m_VoicePtrStack1.erase(auTrack_1_PlaybackInfo.m_VoiceIterator1);
-//			auTrack_1_PlaybackInfo.m_VoiceIterator2 = auTrack_1_PlaybackInfo.m_VoicePtrStack2.erase(auTrack_1_PlaybackInfo.m_VoiceIterator2);
 			auTrack_1_PlaybackInfo.m_VoicePtrStack1.push_back(pVoice);
-//			auTrack_1_PlaybackInfo.m_VoicePtrStack2.push_back(pVoice2);
             
 			pVoice->noteOn(notenumber, 60, midiMIDIFreqTable[notenumber], m_dLastNoteFrequency);
-//			pVoice2->noteOn(notenumber, 60, midiMIDIFreqTable[notenumber], m_dLastNoteFrequency);
             
 			pVoice->setSustainOverride(false);
-//			pVoice2->setSustainOverride(false);
             
             
 			// save
@@ -95,24 +75,18 @@
 		}
 		else {
 			auTrack_1_PlaybackInfo.m_VoiceIterator1++;
-//			auTrack_1_PlaybackInfo.m_VoiceIterator2++;
 		}
 	}
 	if(bStealNote)
 	{
 		// steal oldest note
 		CMiniSynthVoice* pVoice = auTrack_1_PlaybackInfo.m_VoicePtrStack1[0]; // always the oldest
-//		CMiniSynthVoice* pVoice2= auTrack_1_PlaybackInfo.m_VoicePtrStack2[0];
 		
 		auTrack_1_PlaybackInfo.m_VoicePtrStack1.erase(auTrack_1_PlaybackInfo.m_VoicePtrStack1.begin());
-//		auTrack_1_PlaybackInfo.m_VoicePtrStack2.erase(auTrack_1_PlaybackInfo.m_VoicePtrStack2.begin());
 		auTrack_1_PlaybackInfo.m_VoicePtrStack1.push_back(pVoice);
-//		auTrack_1_PlaybackInfo.m_VoicePtrStack2.push_back(pVoice2);
         
 		pVoice->noteOn(notenumber, 60, midiMIDIFreqTable[notenumber], m_dLastNoteFrequency);
-//		pVoice2->noteOn(notenumber, 60, midiMIDIFreqTable[notenumber], m_dLastNoteFrequency);
 		pVoice->setSustainOverride(false);
-//		pVoice2->setSustainOverride(false);
     
         
 		// save
@@ -125,18 +99,15 @@
     
     // find and turn off
 	auTrack_1_PlaybackInfo.m_VoiceIterator1 = auTrack_1_PlaybackInfo.m_VoicePtrStack1.begin();
-//	auTrack_1_PlaybackInfo.m_VoiceIterator2 = auTrack_1_PlaybackInfo.m_VoicePtrStack2.begin();
     
 	for(int i=0; i<MAX_VOICES; i++)
 	{
 		CMiniSynthVoice* pVoice = auTrack_1_PlaybackInfo.m_VoicePtrStack1[i];
-//		CMiniSynthVoice* pVoice2= auTrack_1_PlaybackInfo.m_VoicePtrStack2[i];
 		
 		// find matching source/destination pairs
 		if(pVoice->canNoteOff() && pVoice->m_uMIDINoteNumber == notenumber)
 		{
 			pVoice->noteOff(notenumber);
-//			pVoice2->noteOff(notenumber);
 			
 
             
@@ -145,20 +116,8 @@
 			break;
 		}
 		
-//		if(pVoice2->canNoteOff() && pVoice2->m_uMIDINoteNumber == notenumber)
-//		{
-//			pVoice->noteOff(notenumber);
-//			pVoice2->noteOff(notenumber);
-//
-//            
-//			// may have multiple notes sustaining; this ensures the oldest
-//			// note gets the event
-//			break;
-//		}
-//        
         
 		auTrack_1_PlaybackInfo.m_VoiceIterator1++;
-//		auTrack_1_PlaybackInfo.m_VoiceIterator2++;
 	}
 }
 
@@ -242,33 +201,14 @@ static OSStatus auReadFileCallback(void *inRefCon,				/* pointer to userdata - o
         float fMix = 1.0/(float)auInfo->MAX_VOICES*2;
         
         CVoice* pVoice;
-        CVoice* pVoice2;
         for(int i=0; i<auInfo->MAX_VOICES; i++)
         {
             double dLeft, dRight;
-            double dLeft2, dRight2;
             
-            if(auInfo->m_uTimbreSelection == 0)
-                pVoice =  auInfo->m_VoicePtrStack1[i];
-//            else if(auInfo->m_uTimbreSelection == 1)
-//                pVoice =  auInfo->m_VoicePtrStack2[i];
-//            else if(auInfo->m_uTimbreSelection == 2){
-//                pVoice = auInfo->m_VoicePtrStack1[i];
-//                pVoice2 = auInfo->m_VoicePtrStack2[i];
-//            }
-            
-            
-            if(auInfo->m_uTimbreSelection == 0 || auInfo->m_uTimbreSelection == 1){
-                pVoice->doVoice(dLeft, dRight);
-                dLeftAccum += fMix*dLeft;
-                dRightAccum += fMix*dRight;
-            }
-            else if(auInfo->m_uTimbreSelection == 2){
-                pVoice->doVoice(dLeft,dRight);
-//                pVoice2->doVoice(dLeft2,dRight2);
-                dLeftAccum += fMix*dLeft + fMix*dLeft2;
-                dRightAccum += fMix*dRight + fMix*dRight2;
-            }
+            pVoice =  auInfo->m_VoicePtrStack1[i];
+            pVoice->doVoice(dLeft, dRight);
+            dLeftAccum += fMix*dLeft;
+
         }
         
         float fLeftAccum = float(dLeftAccum);

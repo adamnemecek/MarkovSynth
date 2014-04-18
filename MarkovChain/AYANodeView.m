@@ -18,50 +18,35 @@
         note = 60;
         _noteName = @"C 4";
         // Initialization code
-//        CALayer *pulseLayer = [[CALayer alloc] init];
-//        [pulseLayer setCornerRadius:self.frame.size.height/2];
-//        pulseLayer.frame = self.bounds;
-//        pulseLayer.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:0.3].CGColor;
-//        CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
-//        // Add ourselves as the delegate so we get the completion callback
-//        [opacityAnimation setDelegate:self];
-//        // Set the duration using the number of squares calculated earlier
-//        [opacityAnimation setDuration:1.0f];
-//        // Set the from and to values using the cellMatrix
-//        [opacityAnimation setToValue:[NSValue valueWithCATransform3D:CATransform3DMakeScale(1.1, 1.1, 1)]];
-//        [opacityAnimation setAutoreverses:YES];
-//        // Not totally sure, it was in the book
-//        [opacityAnimation setFillMode:kCAFillModeForwards];
-//        [opacityAnimation setRepeatCount:10000];
-//        // animation also has some places for extra information that lets me know what to do when I call the generic completion method.
-//        [opacityAnimation setRemovedOnCompletion:NO];
-//        [pulseLayer addAnimation:opacityAnimation forKey:@"pulse"];
-//        [self.layer addSublayer:pulseLayer];
+        knobControlView = [[KnobControlView alloc] initWithFrame:CGRectMake(self.bounds.size.width/2-5,self.bounds.size.height/2-5, 10, 10)];
+        [self addSubview:knobControlView];
+        
+        
         
         self.backgroundColor = [UIColor clearColor];
         backgroundLayer = [[CAGradientLayer alloc] init];
-        [backgroundLayer setCornerRadius:self.frame.size.height/2];
+        [backgroundLayer setCornerRadius:self.bounds.size.height/2];
         backgroundLayer.frame = self.bounds;
         
-//        UIColor *colorOne = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0];
-//        UIColor *colorTwo = [UIColor colorWithRed:255.0/255.0 green:94.0/255.0 blue:58.0/255.0 alpha:1.0];
-//        NSArray *colors =  [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor,nil];
-//        
-//        NSNumber *stopOne = [NSNumber numberWithFloat:1.0];
-//        NSNumber *stopTwo = [NSNumber numberWithFloat:0.6];
-//        NSArray *locations = [NSArray arrayWithObjects:stopOne, stopTwo, nil];
-//        
-//        backgroundLayer.colors = colors;
-//        backgroundLayer.locations = locations;
-//        
-//        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
-//        animation.duration = 5.0f;
-//        animation.delegate =self;
-//        animation.fromValue = (CAGradientLayer *)backgroundLayer.colors;
-//        animation.toValue = [NSArray arrayWithObjects:(id)colorTwo.CGColor, colorOne.CGColor,nil];
-//        [animation setAutoreverses:YES];
-//        [animation setRepeatCount:10000];
-//        [backgroundLayer addAnimation:animation forKey:@"animateColors"];
+        UIColor *colorOne = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0];
+        UIColor *colorTwo = [UIColor colorWithRed:255.0/255.0 green:94.0/255.0 blue:58.0/255.0 alpha:1.0];
+        NSArray *colors =  [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor,nil];
+        
+        NSNumber *stopOne = [NSNumber numberWithFloat:1.0];
+        NSNumber *stopTwo = [NSNumber numberWithFloat:0.6];
+        NSArray *locations = [NSArray arrayWithObjects:stopOne, stopTwo, nil];
+        
+        backgroundLayer.colors = colors;
+        backgroundLayer.locations = locations;
+        
+        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
+        animation.duration = 5.0f;
+        animation.delegate =self;
+        animation.fromValue = (CAGradientLayer *)backgroundLayer.colors;
+        animation.toValue = [NSArray arrayWithObjects:(id)colorTwo.CGColor, colorOne.CGColor,nil];
+        [animation setAutoreverses:YES];
+        [animation setRepeatCount:10000];
+        [backgroundLayer addAnimation:animation forKey:@"animateColors"];
         
         [backgroundLayer setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0].CGColor];
         
@@ -76,6 +61,20 @@
         [_noteNameLayer setFontSize:12];
         [self.layer addSublayer:_noteNameLayer];
         
+        // Single tap recognizer to activate nodes
+        UITapGestureRecognizer* nodeTapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+        [nodeTapGestureRecognizer setNumberOfTouchesRequired:1];
+        [nodeTapGestureRecognizer setNumberOfTapsRequired:1];
+        [nodeTapGestureRecognizer addTarget:self action:@selector(recievedEvent)];
+        [self addGestureRecognizer:nodeTapGestureRecognizer];
+        
+        UIPinchGestureRecognizer* pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] init];
+        [pinchGestureRecognizer addTarget:self action:@selector(scaleTheView:)];
+        [self addGestureRecognizer:pinchGestureRecognizer];
+
+        
+        
+        
     }
     return self;
 }
@@ -88,6 +87,7 @@
 }
 
 -(void)recievedEvent{
+    [knobControlView removeFromSuperview];
     [self.delegate noteOn:self.note];
     CALayer *eventLayer = [[CALayer alloc] init];
     [eventLayer setCornerRadius:self.frame.size.height/2];
@@ -140,7 +140,7 @@
                 AYANodeView *toView = connection.endView;
                 CALayer *pulseLayer = [[CALayer alloc] init];
                 [pulseLayer setCornerRadius:25/2];
-                pulseLayer.frame = CGRectMake(12, 12, 25, 25);
+                pulseLayer.frame = CGRectMake(self.bounds.size.width/2 - 12, self.bounds.size.height/2 - 12, 25, 25);
                 pulseLayer.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:0.3].CGColor;
                 CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
                 // Add ourselves as the delegate so we get the completion callback
@@ -148,7 +148,7 @@
                 // Set the duration using the number of squares calculated earlier
                 [opacityAnimation setDuration:1.0f];
                 // Set the from and to values using the cellMatrix
-                [opacityAnimation setToValue:[NSValue valueWithCGPoint:CGPointMake(toView.center.x-fromView.center.x + 25, toView.center.y-fromView.center.y + 25)]];
+                [opacityAnimation setToValue:[NSValue valueWithCGPoint:CGPointMake(toView.center.x-fromView.center.x + self.bounds.size.width/2, toView.center.y-fromView.center.y + self.bounds.size.height/2)]];
                 [opacityAnimation setAutoreverses:NO];
                 // Not totally sure, it was in the book
                 [opacityAnimation setFillMode:kCAFillModeRemoved];
@@ -205,6 +205,17 @@
         [self.delegate noteOff:[[anim valueForKey:@"notenumber"]intValue]];
     }
     
+}
+
+-(void)scaleTheView:(UIPinchGestureRecognizer*)pinchRecognizer{
+    if (pinchRecognizer.scale>2.0) {
+        [knobControlView removeFromSuperview];
+        knobControlView = [[KnobControlView alloc] initWithFrame:CGRectMake(self.bounds.size.width/2-50,self.bounds.size.height/2-50, 100, 100)];
+        [self addSubview:knobControlView];
+    }else{
+        [knobControlView removeFromSuperview];
+
+    }
 }
 
 /*
