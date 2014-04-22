@@ -40,11 +40,13 @@ typedef NS_ENUM(NSInteger, connectionType){
             // update for loop . . .
             a *= k;
         }
-        m_uOsc1Waveform = 3;
-        m_dDetune_cents = 0.0;
-        m_uOsc2Waveform = 4;
-        m_fOsc1Level = 25.5;
-        m_fOsc2Level = 66.0;
+        m_uOsc1Waveform = 4;
+        m_dDetune_cents = 10.0;
+        m_uOsc2Waveform = 2;
+        m_uOsc3Waveform = 1;
+        m_fOsc1Level = 33.0;
+        m_fOsc2Level = 33.0;
+        m_fOsc3Level = 66.0;
         m_uDetuneSemitones = 0;
         m_nOctave = 0;
         m_dFcControl = 800.0;
@@ -54,7 +56,7 @@ typedef NS_ENUM(NSInteger, connectionType){
         m_dPortamentoTime_mSec = 0;
         m_dQControl = 5.0;
         m_dOscLFOIntensity = 0.0;
-        m_dDecayReleaseTime_mSec = 1000.0;
+        m_dDecayReleaseTime_mSec = 100.0;
         m_uModMode = 0;
         //Delay
         m_fFeedback_pct = 50.0;
@@ -106,10 +108,7 @@ typedef NS_ENUM(NSInteger, connectionType){
     {
         timbre *pTimbre = &timbre1;
         pVoice = auEngine.auTrack_1_PlaybackInfo.m_VoicePtrStack1[i];
-
-        
-        
-        
+ 
         pTimbre->Amplitude_dB = m_dAmplitude_dB;
         pVoice->setDCAAmplitude_dB(pTimbre->Amplitude_dB);
         
@@ -125,11 +124,11 @@ typedef NS_ENUM(NSInteger, connectionType){
         pTimbre->Osc2Waveform = m_uOsc2Waveform;
         pVoice->setOsc2Waveform(pTimbre->Osc2Waveform);
         
-        pTimbre->Osc3Waveform = m_uOsc3Waveform;
-        pVoice->setOsc3Waveform(pTimbre->Osc3Waveform);
+//        pTimbre->Osc3Waveform = m_uOsc3Waveform;
+//        pVoice->setOsc3Waveform(pTimbre->Osc3Waveform);
         
-        pTimbre->Osc4Waveform = m_uOsc4Waveform;
-        pVoice->setOsc4Waveform(pTimbre->Osc4Waveform);
+//        pTimbre->Osc4Waveform = m_uOsc4Waveform;
+//        pVoice->setOsc4Waveform(pTimbre->Osc4Waveform);
         
         pTimbre->Osc1Level = m_fOsc1Level;
         pVoice->setOsc1Level(pTimbre->Osc1Level);
@@ -254,6 +253,9 @@ typedef NS_ENUM(NSInteger, connectionType){
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.navigationController.navigationBarHidden = YES;
+    
     path = [UIBezierPath bezierPath];
     tempHitArray = [[NSMutableArray alloc] init];
     drawView = [[AYADrawView alloc] initWithFrame:self.view.bounds];
@@ -407,11 +409,11 @@ typedef NS_ENUM(NSInteger, connectionType){
 
 
 -(void)handlehits{
-    for (int i=0; i<[tempHitArray count]-1; i++) {
-        [self makeConnectionFromView:tempHitArray[i] toView:tempHitArray[i+1]];
+    if ([tempHitArray count]>0) {
+        for (int i=0; i<[tempHitArray count]-1; i++) {
+            [self makeConnectionFromView:tempHitArray[i] toView:tempHitArray[i+1]];
+        }
     }
-    
-    
     [tempHitArray removeAllObjects];
 }
 
@@ -566,12 +568,12 @@ typedef NS_ENUM(NSInteger, connectionType){
 }
 
 -(void)noteOn:(int)notenumber{
-    NSLog(@"Note ON: %d",notenumber);
+//    NSLog(@"Note ON: %d",notenumber);
     [auEngine setNoteOn:notenumber];
 }
 
 -(void)noteOff:(int)notenumber{
-    NSLog(@"Note OFF: %d",notenumber);
+//    NSLog(@"Note OFF: %d",notenumber);
     [auEngine setNoteOff:notenumber];
 }
 

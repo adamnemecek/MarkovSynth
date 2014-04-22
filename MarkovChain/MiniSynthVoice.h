@@ -1,6 +1,7 @@
 #pragma once
 
 #include "voice.h"
+#include "WTOscillator.h"
 #include "AlgorithmicOscillator.h"
 #include "MoogLadderFilter.h"
 
@@ -13,10 +14,15 @@ public:
 protected:
 	// our synth components: Oscillators and Filters
 	// Four oscillators
-	CAlgorithmicOscillator m_Osc1;
-	CAlgorithmicOscillator m_Osc2;
-	CAlgorithmicOscillator m_Osc3;
-	CAlgorithmicOscillator m_Osc4; // noise
+    CAlgorithmicOscillator m_Osc1;
+    CAlgorithmicOscillator m_Osc2;
+//    CAlgorithmicOscillator m_Osc3;
+//    CAlgorithmicOscillator m_Osc4;
+    
+//	CWTOscillator m_Osc1;
+//	CWTOscillator m_Osc2;
+//	CWTOscillator m_Osc3;
+//	CWTOscillator m_Osc4; // noise
 	
 	// 1 filter
 	CMoogLadderFilter m_LPF;
@@ -60,8 +66,8 @@ public:
 	// intensity controls from UI -- these are all VOICE SPECIFIC! 
 	inline void setOsc1Waveform(UINT uWF){m_Osc1.m_uWaveform = uWF;}
 	inline void setOsc2Waveform(UINT uWF){m_Osc2.m_uWaveform = uWF;}
-    inline void setOsc3Waveform(UINT uWF){m_Osc3.m_uWaveform = uWF;}
-    inline void setOsc4Waveform(UINT uWF){m_Osc4.m_uWaveform = uWF;}
+//    inline void setOsc3Waveform(UINT uWF){m_Osc3.m_uWaveform = uWF;}
+//    inline void setOsc4Waveform(UINT uWF){m_Osc4.m_uWaveform = uWF;}
 	inline void setOsc1Level(float m_fLevel){m_fOsc1Level = m_fLevel/100.0;}
 	inline void setOsc2Level(float m_fLevel){m_fOsc2Level = m_fLevel/100.0;}
     inline void setOsc3Level(float m_fLevel){m_fOsc3Level = m_fLevel/100.0;}
@@ -208,74 +214,44 @@ public:
 		// --- ARTICULATION BLOCK --- //
 		// layer 1 modulators
 		double env1 = m_EG1.doEnvelope();
-//		double env2 = m_EG2.doEnvelope();
-//		m_EG3.doEnvelope();
-//		m_EG4.doEnvelope();
-
-		// update and do LFO	
-
-//		m_LFO1.updateOscillator();	
-//		double lfo = m_LFO1.doOscillate();
 	
 		// apply modulatora
-//		m_ModulationMatrix.doModulationMatrix();
+		m_ModulationMatrix.doModulationMatrix();
 		
 		// update for attack/decay mods
-//		m_EG1.updateEG();
-//		m_EG2.updateEG();
-//		m_EG3.updateEG();
-//		m_EG4.updateEG();
+		m_EG1.updateEG();
 
-		// update DCA and Filter
-//		m_DCA.updateDCA();	
-//		m_LPF.updateFilter();
-
-		// slave is osc2 (running at higher freq)
-		if(m_Osc1.m_uWaveform == SAW1 || m_Osc1.m_uWaveform == SAW2 || m_Osc1.m_uWaveform == SAW3)
-		{
-			double dRatioMod = m_dHSRatio*(m_ModulationMatrix.m_dDestinations[m_uSourceFoRatio]);
-			m_Osc1.m_dOscFo = m_dOscPitch;
-			m_Osc2.m_dOscFo = m_dOscPitch*dRatioMod;
-		}
-
-        m_Osc1.m_uModSourceAmp = m_dLFO1_DCAAmpModIntensity;
-        m_Osc1.m_uModSourceFo = m_dLFO1_OscModIntensity;
 		// update oscillators
 		m_Osc1.updateOscillator();
 		m_Osc2.updateOscillator();
-		m_Osc3.updateOscillator();
+//		m_Osc3.updateOscillator();
 
 		// --- DIGITAL AUDIO ENGINE BLOCK --- //
 		double dOscMix = 0.0;
 		if(m_uModMode == NONE)
 			dOscMix = m_fOsc1Level*m_Osc1.doOscillate()*env1 +
-                      m_fOsc2Level*m_Osc2.doOscillate()*env1 +
-                      m_fOsc3Level*m_Osc3.doOscillate()*env1;
+            m_fOsc2Level*m_Osc2.doOscillate()*env1;
+//                      m_fOsc3Level*m_Osc3.doOscillate()*env1;
 		else if(m_uModMode == RING)
 			dOscMix = m_fOsc1Level*m_Osc1.doOscillate()*env1 +
-                      m_fOsc2Level*m_Osc2.doOscillate()*env1 +
-                      m_fOsc3Level*m_Osc3.doOscillate()*env1;
-
-        dLeftOutput = dOscMix;
-//		// apply the filter
-//		dOscMix = m_LPF.doFilter(dOscMix);
+            m_fOsc2Level*m_Osc2.doOscillate()*env1;
+//                      m_fOsc3Level*m_Osc3.doOscillate()*env1;
 
 		//Distortion
-//		float m_fCookedGain = pow(10.0, m_fGain/20.0);
-//		dOscMix *= m_fCookedGain;
-//		for(int i=0; i<m_nStages; i++)
-//		{
-//			if(dOscMix <=0)
-//				dOscMix = (1.0/atan(m_fArcTanKPos))*atan(m_fArcTanKPos*dOscMix);
-//			else
-//				dOscMix = (1.0/atan(m_fArcTanKNeg))*atan(m_fArcTanKNeg*dOscMix);
-//	
-//			if(m_uInvertStages == ON && i%2 ==0)
-//				dOscMix *= -1.0;
-//		}
-
-		// apply the DCA
-		//m_DCA.doMonoDCA(dLPFOut, dLeftOutput, dRightOutput);
+		float m_fCookedGain = pow(10.0, m_fGain/20.0);
+		dOscMix *= m_fCookedGain;
+		for(int i=0; i<m_nStages; i++)
+		{
+			if(dOscMix <=0)
+				dOscMix = (1.0/atan(m_fArcTanKPos))*atan(m_fArcTanKPos*dOscMix);
+			else
+				dOscMix = (1.0/atan(m_fArcTanKNeg))*atan(m_fArcTanKNeg*dOscMix);
+	
+			if(m_uInvertStages == ON && i%2 ==0)
+				dOscMix *= -1.0;
+		}
+        dLeftOutput = dOscMix;
+        dRightOutput = dOscMix;
 
 		return true;
 	}

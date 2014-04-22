@@ -111,7 +111,7 @@ public:
 		// limit in case pan control is biased
 		dPanTotal = fmin(dPanTotal, 1.0);
 		dPanTotal = fmax(dPanTotal, -1.0);
-        
+
 		double dPanLeft = 0.707;
 		double dPanRight = 0.707;
 

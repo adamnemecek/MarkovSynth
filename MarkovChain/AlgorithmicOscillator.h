@@ -137,8 +137,8 @@ public:
 	// DPW
 	inline double doTriangle(double dModulo, double dInc, double dFo, double dSquareModulator, double* pZ_register)
 	{
-		double dOut = 0.0;
-		bool bDone = false;
+//		double dOut = 0.0;
+//		bool bDone = false;
 
 		// bipolar conversion and squaring
 		double dBipolar = unipolarToBipolar(dModulo);

@@ -10,6 +10,7 @@
 		6B0A498819003F9E007858CA /* KnobControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498719003F9E007858CA /* KnobControlView.m */; };
 		6B0A498B190049A4007858CA /* TouchDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498A190049A4007858CA /* TouchDrawingView.m */; };
 		6B0A498E1900518B007858CA /* AYADrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498D1900518B007858CA /* AYADrawView.m */; };
+		6B401ABD1905C6C300232844 /* MiniSynthVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B401ABB1905C6C300232844 /* MiniSynthVoice.cpp */; };
 		6B602E2B18FCC529002AF69B /* 9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6B602E2A18FCC529002AF69B /* 9.wav */; };
 		6B85B57A18F8361E00B7BBA2 /* AYAConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B85B57918F8361E00B7BBA2 /* AYAConnection.m */; };
 		6B85B58718F86AAF00B7BBA2 /* AYACustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B85B58618F86AAE00B7BBA2 /* AYACustomCell.m */; };
@@ -31,24 +32,23 @@
 		6B97D8B418F75CCE00DF1590 /* AYAConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8B318F75CCE00DF1590 /* AYAConnectionManager.m */; };
 		6B97D8B718F75E0000DF1590 /* AYANodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8B618F75E0000DF1590 /* AYANodeView.m */; };
 		6B97D8BA18F76ABD00DF1590 /* TRPLeftDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8B918F76ABD00DF1590 /* TRPLeftDrawerViewController.m */; };
-		6B97D8BC18F7826800DF1590 /* Reveal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B97D8BB18F7826800DF1590 /* Reveal.framework */; };
-		6BEABAD718FCBB7100CA24E4 /* AlgorithmicOscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAB418FCBB7000CA24E4 /* AlgorithmicOscillator.cpp */; };
+		6B9D83141905C68B00CB8172 /* AlgorithmicOscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D82FD1905C68A00CB8172 /* AlgorithmicOscillator.cpp */; };
+		6B9D83151905C68B00CB8172 /* DCA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D82FF1905C68A00CB8172 /* DCA.cpp */; };
+		6B9D83161905C68B00CB8172 /* EnvelopeGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83011905C68A00CB8172 /* EnvelopeGenerator.cpp */; };
+		6B9D83171905C68B00CB8172 /* Filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83041905C68A00CB8172 /* Filter.cpp */; };
+		6B9D83181905C68B00CB8172 /* LFO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83061905C68A00CB8172 /* LFO.cpp */; };
+		6B9D83191905C68B00CB8172 /* ModulationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83081905C68A00CB8172 /* ModulationMatrix.cpp */; };
+		6B9D831A1905C68B00CB8172 /* MoogLadderFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D830A1905C68B00CB8172 /* MoogLadderFilter.cpp */; };
+		6B9D831B1905C68B00CB8172 /* Oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D830C1905C68B00CB8172 /* Oscillator.cpp */; };
+		6B9D831C1905C68B00CB8172 /* VAOnePoleFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83101905C68B00CB8172 /* VAOnePoleFilter.cpp */; };
+		6B9D831D1905C68B00CB8172 /* Voice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83121905C68B00CB8172 /* Voice.cpp */; };
 		6BEABAD818FCBB7100CA24E4 /* AudioUnitsEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */; };
-		6BEABADA18FCBB7100CA24E4 /* DCA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABABA18FCBB7000CA24E4 /* DCA.cpp */; };
-		6BEABADB18FCBB7100CA24E4 /* EnvelopeGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABABC18FCBB7100CA24E4 /* EnvelopeGenerator.cpp */; };
-		6BEABADC18FCBB7100CA24E4 /* Filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABABF18FCBB7100CA24E4 /* Filter.cpp */; };
-		6BEABADD18FCBB7100CA24E4 /* LFO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAC118FCBB7100CA24E4 /* LFO.cpp */; };
-		6BEABADE18FCBB7100CA24E4 /* MiniSynthVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAC318FCBB7100CA24E4 /* MiniSynthVoice.cpp */; };
-		6BEABADF18FCBB7100CA24E4 /* ModulationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAC518FCBB7100CA24E4 /* ModulationMatrix.cpp */; };
-		6BEABAE018FCBB7100CA24E4 /* MoogLadderFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAC718FCBB7100CA24E4 /* MoogLadderFilter.cpp */; };
-		6BEABAE118FCBB7100CA24E4 /* Oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAC918FCBB7100CA24E4 /* Oscillator.cpp */; };
 		6BEABAE218FCBB7100CA24E4 /* RWKnobControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABACD18FCBB7100CA24E4 /* RWKnobControl.m */; };
 		6BEABAE318FCBB7100CA24E4 /* RWKnobRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABACF18FCBB7100CA24E4 /* RWKnobRenderer.m */; };
 		6BEABAE418FCBB7100CA24E4 /* RWRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAD118FCBB7100CA24E4 /* RWRotationGestureRecognizer.m */; };
-		6BEABAE518FCBB7100CA24E4 /* VAOnePoleFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAD318FCBB7100CA24E4 /* VAOnePoleFilter.cpp */; };
-		6BEABAE618FCBB7100CA24E4 /* Voice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAD518FCBB7100CA24E4 /* Voice.cpp */; };
 		6BEABAED18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAEB18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp */; };
 		6BEABAEF18FCBE2900CA24E4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEABAEE18FCBE2900CA24E4 /* AudioToolbox.framework */; };
+		6BFAB3871905932F00B1B9F8 /* WTOscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BFAB3851905932F00B1B9F8 /* WTOscillator.cpp */; };
 		D1EFA3562AB443BFA0AC73CA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 215231B2D73E4797BED48EB4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -71,6 +71,8 @@
 		6B0A498A190049A4007858CA /* TouchDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchDrawingView.m; sourceTree = "<group>"; };
 		6B0A498C1900518B007858CA /* AYADrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYADrawView.h; sourceTree = "<group>"; };
 		6B0A498D1900518B007858CA /* AYADrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYADrawView.m; sourceTree = "<group>"; };
+		6B401ABB1905C6C300232844 /* MiniSynthVoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MiniSynthVoice.cpp; sourceTree = "<group>"; };
+		6B401ABC1905C6C300232844 /* MiniSynthVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniSynthVoice.h; sourceTree = "<group>"; };
 		6B602E2A18FCC529002AF69B /* 9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 9.wav; sourceTree = "<group>"; };
 		6B85B57818F8361E00B7BBA2 /* AYAConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAConnection.h; sourceTree = "<group>"; };
 		6B85B57918F8361E00B7BBA2 /* AYAConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYAConnection.m; sourceTree = "<group>"; };
@@ -103,46 +105,45 @@
 		6B97D8B618F75E0000DF1590 /* AYANodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYANodeView.m; sourceTree = "<group>"; };
 		6B97D8B818F76ABD00DF1590 /* TRPLeftDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRPLeftDrawerViewController.h; sourceTree = "<group>"; };
 		6B97D8B918F76ABD00DF1590 /* TRPLeftDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRPLeftDrawerViewController.m; sourceTree = "<group>"; };
-		6B97D8BB18F7826800DF1590 /* Reveal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Reveal.framework; sourceTree = "<group>"; };
-		6BEABAB418FCBB7000CA24E4 /* AlgorithmicOscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlgorithmicOscillator.cpp; sourceTree = "<group>"; };
-		6BEABAB518FCBB7000CA24E4 /* AlgorithmicOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlgorithmicOscillator.h; sourceTree = "<group>"; };
+		6B9D82FD1905C68A00CB8172 /* AlgorithmicOscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlgorithmicOscillator.cpp; sourceTree = "<group>"; };
+		6B9D82FE1905C68A00CB8172 /* AlgorithmicOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlgorithmicOscillator.h; sourceTree = "<group>"; };
+		6B9D82FF1905C68A00CB8172 /* DCA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DCA.cpp; sourceTree = "<group>"; };
+		6B9D83001905C68A00CB8172 /* DCA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCA.h; sourceTree = "<group>"; };
+		6B9D83011905C68A00CB8172 /* EnvelopeGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvelopeGenerator.cpp; sourceTree = "<group>"; };
+		6B9D83021905C68A00CB8172 /* EnvelopeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvelopeGenerator.h; sourceTree = "<group>"; };
+		6B9D83031905C68A00CB8172 /* fastapprox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fastapprox.h; sourceTree = "<group>"; };
+		6B9D83041905C68A00CB8172 /* Filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Filter.cpp; sourceTree = "<group>"; };
+		6B9D83051905C68A00CB8172 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
+		6B9D83061905C68A00CB8172 /* LFO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LFO.cpp; sourceTree = "<group>"; };
+		6B9D83071905C68A00CB8172 /* LFO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFO.h; sourceTree = "<group>"; };
+		6B9D83081905C68A00CB8172 /* ModulationMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModulationMatrix.cpp; sourceTree = "<group>"; };
+		6B9D83091905C68B00CB8172 /* ModulationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulationMatrix.h; sourceTree = "<group>"; };
+		6B9D830A1905C68B00CB8172 /* MoogLadderFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoogLadderFilter.cpp; sourceTree = "<group>"; };
+		6B9D830B1905C68B00CB8172 /* MoogLadderFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoogLadderFilter.h; sourceTree = "<group>"; };
+		6B9D830C1905C68B00CB8172 /* Oscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Oscillator.cpp; sourceTree = "<group>"; };
+		6B9D830D1905C68B00CB8172 /* Oscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Oscillator.h; sourceTree = "<group>"; };
+		6B9D830E1905C68B00CB8172 /* pluginconstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pluginconstants.h; sourceTree = "<group>"; };
+		6B9D830F1905C68B00CB8172 /* synthfunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = synthfunctions.h; sourceTree = "<group>"; };
+		6B9D83101905C68B00CB8172 /* VAOnePoleFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VAOnePoleFilter.cpp; sourceTree = "<group>"; };
+		6B9D83111905C68B00CB8172 /* VAOnePoleFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAOnePoleFilter.h; sourceTree = "<group>"; };
+		6B9D83121905C68B00CB8172 /* Voice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Voice.cpp; sourceTree = "<group>"; };
+		6B9D83131905C68B00CB8172 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
 		6BEABAB618FCBB7000CA24E4 /* AudioUnitsEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUnitsEngine.h; sourceTree = "<group>"; };
 		6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioUnitsEngine.mm; sourceTree = "<group>"; };
-		6BEABABA18FCBB7000CA24E4 /* DCA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DCA.cpp; sourceTree = "<group>"; };
-		6BEABABB18FCBB7100CA24E4 /* DCA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DCA.h; sourceTree = "<group>"; };
-		6BEABABC18FCBB7100CA24E4 /* EnvelopeGenerator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnvelopeGenerator.cpp; sourceTree = "<group>"; };
-		6BEABABD18FCBB7100CA24E4 /* EnvelopeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnvelopeGenerator.h; sourceTree = "<group>"; };
-		6BEABABE18FCBB7100CA24E4 /* fastapprox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fastapprox.h; sourceTree = "<group>"; };
-		6BEABABF18FCBB7100CA24E4 /* Filter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Filter.cpp; sourceTree = "<group>"; };
-		6BEABAC018FCBB7100CA24E4 /* Filter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filter.h; sourceTree = "<group>"; };
-		6BEABAC118FCBB7100CA24E4 /* LFO.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LFO.cpp; sourceTree = "<group>"; };
-		6BEABAC218FCBB7100CA24E4 /* LFO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFO.h; sourceTree = "<group>"; };
-		6BEABAC318FCBB7100CA24E4 /* MiniSynthVoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MiniSynthVoice.cpp; sourceTree = "<group>"; };
-		6BEABAC418FCBB7100CA24E4 /* MiniSynthVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniSynthVoice.h; sourceTree = "<group>"; };
-		6BEABAC518FCBB7100CA24E4 /* ModulationMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModulationMatrix.cpp; sourceTree = "<group>"; };
-		6BEABAC618FCBB7100CA24E4 /* ModulationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulationMatrix.h; sourceTree = "<group>"; };
-		6BEABAC718FCBB7100CA24E4 /* MoogLadderFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoogLadderFilter.cpp; sourceTree = "<group>"; };
-		6BEABAC818FCBB7100CA24E4 /* MoogLadderFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoogLadderFilter.h; sourceTree = "<group>"; };
-		6BEABAC918FCBB7100CA24E4 /* Oscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Oscillator.cpp; sourceTree = "<group>"; };
-		6BEABACA18FCBB7100CA24E4 /* Oscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Oscillator.h; sourceTree = "<group>"; };
-		6BEABACB18FCBB7100CA24E4 /* pluginconstants.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = pluginconstants.h; sourceTree = "<group>"; };
 		6BEABACC18FCBB7100CA24E4 /* RWKnobControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWKnobControl.h; sourceTree = "<group>"; };
 		6BEABACD18FCBB7100CA24E4 /* RWKnobControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWKnobControl.m; sourceTree = "<group>"; };
 		6BEABACE18FCBB7100CA24E4 /* RWKnobRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWKnobRenderer.h; sourceTree = "<group>"; };
 		6BEABACF18FCBB7100CA24E4 /* RWKnobRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWKnobRenderer.m; sourceTree = "<group>"; };
 		6BEABAD018FCBB7100CA24E4 /* RWRotationGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWRotationGestureRecognizer.h; sourceTree = "<group>"; };
 		6BEABAD118FCBB7100CA24E4 /* RWRotationGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWRotationGestureRecognizer.m; sourceTree = "<group>"; };
-		6BEABAD218FCBB7100CA24E4 /* synthfunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = synthfunctions.h; sourceTree = "<group>"; };
-		6BEABAD318FCBB7100CA24E4 /* VAOnePoleFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VAOnePoleFilter.cpp; sourceTree = "<group>"; };
-		6BEABAD418FCBB7100CA24E4 /* VAOnePoleFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAOnePoleFilter.h; sourceTree = "<group>"; };
-		6BEABAD518FCBB7100CA24E4 /* Voice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Voice.cpp; sourceTree = "<group>"; };
-		6BEABAD618FCBB7100CA24E4 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
 		6BEABAE918FCBC4C00CA24E4 /* CADebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADebugMacros.h; sourceTree = "<group>"; };
 		6BEABAEA18FCBC4C00CA24E4 /* CAMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMath.h; sourceTree = "<group>"; };
 		6BEABAEB18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAStreamBasicDescription.cpp; sourceTree = "<group>"; };
 		6BEABAEC18FCBC4C00CA24E4 /* CAStreamBasicDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAStreamBasicDescription.h; sourceTree = "<group>"; };
 		6BEABAEE18FCBE2900CA24E4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6BEABAF018FCBE2F00CA24E4 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		6BFAB3851905932F00B1B9F8 /* WTOscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WTOscillator.cpp; sourceTree = "<group>"; };
+		6BFAB3861905932F00B1B9F8 /* WTOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTOscillator.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,7 +154,6 @@
 				6BEABAEF18FCBE2900CA24E4 /* AudioToolbox.framework in Frameworks */,
 				6B97D88118F75AF700DF1590 /* CoreGraphics.framework in Frameworks */,
 				6B97D88318F75AF700DF1590 /* UIKit.framework in Frameworks */,
-				6B97D8BC18F7826800DF1590 /* Reveal.framework in Frameworks */,
 				6B97D87F18F75AF700DF1590 /* Foundation.framework in Frameworks */,
 				D1EFA3562AB443BFA0AC73CA /* libPods.a in Frameworks */,
 			);
@@ -175,7 +175,6 @@
 		6B97D87218F75AF700DF1590 = {
 			isa = PBXGroup;
 			children = (
-				6B97D8BB18F7826800DF1590 /* Reveal.framework */,
 				6B97D88418F75AF700DF1590 /* MarkovChain */,
 				6B97D89D18F75AF700DF1590 /* MarkovChainTests */,
 				6B97D87D18F75AF700DF1590 /* Frameworks */,
@@ -317,31 +316,33 @@
 			children = (
 				6BEABAB618FCBB7000CA24E4 /* AudioUnitsEngine.h */,
 				6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */,
-				6BEABAB418FCBB7000CA24E4 /* AlgorithmicOscillator.cpp */,
-				6BEABAB518FCBB7000CA24E4 /* AlgorithmicOscillator.h */,
-				6BEABABA18FCBB7000CA24E4 /* DCA.cpp */,
-				6BEABABB18FCBB7100CA24E4 /* DCA.h */,
-				6BEABABC18FCBB7100CA24E4 /* EnvelopeGenerator.cpp */,
-				6BEABABD18FCBB7100CA24E4 /* EnvelopeGenerator.h */,
-				6BEABABE18FCBB7100CA24E4 /* fastapprox.h */,
-				6BEABABF18FCBB7100CA24E4 /* Filter.cpp */,
-				6BEABAC018FCBB7100CA24E4 /* Filter.h */,
-				6BEABAC118FCBB7100CA24E4 /* LFO.cpp */,
-				6BEABAC218FCBB7100CA24E4 /* LFO.h */,
-				6BEABAC318FCBB7100CA24E4 /* MiniSynthVoice.cpp */,
-				6BEABAC418FCBB7100CA24E4 /* MiniSynthVoice.h */,
-				6BEABAC518FCBB7100CA24E4 /* ModulationMatrix.cpp */,
-				6BEABAC618FCBB7100CA24E4 /* ModulationMatrix.h */,
-				6BEABAC718FCBB7100CA24E4 /* MoogLadderFilter.cpp */,
-				6BEABAC818FCBB7100CA24E4 /* MoogLadderFilter.h */,
-				6BEABAC918FCBB7100CA24E4 /* Oscillator.cpp */,
-				6BEABACA18FCBB7100CA24E4 /* Oscillator.h */,
-				6BEABACB18FCBB7100CA24E4 /* pluginconstants.h */,
-				6BEABAD218FCBB7100CA24E4 /* synthfunctions.h */,
-				6BEABAD318FCBB7100CA24E4 /* VAOnePoleFilter.cpp */,
-				6BEABAD418FCBB7100CA24E4 /* VAOnePoleFilter.h */,
-				6BEABAD518FCBB7100CA24E4 /* Voice.cpp */,
-				6BEABAD618FCBB7100CA24E4 /* Voice.h */,
+				6B401ABB1905C6C300232844 /* MiniSynthVoice.cpp */,
+				6B401ABC1905C6C300232844 /* MiniSynthVoice.h */,
+				6BFAB3851905932F00B1B9F8 /* WTOscillator.cpp */,
+				6BFAB3861905932F00B1B9F8 /* WTOscillator.h */,
+				6B9D82FD1905C68A00CB8172 /* AlgorithmicOscillator.cpp */,
+				6B9D82FE1905C68A00CB8172 /* AlgorithmicOscillator.h */,
+				6B9D82FF1905C68A00CB8172 /* DCA.cpp */,
+				6B9D83001905C68A00CB8172 /* DCA.h */,
+				6B9D83011905C68A00CB8172 /* EnvelopeGenerator.cpp */,
+				6B9D83021905C68A00CB8172 /* EnvelopeGenerator.h */,
+				6B9D83031905C68A00CB8172 /* fastapprox.h */,
+				6B9D83041905C68A00CB8172 /* Filter.cpp */,
+				6B9D83051905C68A00CB8172 /* Filter.h */,
+				6B9D83061905C68A00CB8172 /* LFO.cpp */,
+				6B9D83071905C68A00CB8172 /* LFO.h */,
+				6B9D83081905C68A00CB8172 /* ModulationMatrix.cpp */,
+				6B9D83091905C68B00CB8172 /* ModulationMatrix.h */,
+				6B9D830A1905C68B00CB8172 /* MoogLadderFilter.cpp */,
+				6B9D830B1905C68B00CB8172 /* MoogLadderFilter.h */,
+				6B9D830C1905C68B00CB8172 /* Oscillator.cpp */,
+				6B9D830D1905C68B00CB8172 /* Oscillator.h */,
+				6B9D830E1905C68B00CB8172 /* pluginconstants.h */,
+				6B9D830F1905C68B00CB8172 /* synthfunctions.h */,
+				6B9D83101905C68B00CB8172 /* VAOnePoleFilter.cpp */,
+				6B9D83111905C68B00CB8172 /* VAOnePoleFilter.h */,
+				6B9D83121905C68B00CB8172 /* Voice.cpp */,
+				6B9D83131905C68B00CB8172 /* Voice.h */,
 			);
 			name = SynthStuff;
 			sourceTree = "<group>";
@@ -480,32 +481,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				6B97D8B018F75B1A00DF1590 /* AYAMainViewController.mm in Sources */,
-				6BEABADA18FCBB7100CA24E4 /* DCA.cpp in Sources */,
-				6BEABAE518FCBB7100CA24E4 /* VAOnePoleFilter.cpp in Sources */,
-				6BEABAD718FCBB7100CA24E4 /* AlgorithmicOscillator.cpp in Sources */,
+				6B9D831B1905C68B00CB8172 /* Oscillator.cpp in Sources */,
+				6BFAB3871905932F00B1B9F8 /* WTOscillator.cpp in Sources */,
 				6B85B57A18F8361E00B7BBA2 /* AYAConnection.m in Sources */,
-				6BEABADB18FCBB7100CA24E4 /* EnvelopeGenerator.cpp in Sources */,
+				6B9D83171905C68B00CB8172 /* Filter.cpp in Sources */,
 				6BEABAE218FCBB7100CA24E4 /* RWKnobControl.m in Sources */,
+				6B9D83151905C68B00CB8172 /* DCA.cpp in Sources */,
+				6B9D83191905C68B00CB8172 /* ModulationMatrix.cpp in Sources */,
 				6B85B58D18F8843600B7BBA2 /* AYATableViewController.m in Sources */,
 				6BEABAED18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp in Sources */,
-				6BEABAE018FCBB7100CA24E4 /* MoogLadderFilter.cpp in Sources */,
 				6B97D88F18F75AF700DF1590 /* AYAAppDelegate.mm in Sources */,
 				6B97D8B718F75E0000DF1590 /* AYANodeView.m in Sources */,
+				6B9D831D1905C68B00CB8172 /* Voice.cpp in Sources */,
+				6B401ABD1905C6C300232844 /* MiniSynthVoice.cpp in Sources */,
+				6B9D831C1905C68B00CB8172 /* VAOnePoleFilter.cpp in Sources */,
 				6B0A498E1900518B007858CA /* AYADrawView.m in Sources */,
-				6BEABADD18FCBB7100CA24E4 /* LFO.cpp in Sources */,
-				6BEABAE118FCBB7100CA24E4 /* Oscillator.cpp in Sources */,
 				6B97D88B18F75AF700DF1590 /* main.mm in Sources */,
-				6BEABADC18FCBB7100CA24E4 /* Filter.cpp in Sources */,
-				6BEABADF18FCBB7100CA24E4 /* ModulationMatrix.cpp in Sources */,
 				6BEABAD818FCBB7100CA24E4 /* AudioUnitsEngine.mm in Sources */,
 				6B0A498819003F9E007858CA /* KnobControlView.m in Sources */,
-				6BEABAE618FCBB7100CA24E4 /* Voice.cpp in Sources */,
 				6B97D8B418F75CCE00DF1590 /* AYAConnectionManager.m in Sources */,
-				6BEABADE18FCBB7100CA24E4 /* MiniSynthVoice.cpp in Sources */,
 				6B85B58718F86AAF00B7BBA2 /* AYACustomCell.m in Sources */,
 				6B97D8BA18F76ABD00DF1590 /* TRPLeftDrawerViewController.m in Sources */,
 				6BEABAE418FCBB7100CA24E4 /* RWRotationGestureRecognizer.m in Sources */,
+				6B9D83141905C68B00CB8172 /* AlgorithmicOscillator.cpp in Sources */,
+				6B9D831A1905C68B00CB8172 /* MoogLadderFilter.cpp in Sources */,
 				6B0A498B190049A4007858CA /* TouchDrawingView.m in Sources */,
+				6B9D83181905C68B00CB8172 /* LFO.cpp in Sources */,
+				6B9D83161905C68B00CB8172 /* EnvelopeGenerator.cpp in Sources */,
 				6BEABAE318FCBB7100CA24E4 /* RWKnobRenderer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -8,7 +8,7 @@
 
 #import "AudioUnitsEngine.h"
 
-//#define MAX_VOICES 4
+//#define MAX_VOICES 16
 
 @implementation AudioUnitsEngine
 @synthesize auTrack_1_PlaybackInfo;
@@ -22,8 +22,8 @@
 		// end init
         // load up voices
         CMiniSynthVoice* pVoice;
-        MAX_VOICES = 8;
-        auTrack_1_PlaybackInfo.MAX_VOICES = 8;
+        MAX_VOICES = 4;
+        auTrack_1_PlaybackInfo.MAX_VOICES = MAX_VOICES;
         for(int i=0; i<MAX_VOICES; i++)
         {
             pVoice = new CMiniSynthVoice;
@@ -42,8 +42,7 @@
 -(void)setOscillatorWave:(int)wave{
 }
 -(void)setTimbreSelection:(UINT)sel{
-        MAX_VOICES = 4;
-        auTrack_1_PlaybackInfo.MAX_VOICES = 4;
+
 }
 
 -(void)setNoteOn:(int)notenumber{
@@ -56,7 +55,6 @@
 	for(int i=0; i<MAX_VOICES; i++)
 	{
 		pVoice =  auTrack_1_PlaybackInfo.m_VoicePtrStack1[i];
-		
 		// if we have a free voice, turn on
 		if(!pVoice->m_bNoteOn)
 		{
@@ -189,7 +187,7 @@ static OSStatus auReadFileCallback(void *inRefCon,				/* pointer to userdata - o
 	// each packet has 2 channels; L/R/L/R here
 	int m=0;
 	
-    // --- coo or retrieve plug-in rocessing information
+    // --- coo or retrieve plug-in processing information
 	
 	for(int i = 0; i<nPackets; i++)
 	{
@@ -198,7 +196,7 @@ static OSStatus auReadFileCallback(void *inRefCon,				/* pointer to userdata - o
         double dLeftAccum = 0.0;
         double dRightAccum = 0.0;
         
-        float fMix = 1.0/(float)auInfo->MAX_VOICES*2;
+        float fMix = 1.0/(float)auInfo->MAX_VOICES;
         
         CVoice* pVoice;
         for(int i=0; i<auInfo->MAX_VOICES; i++)

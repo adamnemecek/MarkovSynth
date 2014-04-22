@@ -60,9 +60,9 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
     return 50.f;
 }
 
-- (int)numberOfSectionsInTableView:(UITableView *)tableView
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 2;
+    return (NSInteger)2;
 }
 
 
@@ -79,9 +79,9 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
     return string;
 }
 
-- (int)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 5;
+    return (NSInteger)5;
 }
 
 #pragma mark - UITableViewDelegate

@@ -6,8 +6,8 @@ CMiniSynthVoice::CMiniSynthVoice(void)
 	// oscillators
 	m_pOsc1 = &m_Osc1;
 	m_pOsc2 = &m_Osc2;
-	m_pOsc3 = &m_Osc3;
-	m_pOsc4 = &m_Osc4;
+//	m_pOsc3 = &m_Osc3;
+//	m_pOsc4 = &m_Osc4;
 
 	// filters
 	m_pFilter1 = &m_LPF;
@@ -52,97 +52,97 @@ CMiniSynthVoice::CMiniSynthVoice(void)
 	
 	// --- The Mod matrix "wiring"
 	// create a row for each source/destination pair
-	modMatrixRow* pRow;
-
-	// LFO1 -> ALL OSC1 FC
-	pRow = new modMatrixRow;
-	pRow->uSourceIndex = SOURCE_LFO1;
-	pRow->uDestinationIndex = DEST_ALL_OSC_FO;
-	pRow->pModIntensity = &m_dLFO1_OscModIntensity;
-	pRow->pModRange = &m_dOscFoModRange;
-	pRow->uSourceTransform = TRANSFORM_NONE; 
-
-	m_ModulationMatrix.addModMatrixRow(pRow);
-	
-	// EG1 -> ALL OSC1 FC
-	pRow = new modMatrixRow;
-	pRow->uSourceIndex = SOURCE_BIASED_EG1;
-	pRow->uDestinationIndex = DEST_ALL_OSC_FO;
-	pRow->pModIntensity = &m_dEG1_OscModIntensity;
-	pRow->pModRange = &m_dOscFoModRange;
-	pRow->uSourceTransform = TRANSFORM_NONE; 
-
-	m_ModulationMatrix.addModMatrixRow(pRow);
-
-	// LFO1 -> FILTER1 FC
-	pRow = new modMatrixRow;
-	pRow->uSourceIndex = SOURCE_LFO1;
-	pRow->uDestinationIndex = DEST_ALL_FILTER_FC;
-	pRow->pModIntensity = &m_dLFO1_Filter1ModIntensity;
-	pRow->pModRange = &m_dFilterModRange;
-	pRow->uSourceTransform = TRANSFORM_NONE; 
-
-	m_ModulationMatrix.addModMatrixRow(pRow);
-
-	// LFO1 -> PULSE WIDTH
-	pRow = new modMatrixRow;
-	pRow->uSourceIndex = SOURCE_LFO1;
-	pRow->uDestinationIndex = DEST_ALL_OSC_PULSEWIDTH;
-	pRow->pModIntensity = &m_dDefaultModIntensity;
-	pRow->pModRange = &m_dDefaultModRange;
-	pRow->uSourceTransform = TRANSFORM_NONE; 
-
-	m_ModulationMatrix.addModMatrixRow(pRow);
-
-	// LFO1 -> HARD SYNC RATIO
-	pRow = new modMatrixRow;
-	pRow->uSourceIndex = SOURCE_LFO1;
-	pRow->uDestinationIndex = DEST_ALL_OSC_FO_RATIO;
-	pRow->pModIntensity = &m_dDefaultModIntensity;
-	pRow->pModRange = &m_dOscHardSyncModRange;
-	pRow->uSourceTransform = TRANSFORM_BIPOLAR_TO_UNIPOLAR; 
-
-	m_ModulationMatrix.addModMatrixRow(pRow);
-
-	// EG1 -> FILTER1 FC
-	pRow = new modMatrixRow;
-	pRow->uSourceIndex = SOURCE_BIASED_EG1;
-	pRow->uDestinationIndex = DEST_ALL_FILTER_FC;
-	pRow->pModIntensity = &m_dEG1_Filter1ModIntensity;
-	pRow->pModRange = &m_dFilterModRange;
-	pRow->uSourceTransform = TRANSFORM_NONE; 
-
-	m_ModulationMatrix.addModMatrixRow(pRow);
-
-	// EG1 -> DCA EG
-	pRow = new modMatrixRow;
-	pRow->uSourceIndex = SOURCE_EG1;
-	pRow->uDestinationIndex = DEST_DCA_EG;
-	pRow->pModIntensity = &m_dEG1_DCAAmpModIntensity; 	
-	pRow->pModRange = &m_dDefaultModRange;
-	pRow->uSourceTransform = TRANSFORM_NONE; 
-
-	m_ModulationMatrix.addModMatrixRow(pRow);
-
-	// LFO1 (-1 -> +1) -> DCA Amp Mod (0->1)
-	pRow = new modMatrixRow;
-	pRow->uSourceIndex = SOURCE_LFO1;
-	pRow->uDestinationIndex = DEST_DCA_AMP;
-	pRow->pModIntensity = &m_dLFO1_DCAAmpModIntensity;
-	pRow->pModRange = &m_dAmpModRange;
-	pRow->uSourceTransform = TRANSFORM_BIPOLAR_TO_UNIPOLAR; // convert LFO to unipolar
-
-	m_ModulationMatrix.addModMatrixRow(pRow);
-
-	// LFO1 (-1 -> +1) -> DCA Pan Mod (-1->1)
-	pRow = new modMatrixRow;
-	pRow->uSourceIndex = SOURCE_LFO1;
-	pRow->uDestinationIndex = DEST_DCA_PAN;
-	pRow->pModIntensity = &m_dLFO1_DCAPanModIntensity;
-	pRow->pModRange = &m_dDefaultModRange;
-	pRow->uSourceTransform = TRANSFORM_NONE; // none
-
-	m_ModulationMatrix.addModMatrixRow(pRow);
+//	modMatrixRow* pRow;
+//
+//	// LFO1 -> ALL OSC1 FC
+//	pRow = new modMatrixRow;
+//	pRow->uSourceIndex = SOURCE_LFO1;
+//	pRow->uDestinationIndex = DEST_ALL_OSC_FO;
+//	pRow->pModIntensity = &m_dLFO1_OscModIntensity;
+//	pRow->pModRange = &m_dOscFoModRange;
+//	pRow->uSourceTransform = TRANSFORM_NONE; 
+//
+//	m_ModulationMatrix.addModMatrixRow(pRow);
+//	
+//	// EG1 -> ALL OSC1 FC
+//	pRow = new modMatrixRow;
+//	pRow->uSourceIndex = SOURCE_BIASED_EG1;
+//	pRow->uDestinationIndex = DEST_ALL_OSC_FO;
+//	pRow->pModIntensity = &m_dEG1_OscModIntensity;
+//	pRow->pModRange = &m_dOscFoModRange;
+//	pRow->uSourceTransform = TRANSFORM_NONE; 
+//
+//	m_ModulationMatrix.addModMatrixRow(pRow);
+//
+//	// LFO1 -> FILTER1 FC
+//	pRow = new modMatrixRow;
+//	pRow->uSourceIndex = SOURCE_LFO1;
+//	pRow->uDestinationIndex = DEST_ALL_FILTER_FC;
+//	pRow->pModIntensity = &m_dLFO1_Filter1ModIntensity;
+//	pRow->pModRange = &m_dFilterModRange;
+//	pRow->uSourceTransform = TRANSFORM_NONE; 
+//
+//	m_ModulationMatrix.addModMatrixRow(pRow);
+//
+//	// LFO1 -> PULSE WIDTH
+//	pRow = new modMatrixRow;
+//	pRow->uSourceIndex = SOURCE_LFO1;
+//	pRow->uDestinationIndex = DEST_ALL_OSC_PULSEWIDTH;
+//	pRow->pModIntensity = &m_dDefaultModIntensity;
+//	pRow->pModRange = &m_dDefaultModRange;
+//	pRow->uSourceTransform = TRANSFORM_NONE; 
+//
+//	m_ModulationMatrix.addModMatrixRow(pRow);
+//
+//	// LFO1 -> HARD SYNC RATIO
+//	pRow = new modMatrixRow;
+//	pRow->uSourceIndex = SOURCE_LFO1;
+//	pRow->uDestinationIndex = DEST_ALL_OSC_FO_RATIO;
+//	pRow->pModIntensity = &m_dDefaultModIntensity;
+//	pRow->pModRange = &m_dOscHardSyncModRange;
+//	pRow->uSourceTransform = TRANSFORM_BIPOLAR_TO_UNIPOLAR; 
+//
+//	m_ModulationMatrix.addModMatrixRow(pRow);
+//
+//	// EG1 -> FILTER1 FC
+//	pRow = new modMatrixRow;
+//	pRow->uSourceIndex = SOURCE_BIASED_EG1;
+//	pRow->uDestinationIndex = DEST_ALL_FILTER_FC;
+//	pRow->pModIntensity = &m_dEG1_Filter1ModIntensity;
+//	pRow->pModRange = &m_dFilterModRange;
+//	pRow->uSourceTransform = TRANSFORM_NONE; 
+//
+//	m_ModulationMatrix.addModMatrixRow(pRow);
+//
+//	// EG1 -> DCA EG
+//	pRow = new modMatrixRow;
+//	pRow->uSourceIndex = SOURCE_EG1;
+//	pRow->uDestinationIndex = DEST_DCA_EG;
+//	pRow->pModIntensity = &m_dEG1_DCAAmpModIntensity; 	
+//	pRow->pModRange = &m_dDefaultModRange;
+//	pRow->uSourceTransform = TRANSFORM_NONE; 
+//
+//	m_ModulationMatrix.addModMatrixRow(pRow);
+//
+//	// LFO1 (-1 -> +1) -> DCA Amp Mod (0->1)
+//	pRow = new modMatrixRow;
+//	pRow->uSourceIndex = SOURCE_LFO1;
+//	pRow->uDestinationIndex = DEST_DCA_AMP;
+//	pRow->pModIntensity = &m_dLFO1_DCAAmpModIntensity;
+//	pRow->pModRange = &m_dAmpModRange;
+//	pRow->uSourceTransform = TRANSFORM_BIPOLAR_TO_UNIPOLAR; // convert LFO to unipolar
+//
+//	m_ModulationMatrix.addModMatrixRow(pRow);
+//
+//	// LFO1 (-1 -> +1) -> DCA Pan Mod (-1->1)
+//	pRow = new modMatrixRow;
+//	pRow->uSourceIndex = SOURCE_LFO1;
+//	pRow->uDestinationIndex = DEST_DCA_PAN;
+//	pRow->pModIntensity = &m_dLFO1_DCAPanModIntensity;
+//	pRow->pModRange = &m_dDefaultModRange;
+//	pRow->uSourceTransform = TRANSFORM_NONE; // none
+//
+//	m_ModulationMatrix.addModMatrixRow(pRow);
 }
 
 CMiniSynthVoice::~CMiniSynthVoice(void)
@@ -169,8 +169,8 @@ void CMiniSynthVoice::reset()
 
 	m_Osc1.m_uWaveform = SAW1;
 	m_Osc2.m_uWaveform = SAW1;
-	m_Osc3.m_uWaveform = SAW1;
-	m_Osc4.m_uWaveform = NOISE;
+//	m_Osc3.m_uWaveform = SAW1;
+//	m_Osc4.m_uWaveform = NOISE;
 }
 
 void CMiniSynthVoice::update()

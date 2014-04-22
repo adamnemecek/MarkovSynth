@@ -267,8 +267,8 @@ inline double doEnvelope()
 		//		m_dEnvelopeOutput = -0.0000001 + m_dEnvelopeOutput*m_dReleaseCoeff;
 				m_dEnvelopeOutput = m_dReleaseOffset + m_dEnvelopeOutput*m_dReleaseCoeff;
 
-			if(m_dEnvelopeOutput*m_dReleaseCoeff < FLT_MIN_PLUS)
-				int t = 0;
+//			if(m_dEnvelopeOutput*m_dReleaseCoeff < FLT_MIN_PLUS)
+//				int t = 0;
 		
 			// go to next state if wrapped
 			if(m_dEnvelopeOutput <= 0.0 || m_dReleaseTime_mSec <= 0.0)

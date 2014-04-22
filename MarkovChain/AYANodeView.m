@@ -89,6 +89,7 @@
 -(void)recievedEvent{
     [knobControlView removeFromSuperview];
     [self.delegate noteOn:self.note];
+    noteTimer = [NSTimer scheduledTimerWithTimeInterval:0.8 target:self selector:@selector(noteCompleted) userInfo:nil repeats:NO];
     CALayer *eventLayer = [[CALayer alloc] init];
     [eventLayer setCornerRadius:self.frame.size.height/2];
     eventLayer.frame = self.bounds;
@@ -202,9 +203,14 @@
         [connection.endView recievedEvent];
     }
     if ([[anim valueForKey:@"notenumber"]intValue]) {
-        [self.delegate noteOff:[[anim valueForKey:@"notenumber"]intValue]];
+//        [self.delegate noteOff:[[anim valueForKey:@"notenumber"]intValue]];
     }
     
+}
+
+-(void)noteCompleted{
+    [self.delegate noteOff:self.note];
+
 }
 
 -(void)scaleTheView:(UIPinchGestureRecognizer*)pinchRecognizer{

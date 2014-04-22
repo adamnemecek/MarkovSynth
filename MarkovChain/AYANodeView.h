@@ -19,6 +19,8 @@
 
 @interface AYANodeView : UIView{
     KnobControlView *knobControlView;
+    
+    NSTimer *noteTimer;
 }
 
 @property (strong, nonatomic) NSMutableArray *connectionArray;
