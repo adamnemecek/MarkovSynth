@@ -65,7 +65,7 @@ struct timbre
     
 };
 
-@interface AYAMainViewController : UIViewController <AYANodeDelegate>{
+@interface AYAMainViewController : UIViewController <AYANodeDelegate,UISplitViewControllerDelegate>{
     
     AYAConnectionManager *connectionManager;
     
@@ -148,11 +148,12 @@ struct timbre
 	UINT m_uVelocityToAttackScaling;
 	UINT m_uNoteNumberToDecayScaling;
 	UINT m_uTimbreSelection;
-    
-
-
 }
+-(void)clearGraph;
 
+-(void)saveGraph;
+
+-(void)loadGraph;
 
 
 @end

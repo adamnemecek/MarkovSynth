@@ -19,6 +19,14 @@ typedef NS_ENUM(NSInteger, connectionType){
 
 @implementation AYAMainViewController
 
+- (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc{
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+
+-(void)splitViewController:(UISplitViewController *)svc willShowViewController:(UIViewController *)aViewController invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem{
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -406,8 +414,6 @@ typedef NS_ENUM(NSInteger, connectionType){
     }
 }
 
-
-
 -(void)handlehits{
     if ([tempHitArray count]>0) {
         for (int i=0; i<[tempHitArray count]-1; i++) {
@@ -419,7 +425,11 @@ typedef NS_ENUM(NSInteger, connectionType){
 
 -(void)makeConnectionFromView:(AYANodeView*)startView toView:(AYANodeView*)endView
 {
-        // Or, we already have a startview and we need to create the connection (not to ourselves).
+    [self makeConnectionFromView:startView toView:endView withProbability:(arc4random_uniform(500)/1000.0 + 0.5)];
+}
+-(void)makeConnectionFromView:(AYANodeView*)startView toView:(AYANodeView*)endView withProbability:(float)prob
+{
+    // Or, we already have a startview and we need to create the connection (not to ourselves).
     if([endView isKindOfClass:[AYANodeView class]] && !CGRectEqualToRect(endView.frame,startView.frame)){
         [CATransaction setDisableActions:YES];
         
@@ -436,7 +446,7 @@ typedef NS_ENUM(NSInteger, connectionType){
         [connection setLineLayer:lineLayer];
         [connection setStartView:startView];
         [connection setEndView:(AYANodeView*)endView];
-        [connection setProbability:(arc4random_uniform(500)/1000.0 + 0.5)];
+        [connection setProbability:prob];
         [[startView connectionArray] addObject:connection];
         
         // Add our layer
@@ -518,7 +528,7 @@ typedef NS_ENUM(NSInteger, connectionType){
         [startView.backgroundLayer setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0].CGColor];
         
         startView = nil;
-    
+        
     }
 }
 
@@ -538,6 +548,10 @@ typedef NS_ENUM(NSInteger, connectionType){
         [navBar setModalPresentationStyle:UIModalPresentationFormSheet];
         [self.navigationController presentViewController:navBar animated:YES completion:nil];
     }
+}
+-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
+    return YES;
 }
 
 - (void)updateLinesForView:(AYANodeView *)draggableView
@@ -577,5 +591,106 @@ typedef NS_ENUM(NSInteger, connectionType){
     [auEngine setNoteOff:notenumber];
 }
 
+-(void)clearGraph{
+    for (AYANodeView *node in nodes) {
+        [node.layer removeFromSuperlayer];
+        [node removeFromSuperview];
+    }
+    
+    [nodes removeAllObjects];
+}
+
+-(void)saveGraph{
+    
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *documentDirectory = [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:@".archive"];
+    NSMutableArray *nodeStore = [[NSMutableArray alloc] init];
+    for (AYANodeView *node in nodes) {
+        NSMutableDictionary *nodeDict = [[NSMutableDictionary alloc] init];
+        [nodeDict setObject:[NSValue valueWithCGRect:node.frame ] forKey:@"frame"];
+        [nodeDict setObject:@(node.note) forKey:@"note"];
+        [nodeDict setObject:@(node.noteLength) forKey:@"length"];
+        [nodeDict setObject:node.noteName forKey:@"noteName"];
+        NSMutableArray *connectionArray = [[NSMutableArray alloc] init];
+        for (AYAConnection *connection in node.connectionArray) {
+            NSMutableDictionary *connectionDict = [[NSMutableDictionary alloc] init];
+            [connectionDict setObject:[NSValue valueWithCGRect:connection.startView.frame] forKey:@"startFrame"];
+            [connectionDict setObject:[NSValue valueWithCGRect:connection.endView.frame] forKey:@"endFrame"];
+            [connectionDict setObject:@(connection.probability) forKey:@"prob"];
+            [connectionArray addObject:connectionDict];
+        }
+        [nodeDict setObject:connectionArray forKey:@"connectionArray"];
+        [nodeStore addObject:nodeDict];
+    }
+    [NSKeyedArchiver archiveRootObject:nodeStore toFile:documentDirectory];
+    
+}
+
+-(void)loadGraph{
+    for (AYANodeView *node in nodes) {
+        [node.layer removeFromSuperlayer];
+        [node removeFromSuperview];
+    }
+    
+    [nodes removeAllObjects];
+    
+    
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *documentDirectory = [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:@".archive"];
+    NSArray *nodeStore = [NSKeyedUnarchiver unarchiveObjectWithFile:documentDirectory];
+    
+    for(NSDictionary *nodeDict in nodeStore){
+        AYANodeView *nodeView = [[AYANodeView alloc] initWithFrame:[nodeDict[@"frame"] CGRectValue]];
+        // We need to be the node's delegate as well.
+        [nodeView setDelegate:self];
+        // Pan gesture to move nodes
+        UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
+        [panGestureRecognizer setMinimumNumberOfTouches:1];
+        [panGestureRecognizer setMaximumNumberOfTouches:1];
+        [panGestureRecognizer addTarget:self action:@selector(handlePan:)];
+        [nodeView addGestureRecognizer:panGestureRecognizer];
+        
+        // Double tap for connection creation, this is only until I get drawing connections done.
+        UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+        [tapGestureRecognizer setNumberOfTouchesRequired:1];
+        [tapGestureRecognizer setNumberOfTapsRequired:2];
+        [tapGestureRecognizer addTarget:self action:@selector(handleTap:)];
+        [nodeView addGestureRecognizer:tapGestureRecognizer];
+        
+        // Long press to bring up form sheet to edit properties. Rob had a good idea of using a pinch or drag from a node to present the controls that this shows.
+        UILongPressGestureRecognizer* longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] init];
+        [longPressGestureRecognizer setAllowableMovement:10.0f];
+        [longPressGestureRecognizer setMinimumPressDuration:1.0f];
+        [longPressGestureRecognizer setNumberOfTouchesRequired:1];
+        [longPressGestureRecognizer addTarget:self action:@selector(handlePress:)];
+        [nodeView addGestureRecognizer:longPressGestureRecognizer];
+        
+        // Add the nodeView to the array we use to keep track of all the nodes.
+        [nodes addObject:nodeView];
+        [nodeView setNote:[nodeDict[@"note"] intValue]];
+        [nodeView setNoteLength:[nodeDict[@"length"] floatValue]];
+        [nodeView setNoteName:nodeDict[@"noteName"]];
+        
+        // Finally, after much ado, we add the view to the mainVC
+        [self.view addSubview:nodeView];
+    }
+    
+    for (NSDictionary *nodeDict in nodeStore) {
+        for (NSDictionary *connectionDict in nodeDict[@"connectionArray"]) {
+            AYANodeView *startNode = nil;
+            AYANodeView *endNode = nil;
+            for(AYANodeView *node in nodes){
+                if (CGRectEqualToRect(node.frame, [connectionDict[@"startFrame"] CGRectValue])) {
+                    startNode = node;
+                }
+                if (CGRectEqualToRect(node.frame, [connectionDict[@"endFrame"] CGRectValue])) {
+                    endNode = node;
+                }
+            }
+            [self makeConnectionFromView:startNode toView:endNode withProbability:[connectionDict[@"prob"] floatValue]];
+            
+        }
+    }
+}
 
 @end

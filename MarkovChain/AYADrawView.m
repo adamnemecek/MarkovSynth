@@ -17,11 +17,6 @@
         // Initialization code
         self.backgroundColor = [UIColor clearColor];
         path = [[UIBezierPath alloc] init];
-//        UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
-//        [panGestureRecognizer setMinimumNumberOfTouches:1];
-//        [panGestureRecognizer setMaximumNumberOfTouches:1];
-//        [panGestureRecognizer addTarget:self action:@selector(handleDrawPan:)];
-//        [self addGestureRecognizer:panGestureRecognizer];
     }
     return self;
 }

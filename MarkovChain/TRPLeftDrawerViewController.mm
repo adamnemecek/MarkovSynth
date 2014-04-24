@@ -29,6 +29,8 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
     self.view.backgroundColor = [UIColor darkGrayColor];
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kLeftDrawerCell];
     [self.tableView reloadData];
+    self.navigationController.navigationBarHidden = YES;
+
 
    }
 
@@ -52,6 +54,17 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
     cell.backgroundColor = [UIColor darkGrayColor];
     cell.textLabel.textColor = [UIColor whiteColor];
 
+    if (indexPath.section == 0) {
+        if (indexPath.row == 0) {
+            [cell.textLabel setText:@"Clear"];
+        }
+        if (indexPath.row == 1) {
+            [cell.textLabel setText:@"Save"];
+        }
+        if (indexPath.row == 2) {
+            [cell.textLabel setText:@"Load"];
+        }
+    }
     return cell;
 }
 
@@ -88,7 +101,19 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
+    if (indexPath.section ==0) {
+        if (indexPath.row == 0) {
+            [self.mainVC clearGraph];
+        }
+        if (indexPath.row == 1) {
+            [self.mainVC saveGraph];
+        }
+        if (indexPath.row == 2) {
+            [self.mainVC loadGraph];
+        }
+    }
 }
 
 @end

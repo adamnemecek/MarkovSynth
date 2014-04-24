@@ -13,25 +13,52 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    // Override point for customization after application launch.
+//    self.mainVC = [[AYAMainViewController alloc] init];
+//    _rootViewController = [[MSDynamicsDrawerViewController alloc] init];
+//    [_rootViewController setDelegate:self];
+//    _rootViewController.paneDragRequiresScreenEdgePan = YES;
+//    [_rootViewController setDrawerViewController:self.leftDrawerViewController
+//                                    forDirection:MSDynamicsDrawerDirectionLeft];
+//    UINavigationController *navController = [[UINavigationController alloc]
+//                                             initWithRootViewController:self.mainVC];
+//    
+//    [_leftDrawerViewController setMainVC:self.mainVC];
+//    navController.navigationBar.translucent = YES;
+//    navController.navigationBarHidden = NO;
+//    _rootViewController.paneViewController = navController;
+//    
+//    self.window.rootViewController = _rootViewController;
+//    self.window.backgroundColor = [UIColor whiteColor];
+//    [self.window makeKeyAndVisible];
+//    return YES;
+//    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]
+                                                   bounds]];
     // Override point for customization after application launch.
-    _rootViewController = [[MSDynamicsDrawerViewController alloc] init];
-    [_rootViewController setDelegate:self];
-    _rootViewController.paneDragRequiresScreenEdgePan = YES;
-    [_rootViewController setDrawerViewController:self.leftDrawerViewController
-                                    forDirection:MSDynamicsDrawerDirectionLeft];
-    AYAMainViewController  *mainVC = [[AYAMainViewController alloc] init];
-    UINavigationController *navController = [[UINavigationController alloc]
-                                             initWithRootViewController:mainVC];
+    TRPLeftDrawerViewController *masterViewController = [[TRPLeftDrawerViewController alloc] init];
+    UINavigationController *masterNavigationController =
+    [[UINavigationController alloc] initWithRootViewController:
+     masterViewController];
     
+    AYAMainViewController *detailViewController = [[AYAMainViewController alloc] init];
+    UINavigationController *detailNavigationController =
+    [[UINavigationController alloc] initWithRootViewController:
+     detailViewController];
     
-    navController.navigationBar.translucent = YES;
-    navController.navigationBarHidden = NO;
-    _rootViewController.paneViewController = navController;
-    
-    self.window.rootViewController = _rootViewController;
-    self.window.backgroundColor = [UIColor whiteColor];
+    [masterViewController setMainVC:detailViewController];
+    [self.splitViewController setPresentsWithGesture:YES];
+    self.splitViewController = [[UISplitViewController alloc] init];
+    self.splitViewController.delegate = detailViewController;
+    self.splitViewController.viewControllers =
+    @[masterNavigationController, detailNavigationController];
+    self.window.rootViewController = self.splitViewController;
     [self.window makeKeyAndVisible];
+    return YES;
+}
+-(BOOL)splitViewController:(UISplitViewController *)svc shouldHideViewController:(UIViewController *)vc inOrientation:(UIInterfaceOrientation)orientation
+{
     return YES;
 }
 
@@ -42,7 +69,7 @@
     }
     
     _leftDrawerViewController = [[TRPLeftDrawerViewController alloc] initWithStyle:UITableViewStyleGrouped];
-    
+    [_leftDrawerViewController setMainVC:self.mainVC];
     return _leftDrawerViewController;
 }
 - (BOOL)dynamicsDrawerViewController:(MSDynamicsDrawerViewController *)drawerViewController
@@ -62,6 +89,7 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    [self.mainVC saveGraph];
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application

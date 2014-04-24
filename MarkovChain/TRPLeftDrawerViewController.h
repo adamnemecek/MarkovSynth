@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-
+#import "AYAMainViewController.h"
+#import "AYASaveStateViewController.h"
 
 @interface TRPLeftDrawerViewController : UITableViewController
+
+@property (weak,nonatomic) AYAMainViewController* mainVC;
 
 @end

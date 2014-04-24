@@ -87,11 +87,42 @@
     [self.manager addSection:section];
     for (AYAConnection *connection in presentingNode.connectionArray) {
         NSString *title = [NSString stringWithFormat:@"To :%@",connection.endView.noteName];
-        [((RETableViewSection*)[self.manager.sections objectAtIndex:0]) addItem:[REFloatItem itemWithTitle:title value:connection.probability sliderValueChangeHandler:^(REFloatItem *item) {
+        [((RETableViewSection*)[self.manager.sections objectAtIndex:1]) addItem:[REFloatItem itemWithTitle:title value:connection.probability sliderValueChangeHandler:^(REFloatItem *item) {
 //            NSLog(@"Value: %f, %d", item.value, item.indexPath.row);
-            [[presentingNode.connectionArray objectAtIndex:item.indexPath.row-1] setProbability:item.value];
+            [[presentingNode.connectionArray objectAtIndex:item.indexPath.row] setProbability:item.value];
             }]];
     }
+    int lengthind = 0;
+    if (presentingNode.noteLength == 1.0f) {
+        lengthind = 0;
+    }else if(presentingNode.noteLength == 0.5f){
+        lengthind = 1;
+    }else if(presentingNode.noteLength == 0.25f){
+        lengthind = 2;
+    }else if(presentingNode.noteLength == 0.125f){
+        lengthind = 3;
+    }
+    [((RETableViewSection*)self.manager.sections[0]) addItem:[RESegmentedItem itemWithTitle:@"Length" segmentedControlTitles:@[@"Half",@"Quarter", @"8th", @"16th"] value:lengthind switchValueChangeHandler:^(RESegmentedItem *item) {
+        NSLog(@"Value: %li", (long)item.value);
+        switch ((long)item.value) {
+            case 0:
+                presentingNode.noteLength = 1.0f;
+                break;
+            case 1:
+                presentingNode.noteLength = 0.5f;
+                break;
+            case 2:
+                presentingNode.noteLength = 0.25f;
+                break;
+            case 3:
+                presentingNode.noteLength = 0.125f;
+                break;
+            default:
+                break;
+        }
+    }]];
+
+    
 }
 
 - (void)didReceiveMemoryWarning

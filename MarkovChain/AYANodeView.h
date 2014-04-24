@@ -19,7 +19,6 @@
 
 @interface AYANodeView : UIView{
     KnobControlView *knobControlView;
-    
     NSTimer *noteTimer;
 }
 
@@ -32,6 +31,8 @@
 @property (strong, nonatomic) CAGradientLayer* backgroundLayer;
 
 @property (strong, nonatomic) CATextLayer *noteNameLayer;
+
+@property float noteLength;
 
 @property (weak, nonatomic) id <AYANodeDelegate> delegate;
 

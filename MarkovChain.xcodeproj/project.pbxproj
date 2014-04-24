@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		6B0A498819003F9E007858CA /* KnobControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498719003F9E007858CA /* KnobControlView.m */; };
-		6B0A498B190049A4007858CA /* TouchDrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498A190049A4007858CA /* TouchDrawingView.m */; };
 		6B0A498E1900518B007858CA /* AYADrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498D1900518B007858CA /* AYADrawView.m */; };
 		6B401ABD1905C6C300232844 /* MiniSynthVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B401ABB1905C6C300232844 /* MiniSynthVoice.cpp */; };
 		6B602E2B18FCC529002AF69B /* 9.wav in Resources */ = {isa = PBXBuildFile; fileRef = 6B602E2A18FCC529002AF69B /* 9.wav */; };
+		6B6960E9190987A500AD7F57 /* AYASaveStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6960E7190987A500AD7F57 /* AYASaveStateViewController.m */; };
+		6B6960EA190987A500AD7F57 /* AYASaveStateViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B6960E8190987A500AD7F57 /* AYASaveStateViewController.xib */; };
 		6B85B57A18F8361E00B7BBA2 /* AYAConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B85B57918F8361E00B7BBA2 /* AYAConnection.m */; };
 		6B85B58718F86AAF00B7BBA2 /* AYACustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B85B58618F86AAE00B7BBA2 /* AYACustomCell.m */; };
 		6B85B58D18F8843600B7BBA2 /* AYATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B85B58C18F8843600B7BBA2 /* AYATableViewController.m */; };
@@ -31,7 +32,7 @@
 		6B97D8B118F75B1A00DF1590 /* AYAMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B97D8AF18F75B1A00DF1590 /* AYAMainViewController.xib */; };
 		6B97D8B418F75CCE00DF1590 /* AYAConnectionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8B318F75CCE00DF1590 /* AYAConnectionManager.m */; };
 		6B97D8B718F75E0000DF1590 /* AYANodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8B618F75E0000DF1590 /* AYANodeView.m */; };
-		6B97D8BA18F76ABD00DF1590 /* TRPLeftDrawerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8B918F76ABD00DF1590 /* TRPLeftDrawerViewController.m */; };
+		6B97D8BA18F76ABD00DF1590 /* TRPLeftDrawerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6B97D8B918F76ABD00DF1590 /* TRPLeftDrawerViewController.mm */; };
 		6B9D83141905C68B00CB8172 /* AlgorithmicOscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D82FD1905C68A00CB8172 /* AlgorithmicOscillator.cpp */; };
 		6B9D83151905C68B00CB8172 /* DCA.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D82FF1905C68A00CB8172 /* DCA.cpp */; };
 		6B9D83161905C68B00CB8172 /* EnvelopeGenerator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83011905C68A00CB8172 /* EnvelopeGenerator.cpp */; };
@@ -67,13 +68,14 @@
 		65CF91E232134A20A97F8078 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6B0A498619003F9E007858CA /* KnobControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnobControlView.h; sourceTree = "<group>"; };
 		6B0A498719003F9E007858CA /* KnobControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnobControlView.m; sourceTree = "<group>"; };
-		6B0A4989190049A4007858CA /* TouchDrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchDrawingView.h; sourceTree = "<group>"; };
-		6B0A498A190049A4007858CA /* TouchDrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchDrawingView.m; sourceTree = "<group>"; };
 		6B0A498C1900518B007858CA /* AYADrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYADrawView.h; sourceTree = "<group>"; };
 		6B0A498D1900518B007858CA /* AYADrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYADrawView.m; sourceTree = "<group>"; };
 		6B401ABB1905C6C300232844 /* MiniSynthVoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MiniSynthVoice.cpp; sourceTree = "<group>"; };
 		6B401ABC1905C6C300232844 /* MiniSynthVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniSynthVoice.h; sourceTree = "<group>"; };
 		6B602E2A18FCC529002AF69B /* 9.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 9.wav; sourceTree = "<group>"; };
+		6B6960E6190987A500AD7F57 /* AYASaveStateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYASaveStateViewController.h; sourceTree = "<group>"; };
+		6B6960E7190987A500AD7F57 /* AYASaveStateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYASaveStateViewController.m; sourceTree = "<group>"; };
+		6B6960E8190987A500AD7F57 /* AYASaveStateViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AYASaveStateViewController.xib; sourceTree = "<group>"; };
 		6B85B57818F8361E00B7BBA2 /* AYAConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAConnection.h; sourceTree = "<group>"; };
 		6B85B57918F8361E00B7BBA2 /* AYAConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYAConnection.m; sourceTree = "<group>"; };
 		6B85B58518F86AAE00B7BBA2 /* AYACustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYACustomCell.h; sourceTree = "<group>"; };
@@ -104,7 +106,7 @@
 		6B97D8B518F75E0000DF1590 /* AYANodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYANodeView.h; sourceTree = "<group>"; };
 		6B97D8B618F75E0000DF1590 /* AYANodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYANodeView.m; sourceTree = "<group>"; };
 		6B97D8B818F76ABD00DF1590 /* TRPLeftDrawerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRPLeftDrawerViewController.h; sourceTree = "<group>"; };
-		6B97D8B918F76ABD00DF1590 /* TRPLeftDrawerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRPLeftDrawerViewController.m; sourceTree = "<group>"; };
+		6B97D8B918F76ABD00DF1590 /* TRPLeftDrawerViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = TRPLeftDrawerViewController.mm; sourceTree = "<group>"; };
 		6B9D82FD1905C68A00CB8172 /* AlgorithmicOscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AlgorithmicOscillator.cpp; sourceTree = "<group>"; };
 		6B9D82FE1905C68A00CB8172 /* AlgorithmicOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlgorithmicOscillator.h; sourceTree = "<group>"; };
 		6B9D82FF1905C68A00CB8172 /* DCA.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DCA.cpp; sourceTree = "<group>"; };
@@ -213,7 +215,10 @@
 				6B85B58518F86AAE00B7BBA2 /* AYACustomCell.h */,
 				6B85B58618F86AAE00B7BBA2 /* AYACustomCell.m */,
 				6B97D8B818F76ABD00DF1590 /* TRPLeftDrawerViewController.h */,
-				6B97D8B918F76ABD00DF1590 /* TRPLeftDrawerViewController.m */,
+				6B97D8B918F76ABD00DF1590 /* TRPLeftDrawerViewController.mm */,
+				6B6960E6190987A500AD7F57 /* AYASaveStateViewController.h */,
+				6B6960E7190987A500AD7F57 /* AYASaveStateViewController.m */,
+				6B6960E8190987A500AD7F57 /* AYASaveStateViewController.xib */,
 				6BDE379118F99A7D00B4095D /* Nodes */,
 				6BDE379218F99A8900B4095D /* Connections */,
 				6BDE379318F99A9500B4095D /* AppDeli */,
@@ -300,8 +305,6 @@
 		6BDE379418F99A9E00B4095D /* MainVC */ = {
 			isa = PBXGroup;
 			children = (
-				6B0A4989190049A4007858CA /* TouchDrawingView.h */,
-				6B0A498A190049A4007858CA /* TouchDrawingView.m */,
 				6B97D8AD18F75B1A00DF1590 /* AYAMainViewController.h */,
 				6B97D8AE18F75B1A00DF1590 /* AYAMainViewController.mm */,
 				6B97D8AF18F75B1A00DF1590 /* AYAMainViewController.xib */,
@@ -428,6 +431,7 @@
 				6B97D88918F75AF700DF1590 /* InfoPlist.strings in Resources */,
 				6B97D8B118F75B1A00DF1590 /* AYAMainViewController.xib in Resources */,
 				6B602E2B18FCC529002AF69B /* 9.wav in Resources */,
+				6B6960EA190987A500AD7F57 /* AYASaveStateViewController.xib in Resources */,
 				6B97D89118F75AF700DF1590 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,11 +505,11 @@
 				6B0A498819003F9E007858CA /* KnobControlView.m in Sources */,
 				6B97D8B418F75CCE00DF1590 /* AYAConnectionManager.m in Sources */,
 				6B85B58718F86AAF00B7BBA2 /* AYACustomCell.m in Sources */,
-				6B97D8BA18F76ABD00DF1590 /* TRPLeftDrawerViewController.m in Sources */,
+				6B97D8BA18F76ABD00DF1590 /* TRPLeftDrawerViewController.mm in Sources */,
 				6BEABAE418FCBB7100CA24E4 /* RWRotationGestureRecognizer.m in Sources */,
+				6B6960E9190987A500AD7F57 /* AYASaveStateViewController.m in Sources */,
 				6B9D83141905C68B00CB8172 /* AlgorithmicOscillator.cpp in Sources */,
 				6B9D831A1905C68B00CB8172 /* MoogLadderFilter.cpp in Sources */,
-				6B0A498B190049A4007858CA /* TouchDrawingView.m in Sources */,
 				6B9D83181905C68B00CB8172 /* LFO.cpp in Sources */,
 				6B9D83161905C68B00CB8172 /* EnvelopeGenerator.cpp in Sources */,
 				6BEABAE318FCBB7100CA24E4 /* RWKnobRenderer.m in Sources */,

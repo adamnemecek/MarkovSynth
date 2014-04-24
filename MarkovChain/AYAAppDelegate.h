@@ -17,6 +17,8 @@
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) MSDynamicsDrawerViewController *rootViewController;
 @property (strong, nonatomic) TRPLeftDrawerViewController *leftDrawerViewController;
+@property (strong, nonatomic) AYAMainViewController *mainVC;
+@property (strong, nonatomic) UISplitViewController *splitViewController;
 
 
 
