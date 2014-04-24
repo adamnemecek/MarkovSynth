@@ -48,12 +48,13 @@
      detailViewController];
     
     [masterViewController setMainVC:detailViewController];
-    [self.splitViewController setPresentsWithGesture:YES];
     self.splitViewController = [[UISplitViewController alloc] init];
     self.splitViewController.delegate = detailViewController;
     self.splitViewController.viewControllers =
     @[masterNavigationController, detailNavigationController];
     self.window.rootViewController = self.splitViewController;
+    [self.splitViewController setPresentsWithGesture:YES];
+
     [self.window makeKeyAndVisible];
     return YES;
 }

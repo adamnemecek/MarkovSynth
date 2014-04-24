@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AYASaveStateViewController : UIViewController
+@interface AYASaveStateViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @end

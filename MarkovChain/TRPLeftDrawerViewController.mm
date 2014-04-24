@@ -30,8 +30,6 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:kLeftDrawerCell];
     [self.tableView reloadData];
     self.navigationController.navigationBarHidden = YES;
-
-
    }
 
 
@@ -111,6 +109,11 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
             [self.mainVC saveGraph];
         }
         if (indexPath.row == 2) {
+            AYASaveStateViewController *detailVC = [[AYASaveStateViewController alloc] init];
+            UINavigationController *navBar=[[UINavigationController alloc]initWithRootViewController:detailVC];
+            [navBar setModalPresentationStyle:UIModalPresentationFormSheet];
+            [self.navigationController presentViewController:navBar animated:YES completion:nil];
+
             [self.mainVC loadGraph];
         }
     }
