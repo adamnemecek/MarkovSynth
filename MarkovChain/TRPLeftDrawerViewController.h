@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AYAMainViewController.h"
 #import "AYASaveStateViewController.h"
+#import "AYASynthSettingsViewController.h"
 
 @interface TRPLeftDrawerViewController : UITableViewController <SaveStateViewControllerDelegate>
 

@@ -48,13 +48,11 @@ typedef NS_ENUM(NSInteger, connectionType){
             // update for loop . . .
             a *= k;
         }
-        m_uOsc1Waveform = 4;
         m_dDetune_cents = 10.0;
-        m_uOsc2Waveform = 2;
-        m_uOsc3Waveform = 1;
+        m_uOsc1Waveform = 4;
+        m_uOsc2Waveform = 1;
         m_fOsc1Level = 33.0;
         m_fOsc2Level = 33.0;
-        m_fOsc3Level = 66.0;
         m_uDetuneSemitones = 0;
         m_nOctave = 0;
         m_dFcControl = 800.0;
@@ -66,10 +64,6 @@ typedef NS_ENUM(NSInteger, connectionType){
         m_dOscLFOIntensity = 0.0;
         m_dDecayReleaseTime_mSec = 100.0;
         m_uModMode = 0;
-        //Delay
-        m_fFeedback_pct = 50.0;
-        m_fDelay_ms = 148.0;
-        m_fWetLevel_pct = 84.0;
         
         m_dHSRatio = 1.00;
         m_dOscEGIntensity = 0.0;
@@ -77,22 +71,10 @@ typedef NS_ENUM(NSInteger, connectionType){
         m_dFilterLFOIntensity = 0.0;
         
         m_dSustainLevel = 0.5;
-        m_fDecay = 0.5;
-        m_fBandwidth = 0.9995;
-        m_fDamping = 0.005;
-        m_fWetPct = 50.0;
-        m_dNoiseOsc_dB = -96.00;
         m_dLFOAmpIntensity = 0.0;
         m_dLFOPanIntensity = 0.0;
         m_uLFO_Waveform = 0;
         m_dDCAEGIntensity = 1.00;
-        //Distortion Stuff
-        m_fArcTanKPos = 16.2;
-        m_fArcTanKNeg = 13.15;
-        m_nStages = 1;
-        m_uInvertStages = 0;
-        m_fGain = 3.0;
-        m_dAmplitude_dB = 0.0;
         
         //Overall Synth Stuff
         m_uLegatoMode = 0;
@@ -104,7 +86,7 @@ typedef NS_ENUM(NSInteger, connectionType){
         m_uNoteNumberToDecayScaling = 0;
         
         //Timbre
-        m_uTimbreSelection = 0;
+//        m_uTimbreSelection = 0;
         
     }
     return self;
@@ -116,9 +98,6 @@ typedef NS_ENUM(NSInteger, connectionType){
     {
         timbre *pTimbre = &timbre1;
         pVoice = auEngine.auTrack_1_PlaybackInfo.m_VoicePtrStack1[i];
- 
-        pTimbre->Amplitude_dB = m_dAmplitude_dB;
-        pVoice->setDCAAmplitude_dB(pTimbre->Amplitude_dB);
         
         pTimbre->Detune_cents = m_dDetune_cents;
         pVoice->setDetuneCents(pTimbre->Detune_cents);
@@ -132,24 +111,12 @@ typedef NS_ENUM(NSInteger, connectionType){
         pTimbre->Osc2Waveform = m_uOsc2Waveform;
         pVoice->setOsc2Waveform(pTimbre->Osc2Waveform);
         
-//        pTimbre->Osc3Waveform = m_uOsc3Waveform;
-//        pVoice->setOsc3Waveform(pTimbre->Osc3Waveform);
-        
-//        pTimbre->Osc4Waveform = m_uOsc4Waveform;
-//        pVoice->setOsc4Waveform(pTimbre->Osc4Waveform);
-        
         pTimbre->Osc1Level = m_fOsc1Level;
         pVoice->setOsc1Level(pTimbre->Osc1Level);
         
         pTimbre->Osc2Level = m_fOsc2Level;
         pVoice->setOsc2Level(pTimbre->Osc2Level);
-        
-        pTimbre->Osc3Level = m_fOsc3Level;
-        pVoice->setOsc3Level(pTimbre->Osc3Level);
-        
-        pTimbre->Osc4Level = m_fOsc4Level;
-        pVoice->setOsc4Level(pTimbre->Osc4Level);
-        
+ 
         pTimbre->DetuneSemitones = m_uDetuneSemitones;
         pVoice->setOscDetuneSemitones(m_uDetuneSemitones);
         
@@ -174,9 +141,7 @@ typedef NS_ENUM(NSInteger, connectionType){
         
         pTimbre->OscEGIntensity = m_dOscEGIntensity;
         pVoice->setOscEGIntensity(pTimbre->OscEGIntensity);
-        
-        pTimbre->NoiseOsc_dB = m_dNoiseOsc_dB;
-        pVoice->setOscAmplitude_dB(3, pTimbre->NoiseOsc_dB);
+
         // col 2
         pTimbre->FcControl = m_dFcControl;
         pVoice->setFilter1Cutoff(pTimbre->FcControl);
@@ -234,21 +199,6 @@ typedef NS_ENUM(NSInteger, connectionType){
         
         pTimbre->PulseWidth_Pct = m_dPulseWidth_Pct;
         pVoice->setPulseWidthControl(m_dPulseWidth_Pct);
-        
-        pTimbre->ArcTanKNeg = m_fArcTanKNeg;
-        pVoice->setArcTanKNeg(m_fArcTanKNeg);
-        
-        pTimbre->ArcTanKPos = m_fArcTanKPos;
-        pVoice->setArcTanKPos(m_fArcTanKPos);
-        
-        pTimbre->Stages = m_nStages;
-        pVoice->setWaveshapeStages(m_nStages);
-        
-        pTimbre->InvertStages = m_uInvertStages;
-        pVoice->setInvertStages(m_uInvertStages);
-        
-        pTimbre->Gain = m_fGain;
-        pVoice->setGain(m_fGain);
         
         pVoice->setLFO1DCAAmpModIntensity(m_dLFOAmpIntensity);
         
@@ -593,7 +543,7 @@ typedef NS_ENUM(NSInteger, connectionType){
 
 -(void)clearGraph{
     for (AYANodeView *node in nodes) {
-        [node.layer removeFromSuperlayer];
+//        [node.layer removeFromSuperlayer];
         [node removeFromSuperview];
     }
     
@@ -629,7 +579,6 @@ typedef NS_ENUM(NSInteger, connectionType){
 
 -(void)loadGraphfromSlot:(int)slot{
     for (AYANodeView *node in nodes) {
-        [node.layer removeFromSuperlayer];
         [node removeFromSuperview];
     }
     

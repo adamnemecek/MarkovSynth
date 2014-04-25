@@ -16,13 +16,6 @@ protected:
 	// Four oscillators
     CAlgorithmicOscillator m_Osc1;
     CAlgorithmicOscillator m_Osc2;
-//    CAlgorithmicOscillator m_Osc3;
-//    CAlgorithmicOscillator m_Osc4;
-    
-//	CWTOscillator m_Osc1;
-//	CWTOscillator m_Osc2;
-//	CWTOscillator m_Osc3;
-//	CWTOscillator m_Osc4; // noise
 	
 	// 1 filter
 	CMoogLadderFilter m_LPF;
@@ -224,7 +217,6 @@ public:
 		// update oscillators
 		m_Osc1.updateOscillator();
 		m_Osc2.updateOscillator();
-//		m_Osc3.updateOscillator();
 
 		// --- DIGITAL AUDIO ENGINE BLOCK --- //
 		double dOscMix = 0.0;

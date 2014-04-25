@@ -97,15 +97,11 @@ struct timbre
     
     //Local Copies of Synth Parameters
     // We need to hold on to a copy of these so that we can update them for the voice
+    double m_dDetune_cents;
     UINT m_uOsc1Waveform;
-	double m_dDetune_cents;
 	UINT m_uOsc2Waveform;
-    UINT m_uOsc3Waveform;
-    UINT m_uOsc4Waveform;
 	float m_fOsc1Level;
 	float m_fOsc2Level;
-	float m_fOsc3Level;
-	float m_fOsc4Level;
 	UINT m_uDetuneSemitones;
 	int m_nOctave;
 	double m_dFcControl;
@@ -117,29 +113,15 @@ struct timbre
 	double m_dOscLFOIntensity;
 	double m_dDecayReleaseTime_mSec;
 	double m_uModMode;
-	float m_fFeedback_pct;
-	float m_fDelay_ms;
-	float m_fWetLevel_pct;
 	double m_dHSRatio;
 	double m_dOscEGIntensity;
 	double m_dFilterEGIntensity;
 	double m_dFilterLFOIntensity;
 	double m_dSustainLevel;
-	float m_fDecay;
-	float m_fBandwidth;
-	float m_fDamping;
-	float m_fWetPct;
-	double m_dNoiseOsc_dB;
     double m_dLFOAmpIntensity;
 	double m_dLFOPanIntensity;
 	UINT m_uLFO_Waveform;
 	double m_dDCAEGIntensity;
-	float m_fArcTanKPos;
-	float m_fArcTanKNeg;
-	int m_nStages;
-	UINT m_uInvertStages;
-	float m_fGain;
-	double m_dAmplitude_dB;
 	UINT m_uLegatoMode;
 	int m_nPitchBendRange;
 	UINT m_uResetToZero;

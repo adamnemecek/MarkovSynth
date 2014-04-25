@@ -66,8 +66,10 @@ NSString *kCellID = @"cellID";                          // UICollectionViewCell 
     
     // make the cell's title the actual NSIndexPath value
     [cell setTitle:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
-    
-    UIImage *image = [UIImage imageWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.jpg",(long)indexPath.row]]];
+    NSString *string = [NSString stringWithFormat:@"%ld.jpg",(long)indexPath.row];
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *documentDirectory = [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:string];
+    UIImage *image = [UIImage imageWithContentsOfFile:documentDirectory];
     if (image) {
         [cell setBackgroundImage:image];
     }
@@ -85,10 +87,13 @@ NSString *kCellID = @"cellID";                          // UICollectionViewCell 
         NSData *imgData = UIImageJPEGRepresentation(tempImage, 1); // 1 is compression quality
         
         // Identify the home directory and file name
-        NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.jpg",(long)indexPath.row]];
+        NSString *string = [NSString stringWithFormat:@"%ld.jpg",(long)indexPath.row];
+        NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+        NSString *documentDirectory = [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:string];
+        
         
         // Write the file.  Choose YES atomically to enforce an all or none write. Use the NO flag if partially written files are okay which can occur in cases of corruption
-        [imgData writeToFile:jpgPath atomically:YES];
+        [imgData writeToFile:documentDirectory atomically:YES];
         
         [cell setBackgroundImage:tempImage];
         [delegate saveGraphWithSlotNum:(int)indexPath.row];

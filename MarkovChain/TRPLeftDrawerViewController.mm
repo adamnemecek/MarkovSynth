@@ -62,6 +62,10 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
         if (indexPath.row == 2) {
             [cell.textLabel setText:@"Load"];
         }
+    }else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            [cell.textLabel setText:@"Synth Settings"];
+        }
     }
     return cell;
 }
@@ -124,6 +128,13 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
             [navBar setModalPresentationStyle:UIModalPresentationFormSheet];
             [self.navigationController presentViewController:navBar animated:YES completion:nil];
 
+        }
+    }else if (indexPath.section == 1){
+        if (indexPath.row == 0) {
+            AYASynthSettingsViewController *detailVC = [[AYASynthSettingsViewController alloc] init];
+            UINavigationController *navBar=[[UINavigationController alloc]initWithRootViewController:detailVC];
+            [navBar setModalPresentationStyle:UIModalPresentationFormSheet];
+            [self.navigationController presentViewController:navBar animated:YES completion:nil];
         }
     }
 }
