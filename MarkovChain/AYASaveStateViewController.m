@@ -12,9 +12,12 @@
 
 @end
 
+
 NSString *kCellID = @"cellID";                          // UICollectionViewCell storyboard id
 
 @implementation AYASaveStateViewController
+
+@synthesize delegate,mainVC,isSaving;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,6 +33,13 @@ NSString *kCellID = @"cellID";                          // UICollectionViewCell 
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(selfDismissed)];
+    [self.collectionView registerClass:[TRPGenericCollectionViewCell class] forCellWithReuseIdentifier:kCellID];
+    
+    
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [self.collectionView reloadData];
 }
 
 -(void)selfDismissed{
@@ -42,19 +52,78 @@ NSString *kCellID = @"cellID";                          // UICollectionViewCell 
     // Dispose of any resources that can be recreated.
 }
 
--(int)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 1;
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return 20;
 }
+
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)cv cellForItemAtIndexPath:(NSIndexPath *)indexPath;
 {
     // we're going to use a custom UICollectionViewCell, which will hold an image and its label
     //
-    UICollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
+    TRPGenericCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
+    [cell setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.3]];
     
+    // make the cell's title the actual NSIndexPath value
+    [cell setTitle:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];
+    
+    UIImage *image = [UIImage imageWithContentsOfFile:[NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.jpg",(long)indexPath.row]]];
+    if (image) {
+        [cell setBackgroundImage:image];
+    }
 
-    
     return cell;
+}
+
+-(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (isSaving) {
+        NSLog(@"%ld",(long)indexPath.row);
+        UIImage *tempImage = [self snapshot:((UIViewController*)mainVC).view];
+        TRPGenericCollectionViewCell *cell = (TRPGenericCollectionViewCell*)[collectionView cellForItemAtIndexPath:indexPath];
+        tempImage = [AYASaveStateViewController imageWithImage:tempImage scaledToSize:cell.frame.size];
+        // Convert UIImage to JPEG
+        NSData *imgData = UIImageJPEGRepresentation(tempImage, 1); // 1 is compression quality
+        
+        // Identify the home directory and file name
+        NSString  *jpgPath = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%ld.jpg",(long)indexPath.row]];
+        
+        // Write the file.  Choose YES atomically to enforce an all or none write. Use the NO flag if partially written files are okay which can occur in cases of corruption
+        [imgData writeToFile:jpgPath atomically:YES];
+        
+        [cell setBackgroundImage:tempImage];
+        [delegate saveGraphWithSlotNum:(int)indexPath.row];
+    }else{
+        [delegate loadGraphWithSlotNum:(int)indexPath.row];
+    }
+}
+
++ (UIImage *)imageWithImage:(UIImage *)image scaledToSize:(CGSize)newSize {
+    //UIGraphicsBeginImageContext(newSize);
+    // In next line, pass 0.0 to use the current device's pixel scaling factor (and thus account for Retina resolution).
+    // Pass 1.0 to force exact pixel size.
+    UIGraphicsBeginImageContextWithOptions(newSize, NO, 0.0);
+    [image drawInRect:CGRectMake(0, 0, newSize.width, newSize.height)];
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+- (UIImage *)snapshot:(UIView *)view
+
+{
+    
+    UIGraphicsBeginImageContext(view.bounds.size);
+    
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
+    
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    
+    
+    return image;
+    
 }
 
 @end

@@ -151,9 +151,9 @@ struct timbre
 }
 -(void)clearGraph;
 
--(void)saveGraph;
+-(void)saveGraphinSlot:(int)slot;
 
--(void)loadGraph;
+-(void)loadGraphfromSlot:(int)slot;
 
 
 @end

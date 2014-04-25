@@ -10,7 +10,7 @@
 #import "AYAMainViewController.h"
 #import "AYASaveStateViewController.h"
 
-@interface TRPLeftDrawerViewController : UITableViewController
+@interface TRPLeftDrawerViewController : UITableViewController <SaveStateViewControllerDelegate>
 
 @property (weak,nonatomic) AYAMainViewController* mainVC;
 

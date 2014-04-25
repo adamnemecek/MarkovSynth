@@ -106,17 +106,32 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
             [self.mainVC clearGraph];
         }
         if (indexPath.row == 1) {
-            [self.mainVC saveGraph];
+            AYASaveStateViewController *detailVC = [[AYASaveStateViewController alloc] init];
+            [detailVC setMainVC:self.mainVC];
+            [detailVC setDelegate:self];
+            [detailVC setIsSaving:true];
+            UINavigationController *navBar=[[UINavigationController alloc]initWithRootViewController:detailVC];
+            [navBar setModalPresentationStyle:UIModalPresentationFormSheet];
+            [self.navigationController presentViewController:navBar animated:YES completion:nil];
+            
         }
         if (indexPath.row == 2) {
             AYASaveStateViewController *detailVC = [[AYASaveStateViewController alloc] init];
+            [detailVC setMainVC:self.mainVC];
+            [detailVC setDelegate:self];
+            [detailVC setIsSaving:false];
             UINavigationController *navBar=[[UINavigationController alloc]initWithRootViewController:detailVC];
             [navBar setModalPresentationStyle:UIModalPresentationFormSheet];
             [self.navigationController presentViewController:navBar animated:YES completion:nil];
 
-            [self.mainVC loadGraph];
         }
     }
 }
 
+-(void)saveGraphWithSlotNum:(int)slot{
+    [self.mainVC saveGraphinSlot:slot];
+}
+-(void)loadGraphWithSlotNum:(int)slot{
+    [self.mainVC loadGraphfromSlot:slot];
+}
 @end

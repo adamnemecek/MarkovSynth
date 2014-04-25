@@ -50,6 +50,8 @@
 		6BEABAED18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAEB18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp */; };
 		6BEABAEF18FCBE2900CA24E4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEABAEE18FCBE2900CA24E4 /* AudioToolbox.framework */; };
 		6BFAB3871905932F00B1B9F8 /* WTOscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BFAB3851905932F00B1B9F8 /* WTOscillator.cpp */; };
+		6BFC1FF31909D84400D0ADF9 /* TRPGenericCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFC1FF21909D84400D0ADF9 /* TRPGenericCollectionViewCell.m */; };
+		6BFC1FF51909DA1E00D0ADF9 /* 0.JPG in Resources */ = {isa = PBXBuildFile; fileRef = 6BFC1FF41909DA1E00D0ADF9 /* 0.JPG */; };
 		D1EFA3562AB443BFA0AC73CA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 215231B2D73E4797BED48EB4 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +148,9 @@
 		6BEABAF018FCBE2F00CA24E4 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		6BFAB3851905932F00B1B9F8 /* WTOscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WTOscillator.cpp; sourceTree = "<group>"; };
 		6BFAB3861905932F00B1B9F8 /* WTOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTOscillator.h; sourceTree = "<group>"; };
+		6BFC1FF11909D84400D0ADF9 /* TRPGenericCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRPGenericCollectionViewCell.h; sourceTree = "<group>"; };
+		6BFC1FF21909D84400D0ADF9 /* TRPGenericCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRPGenericCollectionViewCell.m; sourceTree = "<group>"; };
+		6BFC1FF41909DA1E00D0ADF9 /* 0.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.JPG; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +224,9 @@
 				6B6960E6190987A500AD7F57 /* AYASaveStateViewController.h */,
 				6B6960E7190987A500AD7F57 /* AYASaveStateViewController.m */,
 				6B6960E8190987A500AD7F57 /* AYASaveStateViewController.xib */,
+				6BFC1FF11909D84400D0ADF9 /* TRPGenericCollectionViewCell.h */,
+				6BFC1FF21909D84400D0ADF9 /* TRPGenericCollectionViewCell.m */,
+				6BFC1FF41909DA1E00D0ADF9 /* 0.JPG */,
 				6BDE379118F99A7D00B4095D /* Nodes */,
 				6BDE379218F99A8900B4095D /* Connections */,
 				6BDE379318F99A9500B4095D /* AppDeli */,
@@ -428,6 +436,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6BFC1FF51909DA1E00D0ADF9 /* 0.JPG in Resources */,
 				6B97D88918F75AF700DF1590 /* InfoPlist.strings in Resources */,
 				6B97D8B118F75B1A00DF1590 /* AYAMainViewController.xib in Resources */,
 				6B602E2B18FCC529002AF69B /* 9.wav in Resources */,
@@ -491,6 +500,7 @@
 				6B9D83171905C68B00CB8172 /* Filter.cpp in Sources */,
 				6BEABAE218FCBB7100CA24E4 /* RWKnobControl.m in Sources */,
 				6B9D83151905C68B00CB8172 /* DCA.cpp in Sources */,
+				6BFC1FF31909D84400D0ADF9 /* TRPGenericCollectionViewCell.m in Sources */,
 				6B9D83191905C68B00CB8172 /* ModulationMatrix.cpp in Sources */,
 				6B85B58D18F8843600B7BBA2 /* AYATableViewController.m in Sources */,
 				6BEABAED18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp in Sources */,

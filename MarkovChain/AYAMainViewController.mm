@@ -600,14 +600,11 @@ typedef NS_ENUM(NSInteger, connectionType){
     [nodes removeAllObjects];
 }
 
--(void)saveGraph{
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyyMMddHHmmss"];
-    NSString* now = [dateFormat stringFromDate:[NSDate date]];
-    [now stringByAppendingString:@".archive"];
+-(void)saveGraphinSlot:(int)slot{
 
+    NSString *string = [NSString stringWithFormat:@"%d.archive",slot];
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString *documentDirectory = [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:@".archive"];
+    NSString *documentDirectory = [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:string];
     NSMutableArray *nodeStore = [[NSMutableArray alloc] init];
     for (AYANodeView *node in nodes) {
         NSMutableDictionary *nodeDict = [[NSMutableDictionary alloc] init];
@@ -630,7 +627,7 @@ typedef NS_ENUM(NSInteger, connectionType){
     
 }
 
--(void)loadGraph{
+-(void)loadGraphfromSlot:(int)slot{
     for (AYANodeView *node in nodes) {
         [node.layer removeFromSuperlayer];
         [node removeFromSuperview];
@@ -638,8 +635,9 @@ typedef NS_ENUM(NSInteger, connectionType){
     
     [nodes removeAllObjects];
     
-        NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString *documentDirectory = [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:@".archive"];
+    NSString *string = [NSString stringWithFormat:@"%d.archive",slot];
+    NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *documentDirectory = [[documentDirectories objectAtIndex:0] stringByAppendingPathComponent:string];
     NSArray *nodeStore = [NSKeyedUnarchiver unarchiveObjectWithFile:documentDirectory];
     
     for(NSDictionary *nodeDict in nodeStore){
