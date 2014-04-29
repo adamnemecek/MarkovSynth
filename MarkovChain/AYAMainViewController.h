@@ -137,5 +137,8 @@ struct timbre
 
 -(void)loadGraphfromSlot:(int)slot;
 
+-(void)createGraphFromDict:(NSDictionary*)markovDicts;
+
+
 
 @end

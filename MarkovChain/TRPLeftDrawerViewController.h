@@ -11,6 +11,9 @@
 #import "AYASaveStateViewController.h"
 #import "AYASynthSettingsViewController.h"
 
+#import "AYAMidiToMarkovCalc.h"
+
+
 @interface TRPLeftDrawerViewController : UITableViewController <SaveStateViewControllerDelegate>
 
 @property (weak,nonatomic) AYAMainViewController* mainVC;

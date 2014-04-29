@@ -13,27 +13,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    // Override point for customization after application launch.
-//    self.mainVC = [[AYAMainViewController alloc] init];
-//    _rootViewController = [[MSDynamicsDrawerViewController alloc] init];
-//    [_rootViewController setDelegate:self];
-//    _rootViewController.paneDragRequiresScreenEdgePan = YES;
-//    [_rootViewController setDrawerViewController:self.leftDrawerViewController
-//                                    forDirection:MSDynamicsDrawerDirectionLeft];
-//    UINavigationController *navController = [[UINavigationController alloc]
-//                                             initWithRootViewController:self.mainVC];
-//    
-//    [_leftDrawerViewController setMainVC:self.mainVC];
-//    navController.navigationBar.translucent = YES;
-//    navController.navigationBarHidden = NO;
-//    _rootViewController.paneViewController = navController;
-//    
-//    self.window.rootViewController = _rootViewController;
-//    self.window.backgroundColor = [UIColor whiteColor];
-//    [self.window makeKeyAndVisible];
-//    return YES;
-//    
+// Test code for midi file read in.
+    
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]
                                                    bounds]];
     // Override point for customization after application launch.

@@ -642,5 +642,72 @@ typedef NS_ENUM(NSInteger, connectionType){
         }
     }
 }
+-(NSString *)getStringForNoteNum:(int)noteNum{
+    NSArray *noteNames = @[@"C", @"C\u266F / D\u266D",@"D",@"D\u266F / E\u266D",@"E",@"F",@"F\u266F G\u266D",@"G",@"G\u266F / A\u266D",@"A", @"A\u266F / B\u266D",@"B" ];
+    NSArray *octaveString = @[@"-1",@"0",@"1", @"2", @"3", @"4", @"5", @"6",@"7", @"8"];
+    
+    NSString *noteName = noteNames[noteNum%12];
+    NSString *noteOctave = [octaveString objectAtIndex:(floor(noteNum/12))];
+    
+    return [NSString stringWithFormat:@"%@ %@",noteName, noteOctave];
+}
+
+
+-(void)createGraphFromDict:(NSDictionary*)markovDicts{
+    for(int i=0; i<[markovDicts count]; i++){
+        AYANodeView *nodeView = [[AYANodeView alloc] initWithFrame:CGRectMake(500,500, 76, 76)];
+        // We need to be the node's delegate as well.
+        [nodeView setDelegate:self];
+        // Pan gesture to move nodes
+        UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
+        [panGestureRecognizer setMinimumNumberOfTouches:1];
+        [panGestureRecognizer setMaximumNumberOfTouches:1];
+        [panGestureRecognizer addTarget:self action:@selector(handlePan:)];
+        [nodeView addGestureRecognizer:panGestureRecognizer];
+        
+        // Double tap for connection creation, this is only until I get drawing connections done.
+        UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+        [tapGestureRecognizer setNumberOfTouchesRequired:1];
+        [tapGestureRecognizer setNumberOfTapsRequired:2];
+        [tapGestureRecognizer addTarget:self action:@selector(handleTap:)];
+        [nodeView addGestureRecognizer:tapGestureRecognizer];
+        
+        // Long press to bring up form sheet to edit properties. Rob had a good idea of using a pinch or drag from a node to present the controls that this shows.
+        UILongPressGestureRecognizer* longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] init];
+        [longPressGestureRecognizer setAllowableMovement:10.0f];
+        [longPressGestureRecognizer setMinimumPressDuration:1.0f];
+        [longPressGestureRecognizer setNumberOfTouchesRequired:1];
+        [longPressGestureRecognizer addTarget:self action:@selector(handlePress:)];
+        [nodeView addGestureRecognizer:longPressGestureRecognizer];
+        
+        // Add the nodeView to the array we use to keep track of all the nodes.
+        [nodes addObject:nodeView];
+        [nodeView setNote:[[markovDicts allKeys][i] intValue]];
+//        [nodeView setNoteLength:;
+        [nodeView setNoteName:[self getStringForNoteNum:[[markovDicts allKeys][i] intValue]]];
+        
+        // Finally, after much ado, we add the view to the mainVC
+        [self.view addSubview:nodeView];
+    }
+    
+    for (AYANodeView *node in nodes) {
+        NSDictionary *dict = [markovDicts objectForKey:@(node.note)];
+        AYANodeView *startNode = node;
+        AYANodeView *endNode = [[AYANodeView alloc] init];
+        for (int i=0; i<[dict count]; i++) {
+            for (AYANodeView *node in nodes) {
+                NSString *note = [NSString stringWithFormat:@"%d",node.note];
+                NSArray *array = [dict allKeys];
+                if (node.note == [((NSNumber *)[dict allKeys][i]) intValue ]) {
+                    endNode = node;
+                }
+                break;
+            }
+            float prob = [[dict objectForKey:@(endNode.note)] floatValue];
+            [self makeConnectionFromView:startNode toView:endNode withProbability:prob];
+        }
+    }
+    
+}
 
 @end

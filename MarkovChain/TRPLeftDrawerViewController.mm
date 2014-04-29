@@ -51,21 +51,39 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kLeftDrawerCell];
     cell.backgroundColor = [UIColor darkGrayColor];
     cell.textLabel.textColor = [UIColor whiteColor];
-
+    NSString *cellText = [[NSString alloc] init];
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            [cell.textLabel setText:@"Clear"];
+        switch (indexPath.row) {
+            case 0:
+                cellText = @"Clear";
+                break;
+            case 1:
+                cellText = @"Save";
+                break;
+            case 2:
+                cellText = @"Load";
+                break;
+                
+            default:
+                break;
         }
-        if (indexPath.row == 1) {
-            [cell.textLabel setText:@"Save"];
-        }
-        if (indexPath.row == 2) {
-            [cell.textLabel setText:@"Load"];
-        }
+        [cell.textLabel setText:cellText];
     }else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            [cell.textLabel setText:@"Synth Settings"];
+        switch (indexPath.row) {
+            case 0:
+                cellText = @"Synth Settings";
+                break;
+            case 1:
+                cellText = @"Bach";
+                break;
+            case 2:
+                cellText = @"Debussey";
+                break;
+                
+            default:
+                break;
         }
+        [cell.textLabel setText:cellText];
     }
     return cell;
 }
@@ -88,7 +106,7 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
         string = @"Settings";
     
     if(section == 1)
-        string =  @"Something Else";
+        string =  @"Other Stuff";
 
     
     return string;
@@ -117,7 +135,6 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
             UINavigationController *navBar=[[UINavigationController alloc]initWithRootViewController:detailVC];
             [navBar setModalPresentationStyle:UIModalPresentationFormSheet];
             [self.navigationController presentViewController:navBar animated:YES completion:nil];
-            
         }
         if (indexPath.row == 2) {
             AYASaveStateViewController *detailVC = [[AYASaveStateViewController alloc] init];
@@ -127,7 +144,6 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
             UINavigationController *navBar=[[UINavigationController alloc]initWithRootViewController:detailVC];
             [navBar setModalPresentationStyle:UIModalPresentationFormSheet];
             [self.navigationController presentViewController:navBar animated:YES completion:nil];
-
         }
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
@@ -135,6 +151,14 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
             UINavigationController *navBar=[[UINavigationController alloc]initWithRootViewController:detailVC];
             [navBar setModalPresentationStyle:UIModalPresentationFormSheet];
             [self.navigationController presentViewController:navBar animated:YES completion:nil];
+        }
+        if (indexPath.row == 1) {
+            NSMutableDictionary *markovProbs = [AYAMidiToMarkovCalc calcProbabilityForFile:@"bwv772"];
+            [self.mainVC createGraphFromDict:markovProbs];
+        }
+        if (indexPath.row == 1) {
+            NSMutableDictionary *markovProbs = [AYAMidiToMarkovCalc calcProbabilityForFile:@"deb_clai_format0"];
+            [self.mainVC createGraphFromDict:markovProbs];
         }
     }
 }
@@ -145,4 +169,7 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
 -(void)loadGraphWithSlotNum:(int)slot{
     [self.mainVC loadGraphfromSlot:slot];
 }
+
+
+
 @end
