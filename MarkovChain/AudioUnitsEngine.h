@@ -34,6 +34,7 @@ struct AUPlayFileInfoStruct {
 
 @interface AudioUnitsEngine : NSObject 
 {
+    @public
 	// struct for one track (mono or stereo) of playback from a file
 	AUPlayFileInfoStruct auTrack_1_PlaybackInfo;
 	
@@ -52,6 +53,7 @@ struct AUPlayFileInfoStruct {
 // our designated init-er
 - (id)init;
 
++ (id)getAudioUnitsEngine;
 // init the AUGraph with a file to playback:
 - (OSStatus)initPlaybackAUGraphWithFile:(NSString *)filename
                                  ofType:(NSString *)type

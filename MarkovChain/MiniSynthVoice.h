@@ -11,7 +11,6 @@ public:
 	CMiniSynthVoice(void);
 	~CMiniSynthVoice(void);
 
-protected:
 	// our synth components: Oscillators and Filters
 	// Four oscillators
     CAlgorithmicOscillator m_Osc1;
@@ -213,6 +212,7 @@ public:
 		
 		// update for attack/decay mods
 		m_EG1.updateEG();
+		m_LPF.updateFilter();
 
 		// update oscillators
 		m_Osc1.updateOscillator();
@@ -230,6 +230,8 @@ public:
 //                      m_fOsc3Level*m_Osc3.doOscillate()*env1;
 
 		//Distortion
+        dOscMix = m_LPF.doFilter(dOscMix);
+
 		float m_fCookedGain = pow(10.0, m_fGain/20.0);
 		dOscMix *= m_fCookedGain;
 		for(int i=0; i<m_nStages; i++)

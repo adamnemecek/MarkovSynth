@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "KnobControlView.h"
 
+#import "AudioUnitsEngine.h"
+#import "AYAMainViewController.h"
+
 @interface AYASynthSettingsViewController : UIViewController
 {
     __weak IBOutlet KnobControlView *osc1LevelKnob;
@@ -34,6 +37,12 @@
     
     IBOutletCollection(KnobControlView) NSArray *allKnobs;
     
+    AudioUnitsEngine *auEngine;
+    
 }
+- (IBAction)wf1sliderchanged:(id)sender;
+- (IBAction)wf2sliderChanged:(id)sender;
+
+@property (weak, nonatomic) AYAMainViewController *mainVC;
 
 @end

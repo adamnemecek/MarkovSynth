@@ -101,8 +101,10 @@
         lengthind = 2;
     }else if(presentingNode.noteLength == 0.125f){
         lengthind = 3;
+    }else if(presentingNode.noteLength == -1){
+        lengthind = 4;
     }
-    [((RETableViewSection*)self.manager.sections[0]) addItem:[RESegmentedItem itemWithTitle:@"Length" segmentedControlTitles:@[@"Half",@"Quarter", @"8th", @"16th"] value:lengthind switchValueChangeHandler:^(RESegmentedItem *item) {
+    [((RETableViewSection*)self.manager.sections[0]) addItem:[RESegmentedItem itemWithTitle:@"Length" segmentedControlTitles:@[@"Half",@"Quarter", @"8th", @"16th",@"Random"] value:lengthind switchValueChangeHandler:^(RESegmentedItem *item) {
         NSLog(@"Value: %li", (long)item.value);
         switch ((long)item.value) {
             case 0:
@@ -117,12 +119,13 @@
             case 3:
                 presentingNode.noteLength = 0.125f;
                 break;
+            case 4:
+                presentingNode.noteLength = -1;
+                break;
             default:
                 break;
         }
     }]];
-
-    
 }
 
 - (void)didReceiveMemoryWarning

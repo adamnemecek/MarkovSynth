@@ -55,7 +55,7 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
     if (indexPath.section == 0) {
         switch (indexPath.row) {
             case 0:
-                cellText = @"Clear";
+                cellText = @"Clear Graph";
                 break;
             case 1:
                 cellText = @"Save";
@@ -63,6 +63,8 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
             case 2:
                 cellText = @"Load";
                 break;
+            case 3:
+                cellText = @"Stop Notes";
                 
             default:
                 break;
@@ -79,7 +81,7 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
             case 2:
                 cellText = @"Debussey";
                 break;
-                
+        
             default:
                 break;
         }
@@ -145,9 +147,13 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
             [navBar setModalPresentationStyle:UIModalPresentationFormSheet];
             [self.navigationController presentViewController:navBar animated:YES completion:nil];
         }
+        if (indexPath.row == 3) {
+            [self.mainVC stopNotes];
+        }
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {
             AYASynthSettingsViewController *detailVC = [[AYASynthSettingsViewController alloc] init];
+            [detailVC setMainVC:self.mainVC];
             UINavigationController *navBar=[[UINavigationController alloc]initWithRootViewController:detailVC];
             [navBar setModalPresentationStyle:UIModalPresentationFormSheet];
             [self.navigationController presentViewController:navBar animated:YES completion:nil];
@@ -156,7 +162,7 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
             NSMutableDictionary *markovProbs = [AYAMidiToMarkovCalc calcProbabilityForFile:@"bwv772"];
             [self.mainVC createGraphFromDict:markovProbs];
         }
-        if (indexPath.row == 1) {
+        if (indexPath.row == 2) {
             NSMutableDictionary *markovProbs = [AYAMidiToMarkovCalc calcProbabilityForFile:@"deb_clai_format0"];
             [self.mainVC createGraphFromDict:markovProbs];
         }

@@ -92,7 +92,28 @@
 -(void)recievedEvent{
     [knobControlView removeFromSuperview];
     [self.delegate noteOn:self.note];
-    noteTimer = [NSTimer scheduledTimerWithTimeInterval:noteLength target:self selector:@selector(noteCompleted) userInfo:nil repeats:NO];
+    float internalNoteLenth = noteLength;
+    if (noteLength == -1) {
+        int noteLenthSelector = arc4random_uniform(3);
+        switch (noteLenthSelector) {
+            case 0:
+                internalNoteLenth = 1.0f;
+                break;
+            case 1:
+                internalNoteLenth = 0.5f;
+                break;
+            case 2:
+                internalNoteLenth = 0.25f;
+                break;
+            case 3:
+                internalNoteLenth = 0.125f;
+                break;
+            default:
+                break;
+        }
+    }
+    noteTimer = [NSTimer scheduledTimerWithTimeInterval:internalNoteLenth target:self selector:@selector(noteCompleted) userInfo:nil repeats:NO];
+    
     CALayer *eventLayer = [[CALayer alloc] init];
     [eventLayer setCornerRadius:self.frame.size.height/2];
     eventLayer.frame = self.bounds;
@@ -101,7 +122,7 @@
     // Add ourselves as the delegate so we get the completion callback
     [eventAnimation setDelegate:self];
     // Set the duration using the number of squares calculated earlier
-    [eventAnimation setDuration:noteLength];
+    [eventAnimation setDuration:internalNoteLenth];
     // Set the from and to values using the cellMatrix
     [eventAnimation setToValue:[NSValue valueWithCATransform3D:CATransform3DMakeScale(2.0, 2.0, 1)]];
     [eventAnimation setAutoreverses:NO];
@@ -115,7 +136,7 @@
     // Add ourselves as the delegate so we get the completion callback
     [eventOpacityAnimation setDelegate:self];
     // Set the duration using the number of squares calculated earlier
-    [eventOpacityAnimation setDuration:noteLength];
+    [eventOpacityAnimation setDuration:internalNoteLenth];
     // Set the from and to values using the cellMatrix
     [eventOpacityAnimation setToValue:@(0.0)];
     [eventOpacityAnimation setAutoreverses:NO];
@@ -126,7 +147,7 @@
     [eventOpacityAnimation setRemovedOnCompletion:YES];
     
     CAAnimationGroup *group = [[CAAnimationGroup alloc] init];
-    [group setDuration:noteLength];
+    [group setDuration:internalNoteLenth];
     [group setRepeatCount:1.0f];
     [group setDelegate:self];
     [group setValue:eventLayer forKey:@"layer"];
@@ -139,15 +160,15 @@
     float totalProbability = 0;
     AYAConnection *selectedConnection;
     for (AYAConnection *connection in connectionArray) {
-        totalProbability += roundf(connection.probability*100);
+        totalProbability += roundf(connection.probability*10000);
     }
     int random =  arc4random_uniform(totalProbability);
     for (AYAConnection *connection in connectionArray) {
-        if (random<roundf(connection.probability*100)) {
+        if (random<roundf(connection.probability*10000)) {
             selectedConnection = connection;
             break;
         }else{
-            random -= roundf(connection.probability*100);
+            random -= roundf(connection.probability*10000);
         }
     }
 
@@ -162,7 +183,7 @@
         // Add ourselves as the delegate so we get the completion callback
         [opacityAnimation setDelegate:self];
         // Set the duration using the number of squares calculated earlier
-        [opacityAnimation setDuration:noteLength];
+        [opacityAnimation setDuration:internalNoteLenth];
         // Set the from and to values using the cellMatrix
         [opacityAnimation setToValue:[NSValue valueWithCGPoint:CGPointMake(toView.center.x-fromView.center.x + self.bounds.size.width/2, toView.center.y-fromView.center.y + self.bounds.size.height/2)]];
         [opacityAnimation setAutoreverses:NO];
@@ -186,7 +207,7 @@
         // Create the animation object, specifying the position property as the key path.
         theAnimation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
         theAnimation.path=((CAShapeLayer*)selectedConnection.lineLayer).path;
-        theAnimation.duration=noteLength;
+        theAnimation.duration=internalNoteLenth;
         [theAnimation setFillMode:kCAFillModeRemoved];
         [theAnimation setRepeatCount:1];
         [theAnimation setDelegate:self];
@@ -202,16 +223,17 @@
 }
 
 -(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    [[anim valueForKey:@"layer"] removeAllAnimations];
-    [[anim valueForKey:@"layer"] removeFromSuperlayer];
-    if ([anim valueForKey:@"connection"]) {
-        AYAConnection *connection = [anim valueForKey:@"connection"];
-        [connection.endView recievedEvent];
+    if (flag) {
+        [[anim valueForKey:@"layer"] removeAllAnimations];
+        [[anim valueForKey:@"layer"] removeFromSuperlayer];
+        if ([anim valueForKey:@"connection"]) {
+            AYAConnection *connection = [anim valueForKey:@"connection"];
+            [connection.endView recievedEvent];
+        }
+        if ([[anim valueForKey:@"notenumber"]intValue]) {
+    //        [self.delegate noteOff:[[anim valueForKey:@"notenumber"]intValue]];
+        }
     }
-    if ([[anim valueForKey:@"notenumber"]intValue]) {
-//        [self.delegate noteOff:[[anim valueForKey:@"notenumber"]intValue]];
-    }
-    
 }
 
 -(void)noteCompleted{

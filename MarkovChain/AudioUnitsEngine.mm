@@ -22,7 +22,7 @@
 		// end init
         // load up voices
         CMiniSynthVoice* pVoice;
-        MAX_VOICES = 4;
+        MAX_VOICES = 16;
         auTrack_1_PlaybackInfo.MAX_VOICES = MAX_VOICES;
         for(int i=0; i<MAX_VOICES; i++)
         {
@@ -35,6 +35,13 @@
     }
 	
     return self;
+}
+
++(id)getAudioUnitsEngine{
+    if (self) {
+        return self;
+    }else
+        return nil;
 }
 
 -(void)setOscillatorFO:(float)fo{

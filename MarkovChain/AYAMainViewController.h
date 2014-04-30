@@ -85,9 +85,7 @@ struct timbre
     
     UIBezierPath *path;
     CGPoint previousPoint;
-    
-    AudioUnitsEngine *auEngine;
-    
+        
     timbre timbre1;
     timbre timbre2;
     
@@ -131,7 +129,11 @@ struct timbre
 	UINT m_uNoteNumberToDecayScaling;
 	UINT m_uTimbreSelection;
 }
+
+@property (strong, nonatomic) AudioUnitsEngine *auEngine;
 -(void)clearGraph;
+
+-(void)stopNotes;
 
 -(void)saveGraphinSlot:(int)slot;
 

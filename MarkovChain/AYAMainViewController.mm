@@ -19,6 +19,8 @@ typedef NS_ENUM(NSInteger, connectionType){
 
 @implementation AYAMainViewController
 
+@synthesize auEngine;
+
 - (void)splitViewController:(UISplitViewController *)svc willHideViewController:(UIViewController *)aViewController withBarButtonItem:(UIBarButtonItem *)barButtonItem forPopoverController:(UIPopoverController *)pc{
     self.navigationItem.leftBarButtonItem = barButtonItem;
 }
@@ -94,7 +96,7 @@ typedef NS_ENUM(NSInteger, connectionType){
 -(void)updateMiniSynth
 {
     CMiniSynthVoice* pVoice;
-    for(int i=0; i<4; i++)
+    for(int i=0; i<16; i++)
     {
         timbre *pTimbre = &timbre1;
         pVoice = auEngine.auTrack_1_PlaybackInfo.m_VoicePtrStack1[i];
@@ -400,8 +402,7 @@ typedef NS_ENUM(NSInteger, connectionType){
         [[startView connectionArray] addObject:connection];
         
         // Add our layer
-        [startView.layer addSublayer:lineLayer];
-        
+        [startView.layer insertSublayer:lineLayer below:startView.backgroundLayer];
         // Get it set up to be positioned and referenced
         CGPoint pos = startView.center;
         CGPoint target = endView.center;
@@ -460,7 +461,7 @@ typedef NS_ENUM(NSInteger, connectionType){
         
         [[startView connectionArray] addObject:connection];
         // Add to parent layer
-        [endView.layer addSublayer:circle];
+        [endView.layer insertSublayer:circle below:startView.backgroundLayer];
         
         //Gradient stuff
         UIColor *colorOne = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0];
@@ -541,10 +542,24 @@ typedef NS_ENUM(NSInteger, connectionType){
     [auEngine setNoteOff:notenumber];
 }
 
+-(void)stopNotes{
+    for (AYANodeView *node in nodes) {
+        [node.layer removeAllAnimations];
+        for (CALayer *layer in node.layer.sublayers) {
+            [layer removeAllAnimations];
+        }
+    }
+}
+
 -(void)clearGraph{
     for (AYANodeView *node in nodes) {
-//        [node.layer removeFromSuperlayer];
+        [node.layer removeAllAnimations];
+        for (CALayer *layer in node.layer.sublayers) {
+            [layer removeAllAnimations];
+        }
+        
         [node removeFromSuperview];
+        
     }
     
     [nodes removeAllObjects];
@@ -654,8 +669,12 @@ typedef NS_ENUM(NSInteger, connectionType){
 
 
 -(void)createGraphFromDict:(NSDictionary*)markovDicts{
+    NSMutableArray *nodeViewArray = [[NSMutableArray alloc] init];
+    for (int i=0; i<12; i++) {
+        [nodeViewArray addObject:@(0)];
+    }
     for(int i=0; i<[markovDicts count]; i++){
-        AYANodeView *nodeView = [[AYANodeView alloc] initWithFrame:CGRectMake(500,500, 76, 76)];
+        AYANodeView *nodeView = [[AYANodeView alloc] initWithFrame:CGRectMake(i*30,200, 76, 76)];
         // We need to be the node's delegate as well.
         [nodeView setDelegate:self];
         // Pan gesture to move nodes
@@ -682,32 +701,25 @@ typedef NS_ENUM(NSInteger, connectionType){
         
         // Add the nodeView to the array we use to keep track of all the nodes.
         [nodes addObject:nodeView];
-        [nodeView setNote:[[markovDicts allKeys][i] intValue]];
-//        [nodeView setNoteLength:;
-        [nodeView setNoteName:[self getStringForNoteNum:[[markovDicts allKeys][i] intValue]]];
-        
+        [nodeView setNoteLength:-1.0];
+        [nodeView setNote:[[markovDicts allKeys][i] intValue]+ 12*5];
+        [nodeView setNoteName:[self getStringForNoteNum:nodeView.note]];
+
+        [nodeViewArray setObject:nodeView atIndexedSubscript:(nodeView.note%12)];
         // Finally, after much ado, we add the view to the mainVC
         [self.view addSubview:nodeView];
+        
     }
     
     for (AYANodeView *node in nodes) {
-        NSDictionary *dict = [markovDicts objectForKey:@(node.note)];
+        NSDictionary *dict = [markovDicts objectForKey:@(node.note%12)];
         AYANodeView *startNode = node;
-        AYANodeView *endNode = [[AYANodeView alloc] init];
-        for (int i=0; i<[dict count]; i++) {
-            for (AYANodeView *node in nodes) {
-                NSString *note = [NSString stringWithFormat:@"%d",node.note];
-                NSArray *array = [dict allKeys];
-                if (node.note == [((NSNumber *)[dict allKeys][i]) intValue ]) {
-                    endNode = node;
-                }
-                break;
+        for (AYANodeView *node in nodes) {
+            if ([dict objectForKey:@(node.note%12)]) {
+                [self makeConnectionFromView:startNode toView:node withProbability:[[dict objectForKey:@(node.note%12)] floatValue]];
             }
-            float prob = [[dict objectForKey:@(endNode.note)] floatValue];
-            [self makeConnectionFromView:startNode toView:endNode withProbability:prob];
         }
     }
-    
 }
 
 @end

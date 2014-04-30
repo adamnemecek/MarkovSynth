@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6B0A498819003F9E007858CA /* KnobControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498719003F9E007858CA /* KnobControlView.m */; };
 		6B0A498E1900518B007858CA /* AYADrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498D1900518B007858CA /* AYADrawView.m */; };
-		6B186CD8190AC95A00171A64 /* AYASynthSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B186CD6190AC95A00171A64 /* AYASynthSettingsViewController.m */; };
+		6B186CD8190AC95A00171A64 /* AYASynthSettingsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6B186CD6190AC95A00171A64 /* AYASynthSettingsViewController.mm */; };
 		6B186CD9190AC95A00171A64 /* AYASynthSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B186CD7190AC95A00171A64 /* AYASynthSettingsViewController.xib */; };
 		6B401ABD1905C6C300232844 /* MiniSynthVoice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B401ABB1905C6C300232844 /* MiniSynthVoice.cpp */; };
 		6B5C8FDA190EE0AC008B2440 /* deb_clai_format0.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6B5C8FD9190EE0AC008B2440 /* deb_clai_format0.mid */; };
@@ -45,6 +45,7 @@
 		6B9D831B1905C68B00CB8172 /* Oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D830C1905C68B00CB8172 /* Oscillator.cpp */; };
 		6B9D831C1905C68B00CB8172 /* VAOnePoleFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83101905C68B00CB8172 /* VAOnePoleFilter.cpp */; };
 		6B9D831D1905C68B00CB8172 /* Voice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83121905C68B00CB8172 /* Voice.cpp */; };
+		6BDC5AFC19102C89007FDB90 /* Fugue1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6BDC5AFB19102C89007FDB90 /* Fugue1.mid */; };
 		6BEABAD818FCBB7100CA24E4 /* AudioUnitsEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */; };
 		6BEABAE218FCBB7100CA24E4 /* RWKnobControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABACD18FCBB7100CA24E4 /* RWKnobControl.m */; };
 		6BEABAE318FCBB7100CA24E4 /* RWKnobRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABACF18FCBB7100CA24E4 /* RWKnobRenderer.m */; };
@@ -78,7 +79,7 @@
 		6B0A498C1900518B007858CA /* AYADrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYADrawView.h; sourceTree = "<group>"; };
 		6B0A498D1900518B007858CA /* AYADrawView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYADrawView.m; sourceTree = "<group>"; };
 		6B186CD5190AC95A00171A64 /* AYASynthSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYASynthSettingsViewController.h; sourceTree = "<group>"; };
-		6B186CD6190AC95A00171A64 /* AYASynthSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYASynthSettingsViewController.m; sourceTree = "<group>"; };
+		6B186CD6190AC95A00171A64 /* AYASynthSettingsViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AYASynthSettingsViewController.mm; sourceTree = "<group>"; };
 		6B186CD7190AC95A00171A64 /* AYASynthSettingsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AYASynthSettingsViewController.xib; sourceTree = "<group>"; };
 		6B401ABB1905C6C300232844 /* MiniSynthVoice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MiniSynthVoice.cpp; sourceTree = "<group>"; };
 		6B401ABC1905C6C300232844 /* MiniSynthVoice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MiniSynthVoice.h; sourceTree = "<group>"; };
@@ -139,6 +140,7 @@
 		6B9D83111905C68B00CB8172 /* VAOnePoleFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAOnePoleFilter.h; sourceTree = "<group>"; };
 		6B9D83121905C68B00CB8172 /* Voice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Voice.cpp; sourceTree = "<group>"; };
 		6B9D83131905C68B00CB8172 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
+		6BDC5AFB19102C89007FDB90 /* Fugue1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Fugue1.mid; sourceTree = "<group>"; };
 		6BEABAB618FCBB7000CA24E4 /* AudioUnitsEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUnitsEngine.h; sourceTree = "<group>"; };
 		6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioUnitsEngine.mm; sourceTree = "<group>"; };
 		6BEABACC18FCBB7100CA24E4 /* RWKnobControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWKnobControl.h; sourceTree = "<group>"; };
@@ -311,9 +313,10 @@
 				6B97D89018F75AF700DF1590 /* Images.xcassets */,
 				6B97D88518F75AF700DF1590 /* Supporting Files */,
 				6B186CD5190AC95A00171A64 /* AYASynthSettingsViewController.h */,
-				6B186CD6190AC95A00171A64 /* AYASynthSettingsViewController.m */,
+				6B186CD6190AC95A00171A64 /* AYASynthSettingsViewController.mm */,
 				6B186CD7190AC95A00171A64 /* AYASynthSettingsViewController.xib */,
 				6B5C8FDB190EE6F1008B2440 /* Midi Stuff */,
+				6BDC5AFB19102C89007FDB90 /* Fugue1.mid */,
 				6BF32365190AF0E400CE1E00 /* laksin.mid */,
 				6B5C8FD9190EE0AC008B2440 /* deb_clai_format0.mid */,
 				6BF32363190AEEA900CE1E00 /* bwv772.mid */,
@@ -520,6 +523,7 @@
 				6B602E2B18FCC529002AF69B /* 9.wav in Resources */,
 				6B6960EA190987A500AD7F57 /* AYASaveStateViewController.xib in Resources */,
 				6B97D89118F75AF700DF1590 /* Images.xcassets in Resources */,
+				6BDC5AFC19102C89007FDB90 /* Fugue1.mid in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,7 +590,7 @@
 				6B97D88F18F75AF700DF1590 /* AYAAppDelegate.mm in Sources */,
 				6B97D8B718F75E0000DF1590 /* AYANodeView.m in Sources */,
 				6B9D831D1905C68B00CB8172 /* Voice.cpp in Sources */,
-				6B186CD8190AC95A00171A64 /* AYASynthSettingsViewController.m in Sources */,
+				6B186CD8190AC95A00171A64 /* AYASynthSettingsViewController.mm in Sources */,
 				6B401ABD1905C6C300232844 /* MiniSynthVoice.cpp in Sources */,
 				6B9D831C1905C68B00CB8172 /* VAOnePoleFilter.cpp in Sources */,
 				6B0A498E1900518B007858CA /* AYADrawView.m in Sources */,
