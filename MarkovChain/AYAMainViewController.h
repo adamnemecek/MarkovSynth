@@ -14,6 +14,7 @@
 #import "AYADrawView.h"
 
 #import "AudioUnitsEngine.h"
+#import "RLStereoDelay.h"
 struct timbre
 {
 	//Timbre Storage
@@ -95,6 +96,7 @@ struct timbre
     
     //Local Copies of Synth Parameters
     // We need to hold on to a copy of these so that we can update them for the voice
+    @public
     double m_dDetune_cents;
     UINT m_uOsc1Waveform;
 	UINT m_uOsc2Waveform;
@@ -141,6 +143,7 @@ struct timbre
 
 -(void)createGraphFromDict:(NSDictionary*)markovDicts;
 
+-(void)updateMiniSynth;
 
 
 @end

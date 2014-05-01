@@ -65,7 +65,10 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
                 break;
             case 3:
                 cellText = @"Stop Notes";
-                
+                break;
+            case 4:
+                cellText = @"Delay";
+                break;
             default:
                 break;
         }
@@ -149,6 +152,14 @@ typedef NS_ENUM(NSInteger, TRPLeftDrawerCell) {
         }
         if (indexPath.row == 3) {
             [self.mainVC stopNotes];
+        }
+        if (indexPath.row == 4) {
+            RLStereoDelay *delay = (RLStereoDelay *)[self.mainVC.auEngine retrieveEffectFromGroupForKey:@"stereoDelay"];
+            if(delay.wetMix_norm!=0)
+                [delay setWetMix_norm:0];
+            else
+                [delay setWetMix_norm:0.5];
+            
         }
     }else if (indexPath.section == 1){
         if (indexPath.row == 0) {

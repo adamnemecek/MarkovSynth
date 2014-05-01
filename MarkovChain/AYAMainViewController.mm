@@ -262,6 +262,12 @@ typedef NS_ENUM(NSInteger, connectionType){
     
     [self.view bringSubviewToFront:modeSelection];
     
+    
+    RLStereoDelay *stereoDelay = [[RLStereoDelay alloc] init];
+    [auEngine addEffectorEffectGroupToArray:stereoDelay forKey:@"stereoDelay"];
+    [stereoDelay setParameterValue:@(500) forKey:@"delay_ms"];
+    [stereoDelay setParameterValue:@(0.5) forKey:@"feedback_norm"];
+    [stereoDelay setParameterValue:@(0.5) forKey:@"wetMix_norm"];
 
     
 }
@@ -659,7 +665,7 @@ typedef NS_ENUM(NSInteger, connectionType){
 }
 -(NSString *)getStringForNoteNum:(int)noteNum{
     NSArray *noteNames = @[@"C", @"C\u266F / D\u266D",@"D",@"D\u266F / E\u266D",@"E",@"F",@"F\u266F G\u266D",@"G",@"G\u266F / A\u266D",@"A", @"A\u266F / B\u266D",@"B" ];
-    NSArray *octaveString = @[@"-1",@"0",@"1", @"2", @"3", @"4", @"5", @"6",@"7", @"8"];
+    NSArray *octaveString = @[@"-1",@"0",@"1", @"2", @"3", @"4", @"5", @"6",@"7", @"8",@"9",@"10"];
     
     NSString *noteName = noteNames[noteNum%12];
     NSString *noteOctave = [octaveString objectAtIndex:(floor(noteNum/12))];

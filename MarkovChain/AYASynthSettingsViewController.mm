@@ -34,10 +34,9 @@
                                action:@selector(handleValueChanged:)
                      forControlEvents:UIControlEventValueChanged];
     }
-    auEngine = self.mainVC.auEngine;
     
     
-    
+    wfNames = @[@"Sine",@"Saw1",@"Saw2",@"Saw3",@"Tri",@"Square",@"Noise",@"PNoise"];
     osc1LevelKnob._knobControl.minimumValue = 0.0;
     osc2LeveKnob._knobControl.minimumValue = 0.0;
     osc1LevelKnob._knobControl.maximumValue = 100.0;
@@ -56,43 +55,49 @@
     decayReleaseTimeKnob._knobControl.maximumValue = 500.0;
     sustainLevelKnob._knobControl.minimumValue = 0.0;
     sustainLevelKnob._knobControl.maximumValue = 1.0;
-    
-    CMiniSynthVoice *pVoice = auEngine.auTrack_1_PlaybackInfo.m_VoicePtrStack1[0];
 
-    [osc1LevelKnob._knobControl setValue:pVoice->m_fOsc1Level];
-    [osc2LeveKnob._knobControl setValue:pVoice->m_fOsc2Level];
+
+    [osc1LevelKnob._knobControl setValue:self.mainVC->m_fOsc1Level];
+    [osc2LeveKnob._knobControl setValue:self.mainVC->m_fOsc2Level];
+    [filterFCKnob._knobControl setValue:self.mainVC->m_dFcControl];
+    [filterQKnob._knobControl setValue:self.mainVC->m_dQControl];
+    [detuneCentsKnob._knobControl setContinuous:self.mainVC->m_dDetune_cents];
+    [detuneSemiKnob._knobControl setValue:self.mainVC->m_uDetuneSemitones];
+    [attackTimeKnob._knobControl setValue:self.mainVC->m_dAttackTime_mSec];
+    [decayReleaseTimeKnob._knobControl setValue:self.mainVC->m_dDecayReleaseTime_mSec];
+    [sustainLevelKnob._knobControl setValue:self.mainVC->m_dSustainLevel];
+    [osc1WFSlider setValue:self.mainVC->m_uOsc1Waveform];
+    [osc2WFSlider setValue:self.mainVC->m_uOsc2Waveform];
+    [osc1WFLabel setText:wfNames[(int)(roundf(osc1WFSlider.value))]];
+    [osc2WFLabel setText:wfNames[(int)(roundf(osc2WFSlider.value))]];
     
 }
 
 -(void)updateMiniSynth
 {
-    CMiniSynthVoice* pVoice;
-    for(int i=0; i<16; i++)
-    {
-        pVoice = auEngine.auTrack_1_PlaybackInfo.m_VoicePtrStack1[i];
-        
-        pVoice->setDetuneCents(roundf(detuneCentsKnob._knobControl.value));
-        pVoice->setOscDetuneSemitones(roundf(detuneSemiKnob._knobControl.value));
+    
+        self.mainVC->m_dDetune_cents = (roundf(detuneCentsKnob._knobControl.value));
+        self.mainVC->m_uDetuneSemitones = (roundf(detuneSemiKnob._knobControl.value));
 
-        pVoice->setOsc1Waveform(roundf(osc1WFSlider.value));
-        pVoice->setOsc2Waveform(roundf(osc2WFSlider.value));
-        
-        pVoice->setOsc1Level(osc1LevelKnob._knobControl.value);
-        pVoice->setOsc2Level(osc2LeveKnob._knobControl.value);
+        self.mainVC->m_uOsc1Waveform = (roundf(osc1WFSlider.value));
+        self.mainVC->m_uOsc2Waveform = (roundf(osc2WFSlider.value));
+    
+        [osc1WFLabel setText:wfNames[(int)(roundf(osc1WFSlider.value))]];
+        [osc2WFLabel setText:wfNames[(int)(roundf(osc2WFSlider.value))]];
 
-        pVoice->setFilter1Cutoff(filterFCKnob._knobControl.value);
-        pVoice->setFilter1Q(filterQKnob._knobControl.value);
+        self.mainVC->m_fOsc1Level = (osc1LevelKnob._knobControl.value);
+        self.mainVC->m_fOsc2Level = (osc2LeveKnob._knobControl.value);
 
-        pVoice->setEG1AttackTime_mSec(attackTimeKnob._knobControl.value);
+        self.mainVC->m_dFcControl = (filterFCKnob._knobControl.value);
+        self.mainVC->m_dQControl = (filterQKnob._knobControl.value);
 
-        pVoice->setEG1DecayTime_mSec(decayReleaseTimeKnob._knobControl.value);
+        self.mainVC ->m_dAttackTime_mSec = (attackTimeKnob._knobControl.value);
 
-        pVoice->setEG1ReleaseTime_mSec(decayReleaseTimeKnob._knobControl.value);
+        self.mainVC-> m_dDecayReleaseTime_mSec = (decayReleaseTimeKnob._knobControl.value);
 
-        pVoice->setEG1SustainLevel(sustainLevelKnob._knobControl.value);
+        self.mainVC -> m_dSustainLevel = (sustainLevelKnob._knobControl.value);
 
-        pVoice->update();
-    }
+    [self.mainVC updateMiniSynth];
 }
 
 

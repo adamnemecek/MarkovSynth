@@ -21,6 +21,10 @@
         // set our defaults
 		// end init
         // load up voices
+        effectsArray = [[NSMutableArray alloc] init];
+        effectsDictionary = [[NSMutableDictionary alloc] init];
+        auTrack_1_PlaybackInfo.m_effectsArrayCopy = [[NSMutableArray alloc] init];
+
         CMiniSynthVoice* pVoice;
         MAX_VOICES = 16;
         auTrack_1_PlaybackInfo.MAX_VOICES = MAX_VOICES;
@@ -213,18 +217,23 @@ static OSStatus auReadFileCallback(void *inRefCon,				/* pointer to userdata - o
             pVoice =  auInfo->m_VoicePtrStack1[i];
             pVoice->doVoice(dLeft, dRight);
             dLeftAccum += fMix*dLeft;
+            dRightAccum +=fMix*dRight;
 
         }
         
         float fLeftAccum = float(dLeftAccum);
         float fRightAccum = float(dRightAccum);
+        
+        for (RLAudioEffect *effect in auInfo->m_effectsArrayCopy) {
+            [effect processAudioFrameInPlace:(float*)&fLeftAccum];
+        }
 		
 		
 		// write out; convert back to -32768 to +32767
 		buffer[m] = (SInt16)((float)fLeftAccum*32767.0);
 		
 		// write out; convert back to -32768 to +32767
-		buffer[m+1] = (SInt16)((float)fRightAccum*32768.0);
+		buffer[m+1] = (SInt16)((float)fRightAccum*32767.0);
 		
 		m+=2;
 	}
@@ -504,6 +513,10 @@ static OSStatus auReadFileCallback(void *inRefCon,				/* pointer to userdata - o
 	// Start the AUGraph
 	OSStatus result = AUGraphStart(m_AUGraph);
 	
+    for (RLAudioEffect *effect in auTrack_1_PlaybackInfo.m_effectsArrayCopy) {
+        [(RLAudioEffect *)effect prepareForPlay];
+    }
+    
 	// log the result
 	NSLog(@"startAUGraph  result %d %08X %4.4s\n", (int)result, (int)result, (char*)&result);
 }
@@ -530,6 +543,26 @@ static OSStatus auReadFileCallback(void *inRefCon,				/* pointer to userdata - o
     }
 }
 
+#pragma mark - Effects Array Method
+
+-(void)addEffectorEffectGroupToArray:(RLAudioEffect *)effect forKey:(NSString *)key{
+    [effectsDictionary setObject:effect forKey:key];
+    [effectsArray addObject:effect];
+    numEffectsInArray = [effectsArray count];
+    [auTrack_1_PlaybackInfo.m_effectsArrayCopy addObject:effect];
+}
+
+-(void)removeEffectFromArrayForKey:(NSString *)key{
+    RLAudioEffect *effect = [effectsDictionary objectForKey:key];
+    [effectsArray removeObject:effect];
+    numEffectsInArray = [effectsArray count];
+    auTrack_1_PlaybackInfo.m_effectsArrayCopy = [NSMutableArray arrayWithArray:effectsArray];
+}
+
+-(RLAudioEffect*)retrieveEffectFromGroupForKey:(NSString *)key{
+    RLAudioEffect* effect =[effectsDictionary objectForKey:key];
+    return effect;
+}
 
 
 @end

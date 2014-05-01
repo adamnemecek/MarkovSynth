@@ -10,12 +10,9 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "CAStreamBasicDescription.h"
 #import "MiniSynthVoice.h"
-//For Delay
-//#include "DDLModule.h"
-//For Reverb
-//#include "DattoroPlate.h"
 
-//#import "MiniSynthObject.h"
+#import "RLAudioEffect.h"
+
 
 // a custom struct to hold info for playing a file through AU
 struct AUPlayFileInfoStruct {
@@ -30,6 +27,9 @@ struct AUPlayFileInfoStruct {
     bool                            m_bNoteOn;
     UINT                    m_uTimbreSelection;
     UINT                            MAX_VOICES;
+    
+    NSMutableArray*                 m_effectsArrayCopy;
+
 };
 
 @interface AudioUnitsEngine : NSObject 
@@ -47,6 +47,15 @@ struct AUPlayFileInfoStruct {
     double m_dLastNoteFrequency;
     
     UINT MAX_VOICES;
+    
+    // Array to hold all of the plugins
+    NSMutableArray* effectsArray;
+    
+    // Dictionary to help with organization of effects
+    NSMutableDictionary* effectsDictionary;
+    
+    // This is maybe faster then asking the array for it's count every callback?
+    float numEffectsInArray;
 }
 
 @property AUPlayFileInfoStruct auTrack_1_PlaybackInfo;
@@ -70,5 +79,22 @@ struct AUPlayFileInfoStruct {
 -(void)setNoteOn:(int)notenumber;
 -(void)setNoteOff:(int)notenumber;
 -(void)setTimbreSelection:(UINT)sel;
+
+
+/** Add a effect or effect group to the array of effects to be processed in Series
+ @param effect - the object to add to the array
+ @param key - a key to retrieve the object from the group
+ */
+- (void) addEffectorEffectGroupToArray:(RLAudioEffect *)effect forKey:(NSString *)key;
+
+/** Remove a effect or effect group to the array of effects to be processed in Series
+ @param key - the key used to add the object to the array;
+ */
+- (void) removeEffectFromArrayForKey:(NSString *)key;
+
+/** Get the pointer from the Array for a given Key used to add the effect or effect group to the array
+ @param ket - the key used to add the object to the array;
+ */
+-(RLAudioEffect *)retrieveEffectFromGroupForKey:(NSString *)key;
 
 @end

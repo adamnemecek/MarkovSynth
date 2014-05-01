@@ -12,7 +12,7 @@
 #import "AYASynthSettingsViewController.h"
 
 #import "AYAMidiToMarkovCalc.h"
-
+#import "RLStereoDelay.h"
 
 @interface TRPLeftDrawerViewController : UITableViewController <SaveStateViewControllerDelegate>
 

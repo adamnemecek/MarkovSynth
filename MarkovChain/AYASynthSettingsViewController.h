@@ -39,6 +39,9 @@
     
     AudioUnitsEngine *auEngine;
     
+    enum {SINE,SAW1,SAW2,SAW3,TRI,SQUARE,NOISE,PNOISE};
+    NSArray *wfNames; 
+    
 }
 - (IBAction)wf1sliderchanged:(id)sender;
 - (IBAction)wf2sliderChanged:(id)sender;
