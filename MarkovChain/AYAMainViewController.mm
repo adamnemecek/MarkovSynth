@@ -267,7 +267,7 @@ typedef NS_ENUM(NSInteger, connectionType){
     [auEngine addEffectorEffectGroupToArray:stereoDelay forKey:@"stereoDelay"];
     [stereoDelay setParameterValue:@(500) forKey:@"delay_ms"];
     [stereoDelay setParameterValue:@(0.5) forKey:@"feedback_norm"];
-    [stereoDelay setParameterValue:@(0.5) forKey:@"wetMix_norm"];
+    [stereoDelay setParameterValue:@(0.3) forKey:@"wetMix_norm"];
 
     
 }

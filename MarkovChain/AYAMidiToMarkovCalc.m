@@ -24,7 +24,7 @@
     
     // Sort the modulo 12 to put all the notes in the same octave
     for (int i=0; i<[sortedArray count]; i++) {
-        [sortedArray[i] setValue:@([sortedArray[i][@"noteNum"]intValue] %24) forKey:@"noteNum"];
+        [sortedArray[i] setValue:@([sortedArray[i][@"noteNum"]intValue] %12) forKey:@"noteNum"];
     }
     
     // create a set with all the distinct times in the array

@@ -1,0 +1,19 @@
+PODS:
+  - MSDynamicsDrawerViewController (1.5.1)
+  - REFormattedNumberField (1.1.2)
+  - RETableViewManager (1.5.10):
+    - REFormattedNumberField (~> 1.1.2)
+    - REValidation (~> 0.1.4)
+  - REValidation (0.1.4)
+
+DEPENDENCIES:
+  - MSDynamicsDrawerViewController (~> 1.5)
+  - RETableViewManager (~> 1.5.10)
+
+SPEC CHECKSUMS:
+  MSDynamicsDrawerViewController: 2409ca61449d8541a3ee640bfd2d230c3734d3c4
+  REFormattedNumberField: 57016d59e96dbf5b6281fec4d08b401cb0a3c792
+  RETableViewManager: 1f566591ac24776030545c9542a9236dc1c69ddd
+  REValidation: 02160035110a63af1bf6ad1b8791837b3fa13584
+
+COCOAPODS: 0.32.1
