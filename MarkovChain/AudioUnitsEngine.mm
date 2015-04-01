@@ -8,6 +8,10 @@
 
 #import "AudioUnitsEngine.h"
 
+
+#define TICK   NSDate *startTime = [NSDate date]
+#define TOCK   NSLog(@"Time: %f", -[startTime timeIntervalSinceNow])
+
 //#define MAX_VOICES 16
 
 @implementation AudioUnitsEngine
@@ -24,7 +28,8 @@
         effectsArray = [[NSMutableArray alloc] init];
         effectsDictionary = [[NSMutableDictionary alloc] init];
         auTrack_1_PlaybackInfo.m_effectsArrayCopy = [[NSMutableArray alloc] init];
-
+        auTrack_1_PlaybackInfo.m_VoiceThreadArray = [[NSMutableArray alloc] init];
+        
         CMiniSynthVoice* pVoice;
         MAX_VOICES = 16;
         auTrack_1_PlaybackInfo.MAX_VOICES = MAX_VOICES;
@@ -35,6 +40,8 @@
             pVoice->prepareForPlay();
             pVoice->update();
             auTrack_1_PlaybackInfo.m_VoicePtrStack1.push_back(pVoice);
+            
+            [auTrack_1_PlaybackInfo.m_VoiceThreadArray addObject:[[AYAVoiceThread alloc] initWithVoice:pVoice]];
         }
     }
 	
@@ -137,107 +144,49 @@ static OSStatus auReadFileCallback(void *inRefCon,				/* pointer to userdata - o
 								   UInt32 inBusNumber,			/* the bus number */
 								   UInt32 inNumberFrames,		/* the number of frames that AU wants us to deliver to it */
 								   AudioBufferList *ioData)		/* the audio data buffers */
-{	
+{
 	// get and cast our custom struct; we need it for the fileID to read from
 	// and its packet counter variable
 	AUPlayFileInfoStruct *auInfo = (AUPlayFileInfoStruct*)inRefCon;
-	
-	if(auInfo->m_bDone)
-	{
-		// silence the audio
-		memset(ioData->mBuffers[0].mData, 0.0, inNumberFrames*4);
-		return noErr;
-	}
-	
-	// Initialize it to the number we want to read; it will be changed in the function
-	// to the number of packets that were actually read.
-	UInt32 nPackets = inNumberFrames;
-	
-	// the number of bytes that were read, returned from function call
-	//UInt32 numBytesRead;
-	
-	// AudioStreamPacketDescription needed for method call, unused otherwise
- 	//AudioStreamPacketDescription    *packetDescs;
-	
-    if(auInfo->m_AudioFileID)
-    {
-        // read out the packets into the output buffer; the output buffer is located at:
-        // ioData->mBuffers[0].mData
-        // it will be packed by whatever you specify in the desc; in this case it is interleaved L/R/L/R
-        // 44.1k Stereo Signed-Integer data, straight from the wave file
-        //
-//        AudioFileReadPackets (auInfo->m_AudioFileID,			/* input fileID */
-//                              false,						/* no cache */
-//                              &numBytesRead,				/* num bytes actually read */
-//                              packetDescs,					/* low level info about the packets */
-//                              auInfo->m_CurrentPacket,		/* starting packet index */
-//                              &nPackets,					/* num packets to attempt to read */
-//                              ioData->mBuffers[0].mData);	/* the buffer of freshly read data */
-    }
-    else
-    {
-        // --- seek to MP3 decode point
-        ExtAudioFileSeek(auInfo->m_MP3FileRef, auInfo->m_CurrentPacket);
-        
-        // --- decode and read into buffer
-        ExtAudioFileRead(auInfo->m_MP3FileRef, &nPackets, ioData);
-    }
 
-	// inc the packet counter
-	auInfo->m_CurrentPacket += nPackets;
-	
-	if(nPackets <= 0)
-	{
-		auInfo->m_bDone = true;
-	}
-	
+	UInt32 nPackets = inNumberFrames;
+    
+    
 	// here you can process the data in the buffer with a plug-in or sig proc function... access
 	// it the same way as we did in the CAPlayer app
-    AudioSampleType *buffer = (AudioSampleType *)ioData->mBuffers[0].mData;
+    SInt16 *buffer = (SInt16 *)ioData->mBuffers[0].mData;
 	
 	// each packet has 2 channels; L/R/L/R here
 	int m=0;
-	
-    // --- coo or retrieve plug-in processing information
-	
+		
 	for(int i = 0; i<nPackets; i++)
 	{
 		// do left channel; convert to float -1.0 to +1.0
         // do the LEFT processing - here is pass-thru
         double dLeftAccum = 0.0;
-        double dRightAccum = 0.0;
         
-        float fMix = 1.0/(float)auInfo->MAX_VOICES;
-        
-        CVoice* pVoice;
         for(int i=0; i<auInfo->MAX_VOICES; i++)
         {
-            double dLeft, dRight;
-            
-            pVoice =  auInfo->m_VoicePtrStack1[i];
-            pVoice->doVoice(dLeft, dRight);
-            dLeftAccum += fMix*dLeft;
-            dRightAccum +=fMix*dRight;
-
+                double dLeft;
+                AYAVoiceThread *voice = auInfo->m_VoiceThreadArray[i];
+                dLeft = [voice getSample];
+                dLeftAccum += dLeft;
         }
         
         float fLeftAccum = float(dLeftAccum);
-        float fRightAccum = float(dRightAccum);
         
         for (RLAudioEffect *effect in auInfo->m_effectsArrayCopy) {
             [effect processAudioFrameInPlace:(float*)&fLeftAccum];
         }
-		
-		
+
 		// write out; convert back to -32768 to +32767
 		buffer[m] = (SInt16)((float)fLeftAccum*32767.0);
 		
 		// write out; convert back to -32768 to +32767
-		buffer[m+1] = (SInt16)((float)fRightAccum*32767.0);
+		buffer[m+1] = (SInt16)((float)fLeftAccum*32767.0);
 		
 		m+=2;
 	}
-
 	// all good
 	return noErr;
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 #include "voice.h"
-#include "WTOscillator.h"
 #include "AlgorithmicOscillator.h"
 #include "MoogLadderFilter.h"
 

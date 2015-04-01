@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2F664DD71ACC3D61009904A1 /* AYAVoiceThread.mm in Sources */ = {isa = PBXBuildFile; fileRef = 2F664DD61ACC3D61009904A1 /* AYAVoiceThread.mm */; };
 		6B0A498819003F9E007858CA /* KnobControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498719003F9E007858CA /* KnobControlView.m */; };
 		6B0A498E1900518B007858CA /* AYADrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498D1900518B007858CA /* AYADrawView.m */; };
 		6B186CD8190AC95A00171A64 /* AYASynthSettingsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6B186CD6190AC95A00171A64 /* AYASynthSettingsViewController.mm */; };
@@ -60,7 +61,6 @@
 		6BF32364190AEEA900CE1E00 /* bwv772.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6BF32363190AEEA900CE1E00 /* bwv772.mid */; };
 		6BF32366190AF0E400CE1E00 /* laksin.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6BF32365190AF0E400CE1E00 /* laksin.mid */; };
 		6BF32369190AF4B300CE1E00 /* AYAMidiToMarkovCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF32368190AF4B300CE1E00 /* AYAMidiToMarkovCalc.m */; };
-		6BFAB3871905932F00B1B9F8 /* WTOscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BFAB3851905932F00B1B9F8 /* WTOscillator.cpp */; };
 		6BFC1FF31909D84400D0ADF9 /* TRPGenericCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFC1FF21909D84400D0ADF9 /* TRPGenericCollectionViewCell.m */; };
 		D1EFA3562AB443BFA0AC73CA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 215231B2D73E4797BED48EB4 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -77,6 +77,8 @@
 
 /* Begin PBXFileReference section */
 		215231B2D73E4797BED48EB4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		2F664DD51ACC3D61009904A1 /* AYAVoiceThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAVoiceThread.h; sourceTree = "<group>"; };
+		2F664DD61ACC3D61009904A1 /* AYAVoiceThread.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AYAVoiceThread.mm; sourceTree = "<group>"; };
 		65CF91E232134A20A97F8078 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		6B0A498619003F9E007858CA /* KnobControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnobControlView.h; sourceTree = "<group>"; };
 		6B0A498719003F9E007858CA /* KnobControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnobControlView.m; sourceTree = "<group>"; };
@@ -173,8 +175,6 @@
 		6BF32365190AF0E400CE1E00 /* laksin.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = laksin.mid; sourceTree = "<group>"; };
 		6BF32367190AF4B300CE1E00 /* AYAMidiToMarkovCalc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAMidiToMarkovCalc.h; sourceTree = "<group>"; };
 		6BF32368190AF4B300CE1E00 /* AYAMidiToMarkovCalc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYAMidiToMarkovCalc.m; sourceTree = "<group>"; };
-		6BFAB3851905932F00B1B9F8 /* WTOscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WTOscillator.cpp; sourceTree = "<group>"; };
-		6BFAB3861905932F00B1B9F8 /* WTOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTOscillator.h; sourceTree = "<group>"; };
 		6BFC1FF11909D84400D0ADF9 /* TRPGenericCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRPGenericCollectionViewCell.h; sourceTree = "<group>"; };
 		6BFC1FF21909D84400D0ADF9 /* TRPGenericCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRPGenericCollectionViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,6 +205,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F664DD21ACC357E009904A1 /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				6B9D83041905C68A00CB8172 /* Filter.cpp */,
+				6B9D83051905C68A00CB8172 /* Filter.h */,
+				6B9D830A1905C68B00CB8172 /* MoogLadderFilter.cpp */,
+				6B9D830B1905C68B00CB8172 /* MoogLadderFilter.h */,
+				6B9D83101905C68B00CB8172 /* VAOnePoleFilter.cpp */,
+				6B9D83111905C68B00CB8172 /* VAOnePoleFilter.h */,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
+		2F664DD31ACC3642009904A1 /* Voice */ = {
+			isa = PBXGroup;
+			children = (
+				6B401ABB1905C6C300232844 /* MiniSynthVoice.cpp */,
+				6B401ABC1905C6C300232844 /* MiniSynthVoice.h */,
+				6B9D83121905C68B00CB8172 /* Voice.cpp */,
+				6B9D83131905C68B00CB8172 /* Voice.h */,
+				2F664DD51ACC3D61009904A1 /* AYAVoiceThread.h */,
+				2F664DD61ACC3D61009904A1 /* AYAVoiceThread.mm */,
+			);
+			name = Voice;
+			sourceTree = "<group>";
+		};
+		2F664DD41ACC3699009904A1 /* Oscillators */ = {
+			isa = PBXGroup;
+			children = (
+				6B9D82FD1905C68A00CB8172 /* AlgorithmicOscillator.cpp */,
+				6B9D82FE1905C68A00CB8172 /* AlgorithmicOscillator.h */,
+				6B9D830C1905C68B00CB8172 /* Oscillator.cpp */,
+				6B9D830D1905C68B00CB8172 /* Oscillator.h */,
+			);
+			name = Oscillators;
+			sourceTree = "<group>";
+		};
 		6B186CCF190AC0D800171A64 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,33 +487,20 @@
 			children = (
 				6BEABAB618FCBB7000CA24E4 /* AudioUnitsEngine.h */,
 				6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */,
-				6B401ABB1905C6C300232844 /* MiniSynthVoice.cpp */,
-				6B401ABC1905C6C300232844 /* MiniSynthVoice.h */,
-				6BFAB3851905932F00B1B9F8 /* WTOscillator.cpp */,
-				6BFAB3861905932F00B1B9F8 /* WTOscillator.h */,
-				6B9D82FD1905C68A00CB8172 /* AlgorithmicOscillator.cpp */,
-				6B9D82FE1905C68A00CB8172 /* AlgorithmicOscillator.h */,
+				2F664DD31ACC3642009904A1 /* Voice */,
+				2F664DD41ACC3699009904A1 /* Oscillators */,
 				6B9D82FF1905C68A00CB8172 /* DCA.cpp */,
 				6B9D83001905C68A00CB8172 /* DCA.h */,
 				6B9D83011905C68A00CB8172 /* EnvelopeGenerator.cpp */,
 				6B9D83021905C68A00CB8172 /* EnvelopeGenerator.h */,
 				6B9D83031905C68A00CB8172 /* fastapprox.h */,
-				6B9D83041905C68A00CB8172 /* Filter.cpp */,
-				6B9D83051905C68A00CB8172 /* Filter.h */,
+				2F664DD21ACC357E009904A1 /* Filters */,
 				6B9D83061905C68A00CB8172 /* LFO.cpp */,
 				6B9D83071905C68A00CB8172 /* LFO.h */,
 				6B9D83081905C68A00CB8172 /* ModulationMatrix.cpp */,
 				6B9D83091905C68B00CB8172 /* ModulationMatrix.h */,
-				6B9D830A1905C68B00CB8172 /* MoogLadderFilter.cpp */,
-				6B9D830B1905C68B00CB8172 /* MoogLadderFilter.h */,
-				6B9D830C1905C68B00CB8172 /* Oscillator.cpp */,
-				6B9D830D1905C68B00CB8172 /* Oscillator.h */,
 				6B9D830E1905C68B00CB8172 /* pluginconstants.h */,
 				6B9D830F1905C68B00CB8172 /* synthfunctions.h */,
-				6B9D83101905C68B00CB8172 /* VAOnePoleFilter.cpp */,
-				6B9D83111905C68B00CB8172 /* VAOnePoleFilter.h */,
-				6B9D83121905C68B00CB8172 /* Voice.cpp */,
-				6B9D83131905C68B00CB8172 /* Voice.h */,
 			);
 			name = SynthStuff;
 			sourceTree = "<group>";
@@ -623,7 +647,6 @@
 				6B97D8B018F75B1A00DF1590 /* AYAMainViewController.mm in Sources */,
 				6B7224F21912876600D5A938 /* RLStereoDelay.mm in Sources */,
 				6B9D831B1905C68B00CB8172 /* Oscillator.cpp in Sources */,
-				6BFAB3871905932F00B1B9F8 /* WTOscillator.cpp in Sources */,
 				6B85B57A18F8361E00B7BBA2 /* AYAConnection.m in Sources */,
 				6B9D83171905C68B00CB8172 /* Filter.cpp in Sources */,
 				6BEABAE218FCBB7100CA24E4 /* RWKnobControl.m in Sources */,
@@ -641,6 +664,7 @@
 				6B7224EF1912875200D5A938 /* RLAudioEffect.mm in Sources */,
 				6B401ABD1905C6C300232844 /* MiniSynthVoice.cpp in Sources */,
 				6B9D831C1905C68B00CB8172 /* VAOnePoleFilter.cpp in Sources */,
+				2F664DD71ACC3D61009904A1 /* AYAVoiceThread.mm in Sources */,
 				6B0A498E1900518B007858CA /* AYADrawView.m in Sources */,
 				6B7224F81912879300D5A938 /* RLBitCrusher.m in Sources */,
 				6B97D88B18F75AF700DF1590 /* main.mm in Sources */,

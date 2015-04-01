@@ -10,7 +10,7 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import "CAStreamBasicDescription.h"
 #import "MiniSynthVoice.h"
-
+#import "AYAVoiceThread.h"
 #import "RLAudioEffect.h"
 
 
@@ -29,6 +29,7 @@ struct AUPlayFileInfoStruct {
     UINT                            MAX_VOICES;
     
     NSMutableArray*                 m_effectsArrayCopy;
+    NSMutableArray*                 m_VoiceThreadArray;
 
 };
 
