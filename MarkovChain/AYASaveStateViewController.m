@@ -32,10 +32,11 @@ NSString *kCellID = @"cellID";                          // UICollectionViewCell 
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    
+    self.view.backgroundColor = [UIColor clearColor];
+    self.collectionView.backgroundColor = [UIColor clearColor];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain target:self action:@selector(selfDismissed)];
     [self.collectionView registerClass:[TRPGenericCollectionViewCell class] forCellWithReuseIdentifier:kCellID];
-    
-    
 }
 
 -(void)viewDidAppear:(BOOL)animated{
@@ -62,7 +63,6 @@ NSString *kCellID = @"cellID";                          // UICollectionViewCell 
     // we're going to use a custom UICollectionViewCell, which will hold an image and its label
     //
     TRPGenericCollectionViewCell *cell = [cv dequeueReusableCellWithReuseIdentifier:kCellID forIndexPath:indexPath];
-    [cell setBackgroundColor:[UIColor colorWithWhite:1.0 alpha:0.3]];
     
     // make the cell's title the actual NSIndexPath value
     [cell setTitle:[NSString stringWithFormat:@"%ld", (long)indexPath.row]];

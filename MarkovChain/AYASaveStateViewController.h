@@ -22,6 +22,7 @@
 @interface AYASaveStateViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) id delegate;
+@property (strong, nonatomic) IBOutlet UICollectionView *visualEffectView;
 @property (weak, nonatomic) AYAMainViewController *mainVC;
 @property bool isSaving;
 @end

@@ -29,11 +29,11 @@
         _backgroundImageView = [[UIImageView alloc] init];
         _backgroundImageView.contentMode = UIViewContentModeScaleAspectFill;
         _backgroundImageView.clipsToBounds = YES;
-        _backgroundImageView.backgroundColor = [UIColor redColor]; // needs to be replaced by image
+        _backgroundImageView.backgroundColor = [UIColor lightGrayColor]; // needs to be replaced by image
         [self.contentView addSubview:_backgroundImageView];
         
         UIView *textBGView = [[UIView alloc] init];
-        textBGView.backgroundColor = [UIColor blackColor];
+        textBGView.backgroundColor = [UIColor clearColor];
         textBGView.alpha = 0.5;
         textBGView.frame = CGRectMake(0.0, self.contentView.bounds.size.height*0.65, self.contentView.bounds.size.width, self.contentView.bounds.size.height*0.35);
         [self.contentView addSubview:textBGView];
