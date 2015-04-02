@@ -255,8 +255,8 @@ inline double pitchShiftMultiplier(double dPitchShiftSemitones)
 		return 1.0;
 
 	// 2^(N/12)
-	return fastpow2(dPitchShiftSemitones/12.0);
-	//return pow(2.0, dPitchShiftSemitones/12.0);
+//	return fastpow2(dPitchShiftSemitones/12.0);
+	return pow(2.0, dPitchShiftSemitones/12.0);
 }
 
 /* paramToTimeCents()

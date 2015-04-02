@@ -7,43 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AudioToolbox/AudioToolbox.h>
-#import "CAStreamBasicDescription.h"
 #import "MiniSynthVoice.h"
 #import "AYAVoiceThread.h"
 #import "RLAudioEffect.h"
+#import "AEAudioController.h"
+#import "AEBlockChannel.h"
 
-
-// a custom struct to hold info for playing a file through AU
-struct AUPlayFileInfoStruct {
-    AudioFileID                     m_AudioFileID;		/* ID of audio file */
-    ExtAudioFileRef                 m_MP3FileRef;	    /* for MP3/other compressed files */
-    SInt64                          m_CurrentPacket;	/* packet counter */
-	bool							m_bDone;			/* done reading data */
-    CAStreamBasicDescription        m_CSABD;
-    
-    std::vector<CMiniSynthVoice*> m_VoicePtrStack1;
-	std::vector<CMiniSynthVoice*>::iterator m_VoiceIterator1;
-    bool                            m_bNoteOn;
-    UINT                    m_uTimbreSelection;
-    UINT                            MAX_VOICES;
-    
-    NSMutableArray*                 m_effectsArrayCopy;
-    NSMutableArray*                 m_VoiceThreadArray;
-
-};
 
 @interface AudioUnitsEngine : NSObject 
 {
     @public
-	// struct for one track (mono or stereo) of playback from a file
-	AUPlayFileInfoStruct auTrack_1_PlaybackInfo;
-	
-	// the AU Graph - a conceptual arrangement of plugins
-	AUGraph   m_AUGraph;
-	
-	// the Mixer plugin
-	AudioUnit m_AUMixer;
+    
+    std::vector<CMiniSynthVoice*> m_VoicePtrStack1;
+    std::vector<CMiniSynthVoice*>::iterator m_VoiceIterator1;
+    
+    std::vector<AYAVoiceThread *> m_VoiceThreadStack;
     
     double m_dLastNoteFrequency;
     
@@ -59,15 +37,13 @@ struct AUPlayFileInfoStruct {
     float numEffectsInArray;
 }
 
-@property AUPlayFileInfoStruct auTrack_1_PlaybackInfo;
+
+@property (nonatomic) AEAudioController *audioController;
 // our designated init-er
 - (id)init;
 
 + (id)getAudioUnitsEngine;
 // init the AUGraph with a file to playback:
-- (OSStatus)initPlaybackAUGraphWithFile:(NSString *)filename
-                                 ofType:(NSString *)type
-                          isCompressed:(bool)extFileType;
 
 // start rendering audio
 - (void)startAUGraph;
@@ -75,12 +51,8 @@ struct AUPlayFileInfoStruct {
 // stop rendering audio
 - (void)stopAUGraph;
 
--(void)setOscillatorFO:(float)fo;
--(void)setOscillatorWave:(int)wave;
 -(void)setNoteOn:(int)notenumber;
 -(void)setNoteOff:(int)notenumber;
--(void)setTimbreSelection:(UINT)sel;
-
 
 /** Add a effect or effect group to the array of effects to be processed in Series
  @param effect - the object to add to the array

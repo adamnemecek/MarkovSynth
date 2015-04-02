@@ -245,11 +245,6 @@ public:
 		if(m_uWaveform == TRI)
 			incModulo();
 
-		// m_dAmpMod is set in updateOscillator()
-
-
-		// m_dAmpMod is set in updateOscillator()
-		//return dOut*m_dAmplitude*m_dAmpMod;
         return dOut;
 	}
 };

@@ -1,19 +1,22 @@
 PODS:
   - MSDynamicsDrawerViewController (1.5.1)
-  - REFormattedNumberField (1.1.2)
+  - REFormattedNumberField (1.1.5)
   - RETableViewManager (1.5.10):
     - REFormattedNumberField (~> 1.1.2)
     - REValidation (~> 0.1.4)
   - REValidation (0.1.4)
+  - TheAmazingAudioEngine (1.4.6)
 
 DEPENDENCIES:
   - MSDynamicsDrawerViewController (~> 1.5)
   - RETableViewManager (~> 1.5.10)
+  - TheAmazingAudioEngine
 
 SPEC CHECKSUMS:
-  MSDynamicsDrawerViewController: 2409ca61449d8541a3ee640bfd2d230c3734d3c4
-  REFormattedNumberField: 57016d59e96dbf5b6281fec4d08b401cb0a3c792
-  RETableViewManager: 1f566591ac24776030545c9542a9236dc1c69ddd
-  REValidation: 02160035110a63af1bf6ad1b8791837b3fa13584
+  MSDynamicsDrawerViewController: 2874df90f5e9453dc7d4e32f8038b50615d4baa7
+  REFormattedNumberField: be3d55dd709f65541fb26b7e1709da07903147f8
+  RETableViewManager: b943a12b8684d8563b6daa30e3ceab390856c1c3
+  REValidation: 38c4de1be58455f8b00aab208ac80db316a66b7f
+  TheAmazingAudioEngine: 014e942f20456feaf5ccb48f440402306350abf8
 
-COCOAPODS: 0.32.1
+COCOAPODS: 0.34.4

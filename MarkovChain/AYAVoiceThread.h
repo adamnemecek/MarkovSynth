@@ -6,14 +6,27 @@
 //  Copyright (c) 2015 AyersAudio. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "Voice.h"
-#include <queue>
-@interface AYAVoiceThread : NSObject
+#include <pthread.h>
+#include <stdlib.h>
+#include <time.h>
 
--(id)initWithVoice:(CVoice *)voice;
-
--(double)getSample;
-
-@end
+class AYAVoiceThread {
     
+    
+public:
+    AYAVoiceThread (CVoice*);
+    double getSample();
+    CVoice *mVoice;
+    double *circBuff;
+    int producerIndex;
+    int consumerIndex;
+    
+private:
+    int incIndex(int);
+    void workerLoop();
+
+    struct timespec tim;
+    static void *worker_thread(void *);
+    
+};

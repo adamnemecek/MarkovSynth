@@ -45,9 +45,13 @@ public:
 	int m_nStages;
 	UINT m_uInvertStages;
 	float m_fGain;
-
+    
 	UINT m_uModMode;
-	// ------------------------------------------------ //
+	
+    
+    
+    
+    // ------------------------------------------------ //
 	
 	// waveshape modes
 	enum {SawX3,SqrX3,SawSqrSaw,TriSawTri,TriSqrTri,HSSaw};
@@ -196,6 +200,7 @@ public:
 	{
 		m_ModulationMatrix.removeMatrixRow(source, dest);
 	}
+        
 	inline virtual bool doVoice(double& dLeftOutput, double& dRightOutput)
 	{
 		// this does basic on/off work zero impact on speed
@@ -206,8 +211,6 @@ public:
 		// layer 1 modulators
 		double env1 = m_EG1.doEnvelope();
 	
-		// apply modulatora
-		m_ModulationMatrix.doModulationMatrix();
 		
 		// update for attack/decay mods
 		m_EG1.updateEG();
@@ -229,20 +232,20 @@ public:
 //                      m_fOsc3Level*m_Osc3.doOscillate()*env1;
 
 		//Distortion
-        dOscMix = m_LPF.doFilter(dOscMix);
+//        dOscMix = m_LPF.doFilter(dOscMix);
 
-		float m_fCookedGain = pow(10.0, m_fGain/20.0);
-		dOscMix *= m_fCookedGain;
-		for(int i=0; i<m_nStages; i++)
-		{
-			if(dOscMix <=0)
-				dOscMix = (1.0/atan(m_fArcTanKPos))*atan(m_fArcTanKPos*dOscMix);
-			else
-				dOscMix = (1.0/atan(m_fArcTanKNeg))*atan(m_fArcTanKNeg*dOscMix);
-	
-			if(m_uInvertStages == ON && i%2 ==0)
-				dOscMix *= -1.0;
-		}
+//		float m_fCookedGain = pow(10.0, m_fGain/20.0);
+//		dOscMix *= m_fCookedGain;
+//		for(int i=0; i<m_nStages; i++)
+//		{
+//			if(dOscMix <=0)
+//				dOscMix = (1.0/atan(m_fArcTanKPos))*atan(m_fArcTanKPos*dOscMix);
+//			else
+//				dOscMix = (1.0/atan(m_fArcTanKNeg))*atan(m_fArcTanKNeg*dOscMix);
+//	
+//			if(m_uInvertStages == ON && i%2 ==0)
+//				dOscMix *= -1.0;
+//		}
         dLeftOutput = dOscMix;
         dRightOutput = dOscMix;
 

@@ -153,7 +153,7 @@ double CMoogLadderFilter::doFilter(double xn)
 	double dU = (xn - m_dK*dSigma)*m_dAlpha_0;
 
 	if(m_uNLP == ON)
-		dU = fasttanh(m_dSaturation*dU);
+        dU = tanh(m_dSaturation * dU);
 
 	// cascade of 4 filters
 	double dLP1 = m_LPF1.doFilter(dU);
@@ -162,5 +162,6 @@ double CMoogLadderFilter::doFilter(double xn)
 	double dLP4 = m_LPF4.doFilter(dLP3);
 
 	// Oberheim variation
-	return m_dA*dU + m_dB*dLP1 + m_dC*dLP2 + m_dD*dLP3 +  m_dE*dLP4;  
+	return m_dA*dU + m_dB*dLP1 + m_dC*dLP2 + m_dD*dLP3 +  m_dE*dLP4;
+//    return dLP1;
 }

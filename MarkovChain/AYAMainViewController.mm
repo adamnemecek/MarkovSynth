@@ -99,7 +99,7 @@ typedef NS_ENUM(NSInteger, connectionType){
     for(int i=0; i<16; i++)
     {
         timbre *pTimbre = &timbre1;
-        pVoice = auEngine.auTrack_1_PlaybackInfo.m_VoicePtrStack1[i];
+        pVoice = auEngine->m_VoicePtrStack1[i];
         
         pTimbre->Detune_cents = m_dDetune_cents;
         pVoice->setDetuneCents(pTimbre->Detune_cents);
@@ -226,8 +226,6 @@ typedef NS_ENUM(NSInteger, connectionType){
     [self updateMiniSynth];
     // We always call the stop before initializing it just to make sure
     [auEngine stopAUGraph];
-    // Use the wave file to set up our CASBD because I'm lazy
-	[auEngine initPlaybackAUGraphWithFile:@"9" ofType:@"wav" isCompressed:NO];
     // Start the rendering
 	[auEngine startAUGraph];
     
@@ -569,6 +567,9 @@ typedef NS_ENUM(NSInteger, connectionType){
     }
     
     [nodes removeAllObjects];
+    
+    [self.auEngine stopAUGraph];
+    [self.auEngine startAUGraph];
 }
 
 -(void)saveGraphinSlot:(int)slot{
