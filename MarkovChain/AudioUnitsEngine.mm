@@ -1,18 +1,9 @@
 //
 //  AudioUnitsEngine.m
-//  AUPlayer
-//
-//  Created by willpirkle on 4/18/11.
-//  Copyright 2011 University of Miami. All rights reserved.
 //
 
 #import "AudioUnitsEngine.h"
 
-
-#define TICK   NSDate *startTime = [NSDate date]
-#define TOCK   NSLog(@"Time: %f", -[startTime timeIntervalSinceNow])
-
-//#define MAX_VOICES 16
 
 @implementation AudioUnitsEngine
 {
@@ -30,7 +21,7 @@
     audioDescription.mFramesPerPacket   = 1;
     audioDescription.mBytesPerFrame     = sizeof(float);
     audioDescription.mBitsPerChannel    = 8 * sizeof(float);
-    audioDescription.mSampleRate        = 22050.0;
+    audioDescription.mSampleRate        = 22050.0; // NOTE 22050!
     return audioDescription;
 }
 // default initializer

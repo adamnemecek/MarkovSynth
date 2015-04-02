@@ -54,7 +54,6 @@
 		6BEABAE218FCBB7100CA24E4 /* RWKnobControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABACD18FCBB7100CA24E4 /* RWKnobControl.m */; };
 		6BEABAE318FCBB7100CA24E4 /* RWKnobRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABACF18FCBB7100CA24E4 /* RWKnobRenderer.m */; };
 		6BEABAE418FCBB7100CA24E4 /* RWRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAD118FCBB7100CA24E4 /* RWRotationGestureRecognizer.m */; };
-		6BEABAED18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAEB18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp */; };
 		6BEABAEF18FCBE2900CA24E4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEABAEE18FCBE2900CA24E4 /* AudioToolbox.framework */; };
 		6BF32362190AEDCD00CE1E00 /* AYAMidiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF32361190AEDCD00CE1E00 /* AYAMidiParser.m */; };
 		6BF32364190AEEA900CE1E00 /* bwv772.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6BF32363190AEEA900CE1E00 /* bwv772.mid */; };
@@ -161,10 +160,6 @@
 		6BEABACF18FCBB7100CA24E4 /* RWKnobRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWKnobRenderer.m; sourceTree = "<group>"; };
 		6BEABAD018FCBB7100CA24E4 /* RWRotationGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWRotationGestureRecognizer.h; sourceTree = "<group>"; };
 		6BEABAD118FCBB7100CA24E4 /* RWRotationGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWRotationGestureRecognizer.m; sourceTree = "<group>"; };
-		6BEABAE918FCBC4C00CA24E4 /* CADebugMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CADebugMacros.h; sourceTree = "<group>"; };
-		6BEABAEA18FCBC4C00CA24E4 /* CAMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAMath.h; sourceTree = "<group>"; };
-		6BEABAEB18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CAStreamBasicDescription.cpp; sourceTree = "<group>"; };
-		6BEABAEC18FCBC4C00CA24E4 /* CAStreamBasicDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CAStreamBasicDescription.h; sourceTree = "<group>"; };
 		6BEABAEE18FCBE2900CA24E4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6BEABAF018FCBE2F00CA24E4 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
 		6BF32360190AEDCD00CE1E00 /* AYAMidiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAMidiParser.h; sourceTree = "<group>"; };
@@ -417,10 +412,6 @@
 		6B97D88518F75AF700DF1590 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				6BEABAE918FCBC4C00CA24E4 /* CADebugMacros.h */,
-				6BEABAEA18FCBC4C00CA24E4 /* CAMath.h */,
-				6BEABAEB18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp */,
-				6BEABAEC18FCBC4C00CA24E4 /* CAStreamBasicDescription.h */,
 				6B97D88618F75AF700DF1590 /* MarkovChain-Info.plist */,
 				6B97D88718F75AF700DF1590 /* InfoPlist.strings */,
 				6B97D88A18F75AF700DF1590 /* main.mm */,
@@ -662,7 +653,6 @@
 				6BFC1FF31909D84400D0ADF9 /* TRPGenericCollectionViewCell.m in Sources */,
 				6B9D83191905C68B00CB8172 /* ModulationMatrix.cpp in Sources */,
 				6B85B58D18F8843600B7BBA2 /* AYATableViewController.m in Sources */,
-				6BEABAED18FCBC4C00CA24E4 /* CAStreamBasicDescription.cpp in Sources */,
 				6B97D88F18F75AF700DF1590 /* AYAAppDelegate.mm in Sources */,
 				6B97D8B718F75E0000DF1590 /* AYANodeView.m in Sources */,
 				6B9D831D1905C68B00CB8172 /* Voice.cpp in Sources */,
