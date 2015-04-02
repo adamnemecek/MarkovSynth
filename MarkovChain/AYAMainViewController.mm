@@ -187,18 +187,6 @@ typedef NS_ENUM(NSInteger, connectionType){
         pVoice->setDCAEGIntensity(m_dDCAEGIntensity);
         // turn on/off and Intensity; filter key track
         
-        pTimbre->FilterKeyTrack = m_uFilterKeyTrack;
-        pVoice->enableFilterKeyTrack(m_uFilterKeyTrack);
-        
-        pTimbre->FilterKeyTrackIntensity = m_dFilterKeyTrackIntensity;
-        pVoice->setFilterKeyTrackIntensity(m_dFilterKeyTrackIntensity);
-        // turn on/off vel->attack and note->decay scaling
-        pTimbre->VelocityToAttackScaling = m_uVelocityToAttackScaling;
-        pVoice->enableVelocityToAttackScaling(m_uVelocityToAttackScaling);
-        
-        pTimbre->NoteNumberToDecayScaling = m_uNoteNumberToDecayScaling;
-        pVoice->enableMIDINoteNumberToDecayScaling(m_uNoteNumberToDecayScaling);
-        
         pTimbre->PulseWidth_Pct = m_dPulseWidth_Pct;
         pVoice->setPulseWidthControl(m_dPulseWidth_Pct);
         

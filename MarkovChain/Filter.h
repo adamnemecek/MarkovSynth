@@ -71,16 +71,6 @@ public:
 
 	inline virtual void updateFilter()
 	{
-		if(m_pModulationMatrix)
-		{
-			// NOTE: do NOT have to check for Source == DEST_NONE for mod inputs that
-			//       have 0.0 as default (unity) value b/c destinations are cleared
-			//       before each render
-			m_dFcMod = m_pModulationMatrix->m_dDestinations[m_uModSourceFc];
-
-			if(m_uSourceFcControl != DEST_NONE)
-				m_dFcControl = m_pModulationMatrix->m_dDestinations[m_uSourceFcControl];
-		}
 		
 		// do the modulation freq shift
 		m_dFc = m_dFcControl*pitchShiftMultiplier(m_dFcMod);

@@ -147,7 +147,7 @@ double CMoogLadderFilter::doFilter(double xn)
 					m_LPF4.getFeedbackOutput();
 
 	// for passband gain compensation!
-	// xn *= 1.0 + m_dAuxControl*m_dK;
+	 xn *= 1.0 + m_dAuxControl*m_dK;
 
 	// calculate input to first filter
 	double dU = (xn - m_dK*dSigma)*m_dAlpha_0;
