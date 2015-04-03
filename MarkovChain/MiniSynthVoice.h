@@ -2,7 +2,7 @@
 
 #include "voice.h"
 #include "AlgorithmicOscillator.h"
-#include "MoogLadderFilter.h"
+#include "DiodeLadderFilter.h"
 
 class CMiniSynthVoice : public CVoice
 {
@@ -16,7 +16,7 @@ public:
     CAlgorithmicOscillator m_Osc2;
 	
 	// 1 filter
-	CMoogLadderFilter m_LPF;
+	CDiodeLadderFilter m_LPF;
 
 	// hard sync is property of VOICE!
 	double m_dHSRatio;

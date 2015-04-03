@@ -47,8 +47,9 @@
 		6B9D83191905C68B00CB8172 /* ModulationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83081905C68A00CB8172 /* ModulationMatrix.cpp */; };
 		6B9D831A1905C68B00CB8172 /* MoogLadderFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D830A1905C68B00CB8172 /* MoogLadderFilter.cpp */; };
 		6B9D831B1905C68B00CB8172 /* Oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D830C1905C68B00CB8172 /* Oscillator.cpp */; };
-		6B9D831C1905C68B00CB8172 /* VAOnePoleFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83101905C68B00CB8172 /* VAOnePoleFilter.cpp */; };
 		6B9D831D1905C68B00CB8172 /* Voice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83121905C68B00CB8172 /* Voice.cpp */; };
+		6BB6D3B21ACEC4C700105858 /* DiodeLadderFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BB6D3B01ACEC4C700105858 /* DiodeLadderFilter.cpp */; };
+		6BB6D3B51ACEC4EC00105858 /* VAOnePoleFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BB6D3B31ACEC4EC00105858 /* VAOnePoleFilter.cpp */; };
 		6BDC5AFC19102C89007FDB90 /* Fugue1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6BDC5AFB19102C89007FDB90 /* Fugue1.mid */; };
 		6BEABAD818FCBB7100CA24E4 /* AudioUnitsEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */; };
 		6BEABAE218FCBB7100CA24E4 /* RWKnobControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABACD18FCBB7100CA24E4 /* RWKnobControl.m */; };
@@ -147,10 +148,12 @@
 		6B9D830D1905C68B00CB8172 /* Oscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Oscillator.h; sourceTree = "<group>"; };
 		6B9D830E1905C68B00CB8172 /* pluginconstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pluginconstants.h; sourceTree = "<group>"; };
 		6B9D830F1905C68B00CB8172 /* synthfunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = synthfunctions.h; sourceTree = "<group>"; };
-		6B9D83101905C68B00CB8172 /* VAOnePoleFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VAOnePoleFilter.cpp; sourceTree = "<group>"; };
-		6B9D83111905C68B00CB8172 /* VAOnePoleFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAOnePoleFilter.h; sourceTree = "<group>"; };
 		6B9D83121905C68B00CB8172 /* Voice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Voice.cpp; sourceTree = "<group>"; };
 		6B9D83131905C68B00CB8172 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
+		6BB6D3B01ACEC4C700105858 /* DiodeLadderFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiodeLadderFilter.cpp; sourceTree = "<group>"; };
+		6BB6D3B11ACEC4C700105858 /* DiodeLadderFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiodeLadderFilter.h; sourceTree = "<group>"; };
+		6BB6D3B31ACEC4EC00105858 /* VAOnePoleFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VAOnePoleFilter.cpp; sourceTree = "<group>"; };
+		6BB6D3B41ACEC4EC00105858 /* VAOnePoleFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAOnePoleFilter.h; sourceTree = "<group>"; };
 		6BDC5AFB19102C89007FDB90 /* Fugue1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Fugue1.mid; sourceTree = "<group>"; };
 		6BEABAB618FCBB7000CA24E4 /* AudioUnitsEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUnitsEngine.h; sourceTree = "<group>"; };
 		6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioUnitsEngine.mm; sourceTree = "<group>"; };
@@ -211,12 +214,14 @@
 		2F664DD21ACC357E009904A1 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
+				6BB6D3B01ACEC4C700105858 /* DiodeLadderFilter.cpp */,
+				6BB6D3B11ACEC4C700105858 /* DiodeLadderFilter.h */,
 				6B9D83041905C68A00CB8172 /* Filter.cpp */,
 				6B9D83051905C68A00CB8172 /* Filter.h */,
 				6B9D830A1905C68B00CB8172 /* MoogLadderFilter.cpp */,
 				6B9D830B1905C68B00CB8172 /* MoogLadderFilter.h */,
-				6B9D83101905C68B00CB8172 /* VAOnePoleFilter.cpp */,
-				6B9D83111905C68B00CB8172 /* VAOnePoleFilter.h */,
+				6BB6D3B31ACEC4EC00105858 /* VAOnePoleFilter.cpp */,
+				6BB6D3B41ACEC4EC00105858 /* VAOnePoleFilter.h */,
 			);
 			name = Filters;
 			sourceTree = "<group>";
@@ -644,6 +649,7 @@
 				6B97D8B018F75B1A00DF1590 /* AYAMainViewController.mm in Sources */,
 				6B7224F21912876600D5A938 /* RLStereoDelay.mm in Sources */,
 				6B9D831B1905C68B00CB8172 /* Oscillator.cpp in Sources */,
+				6BB6D3B51ACEC4EC00105858 /* VAOnePoleFilter.cpp in Sources */,
 				6B85B57A18F8361E00B7BBA2 /* AYAConnection.m in Sources */,
 				6B9D83171905C68B00CB8172 /* Filter.cpp in Sources */,
 				6BEABAE218FCBB7100CA24E4 /* RWKnobControl.m in Sources */,
@@ -659,7 +665,6 @@
 				6B186CD8190AC95A00171A64 /* AYASynthSettingsViewController.mm in Sources */,
 				6B7224EF1912875200D5A938 /* RLAudioEffect.mm in Sources */,
 				6B401ABD1905C6C300232844 /* MiniSynthVoice.cpp in Sources */,
-				6B9D831C1905C68B00CB8172 /* VAOnePoleFilter.cpp in Sources */,
 				2F664DD71ACC3D61009904A1 /* AYAVoiceThread.cpp in Sources */,
 				6B0A498E1900518B007858CA /* AYADrawView.m in Sources */,
 				6B7224F81912879300D5A938 /* RLBitCrusher.m in Sources */,
@@ -674,6 +679,7 @@
 				6B9D83141905C68B00CB8172 /* AlgorithmicOscillator.cpp in Sources */,
 				6B9D831A1905C68B00CB8172 /* MoogLadderFilter.cpp in Sources */,
 				6B9D83181905C68B00CB8172 /* LFO.cpp in Sources */,
+				6BB6D3B21ACEC4C700105858 /* DiodeLadderFilter.cpp in Sources */,
 				6B9D83161905C68B00CB8172 /* EnvelopeGenerator.cpp in Sources */,
 				6BEABAE318FCBB7100CA24E4 /* RWKnobRenderer.m in Sources */,
 			);
