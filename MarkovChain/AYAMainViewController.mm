@@ -275,48 +275,101 @@ typedef NS_ENUM(NSInteger, connectionType){
 
 -(void)handleTap:(UITapGestureRecognizer*)sender{
     
-    // If the mode selection is 0, we are in node mode, so we'll create a node for a double tap
-    if (modeSelection.selectedSegmentIndex == 0) {
         // Init our node view and assign it to the place that was tapped.
-        AYANodeView *nodeView = [[AYANodeView alloc] initWithFrame:CGRectMake(0, 0, 76, 76)];
-        [nodeView setCenter:[sender locationInView:self.view]];
-        // We need to be the node's delegate as well.
-        [nodeView setDelegate:self];
+        CGPoint currentPoint = [sender locationInView:self.view];
     
-        // Pan gesture to move nodes
-        UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
-        [panGestureRecognizer setMinimumNumberOfTouches:1];
-        [panGestureRecognizer setMaximumNumberOfTouches:1];
-        [panGestureRecognizer addTarget:self action:@selector(handlePan:)];
-        [nodeView addGestureRecognizer:panGestureRecognizer];
-        
-        
-        // Double tap for connection creation, this is only until I get drawing connections done.
-        UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
-        [tapGestureRecognizer setNumberOfTouchesRequired:1];
-        [tapGestureRecognizer setNumberOfTapsRequired:2];
-        [tapGestureRecognizer addTarget:self action:@selector(handleTap:)];
-        [nodeView addGestureRecognizer:tapGestureRecognizer];
-        
-        // Long press to bring up form sheet to edit properties. Rob had a good idea of using a pinch or drag from a node to present the controls that this shows.
-        UILongPressGestureRecognizer* longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] init];
-        [longPressGestureRecognizer setAllowableMovement:10.0f];
-        [longPressGestureRecognizer setMinimumPressDuration:1.0f];
-        [longPressGestureRecognizer setNumberOfTouchesRequired:1];
-        [longPressGestureRecognizer addTarget:self action:@selector(handlePress:)];
-        [nodeView addGestureRecognizer:longPressGestureRecognizer];
-        
-        // Add the nodeView to the array we use to keep track of all the nodes.
-        [nodes addObject:nodeView];
-        
-        // Finally, after much ado, we add the view to the mainVC
-        [self.view addSubview:nodeView];
-        
-    // modeselection 1 is the connection part
-    }else if(modeSelection.selectedSegmentIndex == 1){
-        
-           }
     
+        // Figure out what was hit
+        AYANodeView *tappedNode;
+        BOOL nodehit = false;
+        AYAConnection *tappedConnection;
+        BOOL conhit = false;
+        for (AYANodeView *node in nodes){
+            nodehit = CGRectContainsPoint(node.frame, currentPoint);
+            if (nodehit) {
+                tappedNode = node;
+                break;
+            }
+        }
+    
+        if (!nodehit) {
+            for (AYANodeView *node in nodes){
+                for(AYAConnection *connection in [node.connectionArray copy])
+                {
+                    CGPoint currentPoint = [sender locationInView:node];
+                    
+                    conhit = [connection.lineLayer.presentationLayer containsPoint:currentPoint];
+                    if(conhit)
+                    {
+                        tappedConnection = connection;
+                        break;
+                    }
+                }
+            }
+        }
+    
+    
+        if (nodehit) {
+            [nodes removeObject:tappedNode];
+            [tappedNode.layer removeAllAnimations];
+            for (CALayer *layer in tappedNode.layer.sublayers) {
+                [layer removeAllAnimations];
+            }
+            
+            [tappedNode removeFromSuperview];
+            
+            for (AYANodeView *node in nodes){
+                for(AYAConnection *connection in [node.connectionArray copy])
+                {
+                    if (connection.endView == tappedNode) {
+                        [connection.lineLayer removeFromSuperlayer];
+                        [node.connectionArray removeObject:connection];
+                    }
+                }
+            }
+        }
+        else if(conhit)
+        {
+            [tappedConnection.lineLayer removeFromSuperlayer];
+            [tappedConnection.startView.connectionArray removeObject:tappedConnection];
+        }
+        else
+        {
+            AYANodeView *nodeView = [[AYANodeView alloc] initWithFrame:CGRectMake(0, 0, 76, 76)];
+            [nodeView setCenter:[sender locationInView:self.view]];
+            // We need to be the node's delegate as well.
+            [nodeView setDelegate:self];
+        
+            // Pan gesture to move nodes
+            UIPanGestureRecognizer* panGestureRecognizer = [[UIPanGestureRecognizer alloc] init];
+            [panGestureRecognizer setMinimumNumberOfTouches:1];
+            [panGestureRecognizer setMaximumNumberOfTouches:1];
+            [panGestureRecognizer addTarget:self action:@selector(handlePan:)];
+            [nodeView addGestureRecognizer:panGestureRecognizer];
+            
+            
+            // Double tap for connection creation, this is only until I get drawing connections done.
+            UITapGestureRecognizer* tapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+            [tapGestureRecognizer setNumberOfTouchesRequired:1];
+            [tapGestureRecognizer setNumberOfTapsRequired:2];
+            [tapGestureRecognizer addTarget:self action:@selector(handleTap:)];
+            [nodeView addGestureRecognizer:tapGestureRecognizer];
+            
+            // Long press to bring up form sheet to edit properties. Rob had a good idea of using a pinch or drag from a node to present the controls that this shows.
+            UILongPressGestureRecognizer* longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] init];
+            [longPressGestureRecognizer setAllowableMovement:10.0f];
+            [longPressGestureRecognizer setMinimumPressDuration:1.0f];
+            [longPressGestureRecognizer setNumberOfTouchesRequired:1];
+            [longPressGestureRecognizer addTarget:self action:@selector(handlePress:)];
+            [nodeView addGestureRecognizer:longPressGestureRecognizer];
+            
+            // Add the nodeView to the array we use to keep track of all the nodes.
+            [nodes addObject:nodeView];
+            
+            // Finally, after much ado, we add the view to the mainVC
+            [self.view addSubview:nodeView];
+        }
+
 }
 
 -(void)setLayerToLineFromAToB:(CALayer *)layer forA:(CGPoint)a andB:(CGPoint)b andLineWidth:(CGFloat)lineWidth

@@ -28,7 +28,7 @@ CEnvelopeGenerator::CEnvelopeGenerator(void)
 	setEGMode(m_uEGMode);
 
 	m_bResetToZero = false;
-	m_bLegatoMode = false; // change this! 
+	m_bLegatoMode = true; // change this!
 
 	m_pModulationMatrix = NULL;
 	m_uModDestEGOutput = SOURCE_NONE;

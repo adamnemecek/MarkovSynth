@@ -13,7 +13,6 @@
 #import "AEAudioController.h"
 #import "AEBlockChannel.h"
 
-
 @interface AudioUnitsEngine : NSObject 
 {
     @public
@@ -33,7 +32,7 @@
     // Dictionary to help with organization of effects
     NSMutableDictionary* effectsDictionary;
     
-    // This is maybe faster then asking the array for it's count every callback?
+    // This is maybe faster then asking the array for it's count every callback (Not really)
     float numEffectsInArray;
 }
 

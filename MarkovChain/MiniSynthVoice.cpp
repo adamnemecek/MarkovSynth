@@ -11,7 +11,6 @@ CMiniSynthVoice::CMiniSynthVoice(void)
 	// filters
 	m_pFilter1 = &m_LPF;
 	m_pFilter2 = NULL;
-
 	m_LPF.m_uNLP = ON;
 
 	// 2) --- set any component specific stuff

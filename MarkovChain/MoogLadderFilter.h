@@ -1,8 +1,8 @@
 #pragma once
 #include "filter.h"
 #include "VAOnePoleFilter.h"
-
-class CMoogLadderFilter : public CFilter
+class CMoogLadderFilter :
+	public CFilter
 {
 public:
 	CMoogLadderFilter(void);
@@ -16,24 +16,18 @@ public:
 	// -- CFilter Overrides --
 	virtual void reset();
 	virtual void setQControl(double dQControl);
-	//virtual void updateFilter();
-	//virtual double doFilter(double xn);
+	virtual void updateFilter();
+	virtual double doFilter(double xn);
 
-	// variables
-	double m_dK;		// K, set with Q
-	double m_dGamma;	// see block diagram
-	double m_dAlpha_0;	// see block diagram
+	//variables 
+	double m_dK; //K, set with Q
+	double m_dGamma;   //see block diagram
+	double m_dAlpha0; // see block diagram
 
-	// Oberheim Xpander variations
+	//Oberheim Xpander variations
 	double m_dA;
 	double m_dB;
 	double m_dC;
 	double m_dD;
 	double m_dE;
-
-    void updateFilter();
-	
-
-    double doFilter(double xn);
-
 };

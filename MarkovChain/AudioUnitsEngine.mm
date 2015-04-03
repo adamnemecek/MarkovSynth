@@ -35,7 +35,7 @@
         // load up voices
         effectsArray = [[NSMutableArray alloc] init];
         effectsDictionary = [[NSMutableDictionary alloc] init];
-        
+
         CMiniSynthVoice* pVoice;
         MAX_VOICES = 16;
         for(int i=0; i<MAX_VOICES; i++)
@@ -64,17 +64,16 @@
                 
                 // do left channel; convert to float -1.0 to +1.0
                 // do the LEFT processing - here is pass-thru
-                double dLeftAccum = 0.0;
+                double dLeftAccum = 0;
                 
                 for(int j=0; j<MAX_VOICES; j++)
                 {
-                    double dLeft, dRight;
+                    double dLeft = 0;
+                    double dRight = 0;
                     CVoice *pVoice = m_VoicePtrStack1[j];
                     pVoice->doVoice(dLeft, dRight);
                     dLeftAccum += dLeft;
                 }
-                
-
                 
                 float fLeftAccum = float(dLeftAccum);
                 
@@ -85,6 +84,7 @@
 
                 ((float*)audio->mBuffers[0].mData)[i] = fLeftAccum;                
                 ((float*)audio->mBuffers[1].mData)[i] = fLeftAccum;
+                
                 
             }
         }];

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2F664DD71ACC3D61009904A1 /* AYAVoiceThread.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F664DD61ACC3D61009904A1 /* AYAVoiceThread.cpp */; };
+		2F84EB731ACEE12F00781E21 /* VAOnePoleFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84EB711ACEE12F00781E21 /* VAOnePoleFilter.cpp */; };
+		2F84EB761ACEE1D500781E21 /* MoogLadderFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84EB741ACEE1D500781E21 /* MoogLadderFilter.cpp */; };
+		2F84EB791ACF16F300781E21 /* WTOscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 2F84EB771ACF16F300781E21 /* WTOscillator.cpp */; };
 		6B0A498819003F9E007858CA /* KnobControlView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498719003F9E007858CA /* KnobControlView.m */; };
 		6B0A498E1900518B007858CA /* AYADrawView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0A498D1900518B007858CA /* AYADrawView.m */; };
 		6B186CD8190AC95A00171A64 /* AYASynthSettingsViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6B186CD6190AC95A00171A64 /* AYASynthSettingsViewController.mm */; };
@@ -45,11 +48,8 @@
 		6B9D83171905C68B00CB8172 /* Filter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83041905C68A00CB8172 /* Filter.cpp */; };
 		6B9D83181905C68B00CB8172 /* LFO.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83061905C68A00CB8172 /* LFO.cpp */; };
 		6B9D83191905C68B00CB8172 /* ModulationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83081905C68A00CB8172 /* ModulationMatrix.cpp */; };
-		6B9D831A1905C68B00CB8172 /* MoogLadderFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D830A1905C68B00CB8172 /* MoogLadderFilter.cpp */; };
 		6B9D831B1905C68B00CB8172 /* Oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D830C1905C68B00CB8172 /* Oscillator.cpp */; };
 		6B9D831D1905C68B00CB8172 /* Voice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83121905C68B00CB8172 /* Voice.cpp */; };
-		6BB6D3B21ACEC4C700105858 /* DiodeLadderFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BB6D3B01ACEC4C700105858 /* DiodeLadderFilter.cpp */; };
-		6BB6D3B51ACEC4EC00105858 /* VAOnePoleFilter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6BB6D3B31ACEC4EC00105858 /* VAOnePoleFilter.cpp */; };
 		6BDC5AFC19102C89007FDB90 /* Fugue1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6BDC5AFB19102C89007FDB90 /* Fugue1.mid */; };
 		6BEABAD818FCBB7100CA24E4 /* AudioUnitsEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */; };
 		6BEABAE218FCBB7100CA24E4 /* RWKnobControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABACD18FCBB7100CA24E4 /* RWKnobControl.m */; };
@@ -78,6 +78,12 @@
 		215231B2D73E4797BED48EB4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F664DD51ACC3D61009904A1 /* AYAVoiceThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAVoiceThread.h; sourceTree = "<group>"; };
 		2F664DD61ACC3D61009904A1 /* AYAVoiceThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AYAVoiceThread.cpp; sourceTree = "<group>"; };
+		2F84EB711ACEE12F00781E21 /* VAOnePoleFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VAOnePoleFilter.cpp; sourceTree = "<group>"; };
+		2F84EB721ACEE12F00781E21 /* VAOnePoleFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAOnePoleFilter.h; sourceTree = "<group>"; };
+		2F84EB741ACEE1D500781E21 /* MoogLadderFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoogLadderFilter.cpp; sourceTree = "<group>"; };
+		2F84EB751ACEE1D500781E21 /* MoogLadderFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoogLadderFilter.h; sourceTree = "<group>"; };
+		2F84EB771ACF16F300781E21 /* WTOscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WTOscillator.cpp; sourceTree = "<group>"; };
+		2F84EB781ACF16F300781E21 /* WTOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTOscillator.h; sourceTree = "<group>"; };
 		320720856837C563A4E6E71A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6B0A498619003F9E007858CA /* KnobControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnobControlView.h; sourceTree = "<group>"; };
 		6B0A498719003F9E007858CA /* KnobControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnobControlView.m; sourceTree = "<group>"; };
@@ -142,18 +148,12 @@
 		6B9D83071905C68A00CB8172 /* LFO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFO.h; sourceTree = "<group>"; };
 		6B9D83081905C68A00CB8172 /* ModulationMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModulationMatrix.cpp; sourceTree = "<group>"; };
 		6B9D83091905C68B00CB8172 /* ModulationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModulationMatrix.h; sourceTree = "<group>"; };
-		6B9D830A1905C68B00CB8172 /* MoogLadderFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MoogLadderFilter.cpp; sourceTree = "<group>"; };
-		6B9D830B1905C68B00CB8172 /* MoogLadderFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoogLadderFilter.h; sourceTree = "<group>"; };
 		6B9D830C1905C68B00CB8172 /* Oscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Oscillator.cpp; sourceTree = "<group>"; };
 		6B9D830D1905C68B00CB8172 /* Oscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Oscillator.h; sourceTree = "<group>"; };
 		6B9D830E1905C68B00CB8172 /* pluginconstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pluginconstants.h; sourceTree = "<group>"; };
 		6B9D830F1905C68B00CB8172 /* synthfunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = synthfunctions.h; sourceTree = "<group>"; };
 		6B9D83121905C68B00CB8172 /* Voice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Voice.cpp; sourceTree = "<group>"; };
 		6B9D83131905C68B00CB8172 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
-		6BB6D3B01ACEC4C700105858 /* DiodeLadderFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DiodeLadderFilter.cpp; sourceTree = "<group>"; };
-		6BB6D3B11ACEC4C700105858 /* DiodeLadderFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiodeLadderFilter.h; sourceTree = "<group>"; };
-		6BB6D3B31ACEC4EC00105858 /* VAOnePoleFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VAOnePoleFilter.cpp; sourceTree = "<group>"; };
-		6BB6D3B41ACEC4EC00105858 /* VAOnePoleFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VAOnePoleFilter.h; sourceTree = "<group>"; };
 		6BDC5AFB19102C89007FDB90 /* Fugue1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Fugue1.mid; sourceTree = "<group>"; };
 		6BEABAB618FCBB7000CA24E4 /* AudioUnitsEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUnitsEngine.h; sourceTree = "<group>"; };
 		6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioUnitsEngine.mm; sourceTree = "<group>"; };
@@ -214,14 +214,12 @@
 		2F664DD21ACC357E009904A1 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
-				6BB6D3B01ACEC4C700105858 /* DiodeLadderFilter.cpp */,
-				6BB6D3B11ACEC4C700105858 /* DiodeLadderFilter.h */,
 				6B9D83041905C68A00CB8172 /* Filter.cpp */,
 				6B9D83051905C68A00CB8172 /* Filter.h */,
-				6B9D830A1905C68B00CB8172 /* MoogLadderFilter.cpp */,
-				6B9D830B1905C68B00CB8172 /* MoogLadderFilter.h */,
-				6BB6D3B31ACEC4EC00105858 /* VAOnePoleFilter.cpp */,
-				6BB6D3B41ACEC4EC00105858 /* VAOnePoleFilter.h */,
+				2F84EB711ACEE12F00781E21 /* VAOnePoleFilter.cpp */,
+				2F84EB721ACEE12F00781E21 /* VAOnePoleFilter.h */,
+				2F84EB741ACEE1D500781E21 /* MoogLadderFilter.cpp */,
+				2F84EB751ACEE1D500781E21 /* MoogLadderFilter.h */,
 			);
 			name = Filters;
 			sourceTree = "<group>";
@@ -242,6 +240,8 @@
 		2F664DD41ACC3699009904A1 /* Oscillators */ = {
 			isa = PBXGroup;
 			children = (
+				2F84EB771ACF16F300781E21 /* WTOscillator.cpp */,
+				2F84EB781ACF16F300781E21 /* WTOscillator.h */,
 				6B9D82FD1905C68A00CB8172 /* AlgorithmicOscillator.cpp */,
 				6B9D82FE1905C68A00CB8172 /* AlgorithmicOscillator.h */,
 				6B9D830C1905C68B00CB8172 /* Oscillator.cpp */,
@@ -649,7 +649,6 @@
 				6B97D8B018F75B1A00DF1590 /* AYAMainViewController.mm in Sources */,
 				6B7224F21912876600D5A938 /* RLStereoDelay.mm in Sources */,
 				6B9D831B1905C68B00CB8172 /* Oscillator.cpp in Sources */,
-				6BB6D3B51ACEC4EC00105858 /* VAOnePoleFilter.cpp in Sources */,
 				6B85B57A18F8361E00B7BBA2 /* AYAConnection.m in Sources */,
 				6B9D83171905C68B00CB8172 /* Filter.cpp in Sources */,
 				6BEABAE218FCBB7100CA24E4 /* RWKnobControl.m in Sources */,
@@ -672,14 +671,15 @@
 				6BF32369190AF4B300CE1E00 /* AYAMidiToMarkovCalc.m in Sources */,
 				6BEABAD818FCBB7100CA24E4 /* AudioUnitsEngine.mm in Sources */,
 				6B0A498819003F9E007858CA /* KnobControlView.m in Sources */,
+				2F84EB761ACEE1D500781E21 /* MoogLadderFilter.cpp in Sources */,
 				6B97D8B418F75CCE00DF1590 /* AYAConnectionManager.m in Sources */,
 				6B97D8BA18F76ABD00DF1590 /* TRPLeftDrawerViewController.mm in Sources */,
+				2F84EB791ACF16F300781E21 /* WTOscillator.cpp in Sources */,
+				2F84EB731ACEE12F00781E21 /* VAOnePoleFilter.cpp in Sources */,
 				6BEABAE418FCBB7100CA24E4 /* RWRotationGestureRecognizer.m in Sources */,
 				6B6960E9190987A500AD7F57 /* AYASaveStateViewController.m in Sources */,
 				6B9D83141905C68B00CB8172 /* AlgorithmicOscillator.cpp in Sources */,
-				6B9D831A1905C68B00CB8172 /* MoogLadderFilter.cpp in Sources */,
 				6B9D83181905C68B00CB8172 /* LFO.cpp in Sources */,
-				6BB6D3B21ACEC4C700105858 /* DiodeLadderFilter.cpp in Sources */,
 				6B9D83161905C68B00CB8172 /* EnvelopeGenerator.cpp in Sources */,
 				6BEABAE318FCBB7100CA24E4 /* RWKnobRenderer.m in Sources */,
 			);

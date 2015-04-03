@@ -2,7 +2,8 @@
 
 #include "voice.h"
 #include "AlgorithmicOscillator.h"
-#include "DiodeLadderFilter.h"
+#include "WTOscillator.h"
+#include "MoogLadderFilter.h"
 
 class CMiniSynthVoice : public CVoice
 {
@@ -12,11 +13,11 @@ public:
 
 	// our synth components: Oscillators and Filters
 	// Four oscillators
-    CAlgorithmicOscillator m_Osc1;
-    CAlgorithmicOscillator m_Osc2;
+    CWTOscillator m_Osc1;
+    CWTOscillator m_Osc2;
 	
 	// 1 filter
-	CDiodeLadderFilter m_LPF;
+	CMoogLadderFilter m_LPF;
 
 	// hard sync is property of VOICE!
 	double m_dHSRatio;
@@ -119,7 +120,7 @@ public:
 		// --- ARTICULATION BLOCK --- //
 		// layer 1 modulators
 		double env1 = m_EG1.doEnvelope();
-	
+//        double env1 = 0.5;
 		
 		// update for attack/decay mods
 		m_LPF.updateFilter();
