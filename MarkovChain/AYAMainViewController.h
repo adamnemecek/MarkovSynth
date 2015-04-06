@@ -12,6 +12,7 @@
 #import "AYANodeView.h"
 #import "AYATableViewController.h"
 #import "AYADrawView.h"
+#import "AYANoteTimer.h"
 
 #import "AudioUnitsEngine.h"
 #import "RLStereoDelay.h"
@@ -76,8 +77,6 @@ struct timbre
     
     CGPoint previouspoint;
     
-//    AYANodeView* startView;
-    
     NSMutableArray *tempHitArray;
     
     NSMutableArray *nodes;
@@ -88,7 +87,6 @@ struct timbre
     CGPoint previousPoint;
         
     timbre timbre1;
-    timbre timbre2;
     
     float m_MIDIFreqTable[128];
 
@@ -133,6 +131,8 @@ struct timbre
 }
 
 @property (strong, nonatomic) AudioUnitsEngine *auEngine;
+
+@property (nonatomic) AYANoteTimer *noteTimer;
 -(void)clearGraph;
 
 -(void)stopNotes;

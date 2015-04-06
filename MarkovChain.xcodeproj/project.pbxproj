@@ -50,12 +50,14 @@
 		6B9D83191905C68B00CB8172 /* ModulationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83081905C68A00CB8172 /* ModulationMatrix.cpp */; };
 		6B9D831B1905C68B00CB8172 /* Oscillator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D830C1905C68B00CB8172 /* Oscillator.cpp */; };
 		6B9D831D1905C68B00CB8172 /* Voice.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6B9D83121905C68B00CB8172 /* Voice.cpp */; };
+		6BA7CE071AD1C18900D090F6 /* RLHighPrecisionTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BA7CE061AD1C18900D090F6 /* RLHighPrecisionTimer.mm */; };
 		6BDC5AFC19102C89007FDB90 /* Fugue1.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6BDC5AFB19102C89007FDB90 /* Fugue1.mid */; };
 		6BEABAD818FCBB7100CA24E4 /* AudioUnitsEngine.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */; };
 		6BEABAE218FCBB7100CA24E4 /* RWKnobControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABACD18FCBB7100CA24E4 /* RWKnobControl.m */; };
 		6BEABAE318FCBB7100CA24E4 /* RWKnobRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABACF18FCBB7100CA24E4 /* RWKnobRenderer.m */; };
 		6BEABAE418FCBB7100CA24E4 /* RWRotationGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BEABAD118FCBB7100CA24E4 /* RWRotationGestureRecognizer.m */; };
 		6BEABAEF18FCBE2900CA24E4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6BEABAEE18FCBE2900CA24E4 /* AudioToolbox.framework */; };
+		6BEF684F1AD0547A001A125F /* AYANoteTimer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 6BEF684E1AD0547A001A125F /* AYANoteTimer.mm */; };
 		6BF32362190AEDCD00CE1E00 /* AYAMidiParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF32361190AEDCD00CE1E00 /* AYAMidiParser.m */; };
 		6BF32364190AEEA900CE1E00 /* bwv772.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6BF32363190AEEA900CE1E00 /* bwv772.mid */; };
 		6BF32366190AF0E400CE1E00 /* laksin.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6BF32365190AF0E400CE1E00 /* laksin.mid */; };
@@ -154,6 +156,9 @@
 		6B9D830F1905C68B00CB8172 /* synthfunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = synthfunctions.h; sourceTree = "<group>"; };
 		6B9D83121905C68B00CB8172 /* Voice.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Voice.cpp; sourceTree = "<group>"; };
 		6B9D83131905C68B00CB8172 /* Voice.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Voice.h; sourceTree = "<group>"; };
+		6BA7CE051AD1C18900D090F6 /* RLHighPrecisionTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RLHighPrecisionTimer.h; sourceTree = "<group>"; };
+		6BA7CE061AD1C18900D090F6 /* RLHighPrecisionTimer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RLHighPrecisionTimer.mm; sourceTree = "<group>"; };
+		6BBD37371AD2BBE8001B784F /* AYANoteTimerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AYANoteTimerProtocol.h; sourceTree = "<group>"; };
 		6BDC5AFB19102C89007FDB90 /* Fugue1.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = Fugue1.mid; sourceTree = "<group>"; };
 		6BEABAB618FCBB7000CA24E4 /* AudioUnitsEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioUnitsEngine.h; sourceTree = "<group>"; };
 		6BEABAB718FCBB7000CA24E4 /* AudioUnitsEngine.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioUnitsEngine.mm; sourceTree = "<group>"; };
@@ -165,6 +170,8 @@
 		6BEABAD118FCBB7100CA24E4 /* RWRotationGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWRotationGestureRecognizer.m; sourceTree = "<group>"; };
 		6BEABAEE18FCBE2900CA24E4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		6BEABAF018FCBE2F00CA24E4 /* AudioUnit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioUnit.framework; path = System/Library/Frameworks/AudioUnit.framework; sourceTree = SDKROOT; };
+		6BEF684D1AD0547A001A125F /* AYANoteTimer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYANoteTimer.h; sourceTree = "<group>"; };
+		6BEF684E1AD0547A001A125F /* AYANoteTimer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AYANoteTimer.mm; sourceTree = "<group>"; };
 		6BF32360190AEDCD00CE1E00 /* AYAMidiParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAMidiParser.h; sourceTree = "<group>"; };
 		6BF32361190AEDCD00CE1E00 /* AYAMidiParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYAMidiParser.m; sourceTree = "<group>"; };
 		6BF32363190AEEA900CE1E00 /* bwv772.mid */ = {isa = PBXFileReference; lastKnownFileType = audio.midi; path = bwv772.mid; sourceTree = "<group>"; };
@@ -481,6 +488,11 @@
 				6B97D8AF18F75B1A00DF1590 /* AYAMainViewController.xib */,
 				6B0A498C1900518B007858CA /* AYADrawView.h */,
 				6B0A498D1900518B007858CA /* AYADrawView.m */,
+				6BBD37371AD2BBE8001B784F /* AYANoteTimerProtocol.h */,
+				6BEF684D1AD0547A001A125F /* AYANoteTimer.h */,
+				6BEF684E1AD0547A001A125F /* AYANoteTimer.mm */,
+				6BA7CE051AD1C18900D090F6 /* RLHighPrecisionTimer.h */,
+				6BA7CE061AD1C18900D090F6 /* RLHighPrecisionTimer.mm */,
 			);
 			name = MainVC;
 			sourceTree = "<group>";
@@ -558,6 +570,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = AyersAudio;
 				TargetAttributes = {
+					6B97D87A18F75AF700DF1590 = {
+						DevelopmentTeam = HBJW962L7K;
+					};
 					6B97D89518F75AF700DF1590 = {
 						TestTargetID = 6B97D87A18F75AF700DF1590;
 					};
@@ -668,12 +683,14 @@
 				6B0A498E1900518B007858CA /* AYADrawView.m in Sources */,
 				6B7224F81912879300D5A938 /* RLBitCrusher.m in Sources */,
 				6B97D88B18F75AF700DF1590 /* main.mm in Sources */,
+				6BA7CE071AD1C18900D090F6 /* RLHighPrecisionTimer.mm in Sources */,
 				6BF32369190AF4B300CE1E00 /* AYAMidiToMarkovCalc.m in Sources */,
 				6BEABAD818FCBB7100CA24E4 /* AudioUnitsEngine.mm in Sources */,
 				6B0A498819003F9E007858CA /* KnobControlView.m in Sources */,
 				2F84EB761ACEE1D500781E21 /* MoogLadderFilter.cpp in Sources */,
 				6B97D8B418F75CCE00DF1590 /* AYAConnectionManager.m in Sources */,
 				6B97D8BA18F76ABD00DF1590 /* TRPLeftDrawerViewController.mm in Sources */,
+				6BEF684F1AD0547A001A125F /* AYANoteTimer.mm in Sources */,
 				2F84EB791ACF16F300781E21 /* WTOscillator.cpp in Sources */,
 				2F84EB731ACEE12F00781E21 /* VAOnePoleFilter.cpp in Sources */,
 				6BEABAE418FCBB7100CA24E4 /* RWRotationGestureRecognizer.m in Sources */,
@@ -743,6 +760,7 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
@@ -779,6 +797,7 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_INPUT_FILETYPE = automatic;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -798,6 +817,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -817,6 +837,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

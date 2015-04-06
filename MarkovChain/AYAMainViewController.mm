@@ -204,6 +204,8 @@ typedef NS_ENUM(NSInteger, connectionType){
     
     self.navigationController.navigationBarHidden = YES;
     
+    self.noteTimer = [[AYANoteTimer alloc] initWithTempo:120];
+    
     path = [UIBezierPath bezierPath];
     tempHitArray = [[NSMutableArray alloc] init];
     drawView = [[AYADrawView alloc] initWithFrame:self.view.bounds];
@@ -311,6 +313,9 @@ typedef NS_ENUM(NSInteger, connectionType){
     
         if (nodehit) {
             [nodes removeObject:tappedNode];
+            @synchronized(self.noteTimer.delegateArray){
+                [self.noteTimer.delegateArray removeObject:tappedNode];
+            }
             [tappedNode.layer removeAllAnimations];
             for (CALayer *layer in tappedNode.layer.sublayers) {
                 [layer removeAllAnimations];
@@ -365,7 +370,9 @@ typedef NS_ENUM(NSInteger, connectionType){
             
             // Add the nodeView to the array we use to keep track of all the nodes.
             [nodes addObject:nodeView];
-            
+            @synchronized(self.noteTimer.delegateArray){
+            [self.noteTimer.delegateArray addObject:nodeView];
+            }
             // Finally, after much ado, we add the view to the mainVC
             [self.view addSubview:nodeView];
         }
@@ -578,12 +585,10 @@ typedef NS_ENUM(NSInteger, connectionType){
 }
 
 -(void)noteOn:(int)notenumber{
-//    NSLog(@"Note ON: %d",notenumber);
     [auEngine setNoteOn:notenumber];
 }
 
 -(void)noteOff:(int)notenumber{
-//    NSLog(@"Note OFF: %d",notenumber);
     [auEngine setNoteOff:notenumber];
 }
 
@@ -608,7 +613,9 @@ typedef NS_ENUM(NSInteger, connectionType){
     }
     
     [nodes removeAllObjects];
-    
+    @synchronized(self.noteTimer.delegateArray){
+        [self.noteTimer.delegateArray removeAllObjects];
+    }
     [self.auEngine stopAUGraph];
     [self.auEngine startAUGraph];
 }
@@ -646,6 +653,9 @@ typedef NS_ENUM(NSInteger, connectionType){
     }
     
     [nodes removeAllObjects];
+    @synchronized(self.noteTimer.delegateArray){
+        [self.noteTimer.delegateArray removeAllObjects];
+    }
     
     NSString *string = [NSString stringWithFormat:@"%d.archive",slot];
     NSArray *documentDirectories = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
@@ -680,6 +690,9 @@ typedef NS_ENUM(NSInteger, connectionType){
         
         // Add the nodeView to the array we use to keep track of all the nodes.
         [nodes addObject:nodeView];
+        @synchronized(self.noteTimer.delegateArray){
+            [self.noteTimer.delegateArray addObject:nodeView];
+        }
         [nodeView setNote:[nodeDict[@"note"] intValue]];
         [nodeView setNoteLength:[nodeDict[@"length"] floatValue]];
         [nodeView setNoteName:nodeDict[@"noteName"]];
@@ -749,6 +762,9 @@ typedef NS_ENUM(NSInteger, connectionType){
         
         // Add the nodeView to the array we use to keep track of all the nodes.
         [nodes addObject:nodeView];
+        @synchronized(self.noteTimer.delegateArray){
+            [self.noteTimer.delegateArray addObject:nodeView];
+        }
         [nodeView setNoteLength:-1.0];
         [nodeView setNote:[[markovDicts allKeys][i] intValue]+ 12*5];
         [nodeView setNoteName:[self getStringForNoteNum:nodeView.note]];

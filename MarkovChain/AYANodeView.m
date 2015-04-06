@@ -112,7 +112,9 @@
                 break;
         }
     }
-    noteTimer = [NSTimer scheduledTimerWithTimeInterval:internalNoteLenth target:self selector:@selector(noteCompleted) userInfo:nil repeats:NO];
+    
+    self.remainingTickCount = internalNoteLenth * 16;
+//    noteTimer = [NSTimer scheduledTimerWithTimeInterval:internalNoteLenth target:self selector:@selector(noteCompleted) userInfo:nil repeats:NO];
     
     CALayer *eventLayer = [[CALayer alloc] init];
     [eventLayer setCornerRadius:self.frame.size.height/2];
@@ -129,7 +131,6 @@
     // Not totally sure, it was in the book
     [eventAnimation setFillMode:kCAFillModeRemoved];
     [eventAnimation setRepeatCount:1];
-    // animation also has some places for extra information that lets me know what to do when I call the generic completion method.
     [eventAnimation setRemovedOnCompletion:YES];
     
     CABasicAnimation *eventOpacityAnimation = [CABasicAnimation animationWithKeyPath:@"opacity"];
@@ -143,7 +144,6 @@
     // Not totally sure, it was in the book
     [eventOpacityAnimation setFillMode:kCAFillModeRemoved];
     [eventOpacityAnimation setRepeatCount:1];
-    // animation also has some places for extra information that lets me know what to do when I call the generic completion method.
     [eventOpacityAnimation setRemovedOnCompletion:YES];
     
     CAAnimationGroup *group = [[CAAnimationGroup alloc] init];
@@ -157,6 +157,8 @@
     
     
     [self.layer insertSublayer:eventLayer atIndex:0];
+    
+    
     float totalProbability = 0;
     AYAConnection *selectedConnection;
     for (AYAConnection *connection in connectionArray) {
@@ -171,6 +173,8 @@
             random -= roundf(connection.probability*10000);
         }
     }
+    
+    self.nextView = selectedConnection.endView;
 
     if ([[selectedConnection.lineLayer valueForKeyPath:@"connectionType"] intValue] == 0) {
         AYANodeView *fromView = selectedConnection.startView;
@@ -226,13 +230,13 @@
     if (flag) {
         [[anim valueForKey:@"layer"] removeAllAnimations];
         [[anim valueForKey:@"layer"] removeFromSuperlayer];
-        if ([anim valueForKey:@"connection"]) {
-            AYAConnection *connection = [anim valueForKey:@"connection"];
-            [connection.endView recievedEvent];
-        }
-        if ([[anim valueForKey:@"notenumber"]intValue]) {
-    //        [self.delegate noteOff:[[anim valueForKey:@"notenumber"]intValue]];
-        }
+//        if ([anim valueForKey:@"connection"]) {
+//            AYAConnection *connection = [anim valueForKey:@"connection"];
+//            [connection.endView recievedEvent];
+//        }
+//        if ([[anim valueForKey:@"notenumber"]intValue]) {
+//    //        [self.delegate noteOff:[[anim valueForKey:@"notenumber"]intValue]];
+//        }
     }
 }
 
@@ -248,6 +252,20 @@
         [self addSubview:knobControlView];
     }else{
         [knobControlView removeFromSuperview];
+
+    }
+}
+
+-(void)tick
+{
+    self.remainingTickCount--;
+    if (self.remainingTickCount == 0) {
+        
+        // We want to get this work off the timer thread
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+            [self noteCompleted];
+            [self.nextView recievedEvent];
+        });
 
     }
 }

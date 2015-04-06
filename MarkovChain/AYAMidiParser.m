@@ -110,8 +110,8 @@
 
 - (NSString *) readString: (int) length
 {
-    char *buffer = malloc(length + 1);
-    memcpy(buffer, ([data bytes] + offset), length);
+    char *buffer = (char *)malloc(length + 1);
+//    memcpy(buffer, ([data bytes] + offset), length);
     buffer[length] = 0x0;
     NSString *string = [NSString stringWithCString:buffer encoding:NSASCIIStringEncoding];
     free(buffer);
@@ -362,12 +362,12 @@
             }
             
             // Parse track header
-            if(memcmp([data bytes] + offset, "MTrk", 4) != 0)
-            {
-                NSException *ex = [NSException exceptionWithName:kFileCorrupt
-                                                          reason:kInvalidTrackHeader userInfo:nil];
-                @throw ex;
-            }
+//            if(memcmp([data length] + offset, "MTrk", 4) != 0)
+//            {
+//                NSException *ex = [NSException exceptionWithName:kFileCorrupt
+//                                                          reason:kInvalidTrackHeader userInfo:nil];
+//                @throw ex;
+//            }
             offset += 4;
             
             UInt32 trackSize = [self readDWord];
