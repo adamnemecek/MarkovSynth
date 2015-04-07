@@ -16,12 +16,12 @@
     memset(&audioDescription, 0, sizeof(audioDescription));
     audioDescription.mFormatID          = kAudioFormatLinearPCM;
     audioDescription.mFormatFlags       = kAudioFormatFlagIsFloat | kAudioFormatFlagIsPacked | kAudioFormatFlagIsNonInterleaved;
-    audioDescription.mChannelsPerFrame  = 2;
+    audioDescription.mChannelsPerFrame  = 1;
     audioDescription.mBytesPerPacket    = sizeof(float);
     audioDescription.mFramesPerPacket   = 1;
     audioDescription.mBytesPerFrame     = sizeof(float);
     audioDescription.mBitsPerChannel    = 8 * sizeof(float);
-    audioDescription.mSampleRate        = 44100.0; // NOTE 22050!
+    audioDescription.mSampleRate        = 44100.0;
     return audioDescription;
 }
 // default initializer
@@ -37,7 +37,7 @@
         effectsDictionary = [[NSMutableDictionary alloc] init];
 
         CMiniSynthVoice* pVoice;
-        int max_voices = 16;
+        int max_voices = 1;
         for(int i=0; i<max_voices; i++)
         {
             pVoice = new CMiniSynthVoice;
@@ -46,8 +46,8 @@
             pVoice->update();
             m_VoicePtrStack1.push_back(pVoice);
             
-//            AYAVoiceThread *vThread = new AYAVoiceThread((CVoice*)pVoice);
-//            m_VoiceThreadStack.push_back(vThread);
+            AYAVoiceThread *vThread = new AYAVoiceThread((CVoice*)pVoice);
+            m_VoiceThreadStack.push_back(vThread);
            
         }
         
@@ -56,7 +56,11 @@
                                 initWithAudioDescription:[AudioUnitsEngine nonInterleavedFloatStereoAudioDescriptionHalfRate]
                                 inputEnabled:NO];
         
+        
         __block double lastSample = 0.0;
+        __block AYAVoiceThread * vThread;
+        __block double dLeft = 0;
+//        __block double dRight = 0;
         synthCallback = [AEBlockChannel channelWithBlock:^(const AudioTimeStamp  *time,
                                                                UInt32 frames,
                                                                AudioBufferList *audio) {
@@ -69,10 +73,11 @@
                 
                 for(int j=0; j<max_voices; j++)
                 {
-                    double dLeft = 0;
-                    double dRight = 0;
-                    CVoice *pVoice = m_VoicePtrStack1[j];
-                    pVoice->doVoice(dLeft, dRight);
+
+//                    CVoice *pVoice = m_VoicePtrStack1[j];
+//                    pVoice->doVoice(dLeft, dRight);
+                    vThread = m_VoiceThreadStack[j];
+                    dLeft = vThread->getSample();
                     dLeftAccum += dLeft;
                 }
                 
@@ -85,8 +90,7 @@
                 }
 
 
-                ((float*)audio->mBuffers[0].mData)[i] = fLeftAccum;                
-                ((float*)audio->mBuffers[1].mData)[i] = fLeftAccum;
+                ((float*)audio->mBuffers[0].mData)[i] = fLeftAccum;  
                 
                 lastSample = fLeftAccum;
                 
@@ -112,7 +116,7 @@
 	m_VoiceIterator1 = m_VoicePtrStack1.begin();
     
 	bool bStealNote = true;
-	for(int i=0; i<16; i++)
+	for(int i=0; i<1; i++)
 	{
 		pVoice =  m_VoicePtrStack1[i];
 		// if we have a free voice, turn on
@@ -157,7 +161,7 @@
     // find and turn off
 	m_VoiceIterator1 = m_VoicePtrStack1.begin();
     
-	for(int i=0; i<16; i++)
+	for(int i=0; i<1; i++)
 	{
 		CMiniSynthVoice* pVoice = m_VoicePtrStack1[i];
 		

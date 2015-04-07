@@ -22,7 +22,7 @@ AYAVoiceThread::AYAVoiceThread (CVoice *voice)
     
 
     tim.tv_sec = 0;
-    tim.tv_nsec = 2270;
+    tim.tv_nsec = 100;
     
     
     pthread_t voice_thread;
@@ -40,27 +40,34 @@ void *AYAVoiceThread::worker_thread(void *voiceptr)
     double dLeftOutput;
     double dRightOutput;
     
+    for (int i=0; i<1024; i++) {
+        vThread->mVoice->doVoice(dLeftOutput, dRightOutput);
+        
+        vThread->circBuff[vThread->producerIndex] = dLeftOutput;
+        vThread->producerIndex = vThread->incIndex(vThread->producerIndex);
+    }
+    
+    
     while (true) {
 
         bool full = true;
         
-        if ((vThread->producerIndex+1)%MAX_QUEUE_SIZE != vThread->consumerIndex) {
+        if ((vThread->producerIndex)%MAX_QUEUE_SIZE != vThread->consumerIndex) {
             full = false;
         }
         
         
+        
+        int diff = MAX_QUEUE_SIZE - abs(vThread->producerIndex-vThread->consumerIndex)-1;
         if (!full) {
-            for (int i=0; i<abs(vThread->producerIndex-vThread->consumerIndex); i++) {
+            for (int i=0; i<diff; i++) {
                 vThread->mVoice->doVoice(dLeftOutput, dRightOutput);
                 
                 vThread->circBuff[vThread->producerIndex] = dLeftOutput;
                 vThread->producerIndex = vThread->incIndex(vThread->producerIndex);
             }
         }
-        else
-        {
-            nanosleep(&vThread->tim,NULL);
-        }
+
     }
 }
 
@@ -93,10 +100,7 @@ double AYAVoiceThread::getSample()
         consumerIndex = incIndex(consumerIndex);
         
     }
-    else
-    {
-        printf("Producer not going fast enough");
-    }
+
     
     return output;
 }

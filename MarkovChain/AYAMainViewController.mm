@@ -96,7 +96,7 @@ typedef NS_ENUM(NSInteger, connectionType){
 -(void)updateMiniSynth
 {
     CMiniSynthVoice* pVoice;
-    for(int i=0; i<16; i++)
+    for(int i=0; i<1; i++)
     {
         timbre *pTimbre = &timbre1;
         pVoice = auEngine->m_VoicePtrStack1[i];
