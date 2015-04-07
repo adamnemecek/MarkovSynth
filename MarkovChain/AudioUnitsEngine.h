@@ -24,8 +24,6 @@
     
     double m_dLastNoteFrequency;
     
-    UINT MAX_VOICES;
-    
     // Array to hold all of the plugins
     NSMutableArray* effectsArray;
     

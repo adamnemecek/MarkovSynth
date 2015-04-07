@@ -257,6 +257,15 @@
 			name = Oscillators;
 			sourceTree = "<group>";
 		};
+		2F84EBB01AD2CF5F00781E21 /* Draw View */ = {
+			isa = PBXGroup;
+			children = (
+				6B0A498C1900518B007858CA /* AYADrawView.h */,
+				6B0A498D1900518B007858CA /* AYADrawView.m */,
+			);
+			name = "Draw View";
+			sourceTree = "<group>";
+		};
 		6B186CCF190AC0D800171A64 /* CollectionViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -413,6 +422,12 @@
 				6BDE379218F99A8900B4095D /* Connections */,
 				6BDE379318F99A9500B4095D /* AppDeli */,
 				6BDE379418F99A9E00B4095D /* MainVC */,
+				2F84EBB01AD2CF5F00781E21 /* Draw View */,
+				6BBD37371AD2BBE8001B784F /* AYANoteTimerProtocol.h */,
+				6BEF684D1AD0547A001A125F /* AYANoteTimer.h */,
+				6BEF684E1AD0547A001A125F /* AYANoteTimer.mm */,
+				6BA7CE051AD1C18900D090F6 /* RLHighPrecisionTimer.h */,
+				6BA7CE061AD1C18900D090F6 /* RLHighPrecisionTimer.mm */,
 				6B97D89018F75AF700DF1590 /* Images.xcassets */,
 				6B97D88518F75AF700DF1590 /* Supporting Files */,
 				6B7224FA19128F7200D5A938 /* SynthSettingsVC */,
@@ -486,13 +501,6 @@
 				6B97D8AD18F75B1A00DF1590 /* AYAMainViewController.h */,
 				6B97D8AE18F75B1A00DF1590 /* AYAMainViewController.mm */,
 				6B97D8AF18F75B1A00DF1590 /* AYAMainViewController.xib */,
-				6B0A498C1900518B007858CA /* AYADrawView.h */,
-				6B0A498D1900518B007858CA /* AYADrawView.m */,
-				6BBD37371AD2BBE8001B784F /* AYANoteTimerProtocol.h */,
-				6BEF684D1AD0547A001A125F /* AYANoteTimer.h */,
-				6BEF684E1AD0547A001A125F /* AYANoteTimer.mm */,
-				6BA7CE051AD1C18900D090F6 /* RLHighPrecisionTimer.h */,
-				6BA7CE061AD1C18900D090F6 /* RLHighPrecisionTimer.mm */,
 			);
 			name = MainVC;
 			sourceTree = "<group>";
@@ -571,9 +579,10 @@
 				ORGANIZATIONNAME = AyersAudio;
 				TargetAttributes = {
 					6B97D87A18F75AF700DF1590 = {
-						DevelopmentTeam = HBJW962L7K;
+						DevelopmentTeam = SW6CL3NR2J;
 					};
 					6B97D89518F75AF700DF1590 = {
+						DevelopmentTeam = SW6CL3NR2J;
 						TestTargetID = 6B97D87A18F75AF700DF1590;
 					};
 				};

@@ -8,6 +8,19 @@
 
 #import "AYANodeView.h"
 
+@interface NoteEvent : NSObject
+
+@property AYANodeView *nextView;
+
+@property int remainingTickCount;
+
+@end
+
+@implementation NoteEvent
+
+@end
+
+
 @implementation AYANodeView
 @synthesize connectionArray,note,backgroundLayer;
 
@@ -21,40 +34,16 @@
         _noteName = @"C 4";
         noteLength = 0.5;
         // Initialization code
-        knobControlView = [[KnobControlView alloc] initWithFrame:CGRectMake(self.bounds.size.width/2-5,self.bounds.size.height/2-5, 10, 10)];
-        [self addSubview:knobControlView];
-        
-        
+
+        self.noteEvents = [NSMutableArray array];
         
         self.backgroundColor = [UIColor clearColor];
         backgroundLayer = [[CAGradientLayer alloc] init];
         [backgroundLayer setCornerRadius:self.bounds.size.height/2];
         backgroundLayer.frame = self.bounds;
         
-        UIColor *colorOne = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0];
-        UIColor *colorTwo = [UIColor colorWithRed:255.0/255.0 green:94.0/255.0 blue:58.0/255.0 alpha:1.0];
-        NSArray *colors =  [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor,nil];
-        
-        NSNumber *stopOne = [NSNumber numberWithFloat:1.0];
-        NSNumber *stopTwo = [NSNumber numberWithFloat:0.6];
-        NSArray *locations = [NSArray arrayWithObjects:stopOne, stopTwo, nil];
-        
-        backgroundLayer.colors = colors;
-        backgroundLayer.locations = locations;
-        
-        CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
-        animation.duration = 5.0f;
-        animation.delegate =self;
-        animation.fromValue = (CAGradientLayer *)backgroundLayer.colors;
-        animation.toValue = [NSArray arrayWithObjects:(id)colorTwo.CGColor, colorOne.CGColor,nil];
-        [animation setAutoreverses:YES];
-        [animation setRepeatCount:10000];
-        [backgroundLayer addAnimation:animation forKey:@"animateColors"];
-        
-        [backgroundLayer setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0].CGColor];
-        
-        [self.layer addSublayer:backgroundLayer];
-        
+        [self addGradientAnimation];
+
         connectionArray = [[NSMutableArray alloc] init];
         
         _noteNameLayer = [[CATextLayer alloc] init];
@@ -68,18 +57,19 @@
         UITapGestureRecognizer* nodeTapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
         [nodeTapGestureRecognizer setNumberOfTouchesRequired:1];
         [nodeTapGestureRecognizer setNumberOfTapsRequired:1];
-        [nodeTapGestureRecognizer addTarget:self action:@selector(recievedEvent)];
+        [nodeTapGestureRecognizer addTarget:self action:@selector(queueEvent)];
         [self addGestureRecognizer:nodeTapGestureRecognizer];
-        
-        UIPinchGestureRecognizer* pinchGestureRecognizer = [[UIPinchGestureRecognizer alloc] init];
-        [pinchGestureRecognizer addTarget:self action:@selector(scaleTheView:)];
-        [self addGestureRecognizer:pinchGestureRecognizer];
-
-        
-        
-        
     }
     return self;
+}
+
+
+-(void)queueEvent
+{
+    NoteEvent *event = [[NoteEvent alloc] init];
+    event.nextView = self;
+    event.remainingTickCount = 1;
+    [self.noteEvents addObject:event];
 }
 
 -(void)setNoteName:(NSString *)noteName{
@@ -90,32 +80,150 @@
 }
 
 -(void)recievedEvent{
-    [knobControlView removeFromSuperview];
     [self.delegate noteOn:self.note];
-    float internalNoteLenth = noteLength;
+    self.internalNoteLength = noteLength;
     if (noteLength == -1) {
         int noteLenthSelector = arc4random_uniform(3);
         switch (noteLenthSelector) {
             case 0:
-                internalNoteLenth = 1.0f;
+                self.internalNoteLength = 1.0f;
                 break;
             case 1:
-                internalNoteLenth = 0.5f;
+                self.internalNoteLength = 0.5f;
                 break;
             case 2:
-                internalNoteLenth = 0.25f;
+                self.internalNoteLength = 0.25f;
                 break;
             case 3:
-                internalNoteLenth = 0.125f;
+                self.internalNoteLength = 0.125f;
                 break;
             default:
                 break;
         }
     }
     
-    self.remainingTickCount = internalNoteLenth * 16;
-//    noteTimer = [NSTimer scheduledTimerWithTimeInterval:internalNoteLenth target:self selector:@selector(noteCompleted) userInfo:nil repeats:NO];
     
+    
+    [self addPulseAnimation];
+    
+    float totalProbability = 0;
+    for (AYAConnection *connection in connectionArray) {
+        totalProbability += roundf(connection.probability*10000);
+    }
+    int random =  arc4random_uniform(totalProbability);
+    for (AYAConnection *connection in connectionArray) {
+        if (random<roundf(connection.probability*10000)) {
+            self.selectedConnection = connection;
+            break;
+        }else{
+            random -= roundf(connection.probability*10000);
+        }
+    }
+    
+    self.nextView = self.selectedConnection.endView;
+    self.remainingTickCount = self.internalNoteLength * 8;
+    
+    NoteEvent *event = [[NoteEvent alloc] init];
+    event.nextView = self.nextView;
+    event.remainingTickCount = self.internalNoteLength * 8;
+    
+    [self.noteEvents addObject:event];
+    
+    [self addTravelerAnimation];
+
+}
+
+-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+    if (flag) {
+        [[anim valueForKey:@"layer"] removeAllAnimations];
+        [[anim valueForKey:@"layer"] removeFromSuperlayer];
+    }
+}
+
+-(void)noteCompleted{
+    [self.delegate noteOff:self.note];
+}
+
+-(void)tick
+{
+    for (NoteEvent* event in self.noteEvents.copy) {
+        event.remainingTickCount--;
+        if (event.remainingTickCount == 0) {
+            
+            [self.noteEvents removeObject:event];
+            // We want to get this work off the timer thread
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self noteCompleted];
+                [event.nextView recievedEvent];
+            });
+            
+        }
+    }
+}
+-(void)addTravelerAnimation
+{
+    AYANodeView *fromView = self;
+    AYANodeView *toView = self.nextView;
+    CALayer *pulseLayer = [[CALayer alloc] init];
+    [pulseLayer setCornerRadius:25/2];
+    pulseLayer.frame = CGRectMake(self.bounds.size.width/2 - 12, self.bounds.size.height/2 - 12, 25, 25);
+    pulseLayer.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:0.3].CGColor;
+
+    CAAnimation *theAnimation;
+    
+     if ([[self.selectedConnection.lineLayer valueForKeyPath:@"connectionType"] intValue] == 0) {
+        theAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
+        [(CABasicAnimation*)theAnimation setToValue:[NSValue valueWithCGPoint:CGPointMake(toView.center.x-fromView.center.x + self.bounds.size.width/2, toView.center.y-fromView.center.y + self.bounds.size.height/2)]];
+        [theAnimation setAutoreverses:NO];
+    }else if([[self.selectedConnection.lineLayer valueForKeyPath:@"connectionType"] intValue] == 1){
+        theAnimation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
+        
+        ((CAKeyframeAnimation*)theAnimation).path=((CAShapeLayer*)self.selectedConnection.lineLayer).path;
+        ((CAKeyframeAnimation*)theAnimation).calculationMode = kCAAnimationCubicPaced;
+        [self.layer addSublayer:pulseLayer];
+    }
+    
+    [theAnimation setDelegate:self];
+    [theAnimation setDuration:self.internalNoteLength];
+    [theAnimation setFillMode:kCAFillModeRemoved];
+    [theAnimation setRepeatCount:1];
+    [theAnimation setRemovedOnCompletion:YES];
+    [theAnimation setValue:pulseLayer forKey:@"layer"];
+    [theAnimation setValue:self.selectedConnection forKey:@"connection"];
+    [pulseLayer addAnimation:theAnimation forKey:@"pulse"];
+    [self.layer addSublayer:pulseLayer];
+
+}
+
+-(void)addGradientAnimation
+{
+    UIColor *colorOne = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0];
+    UIColor *colorTwo = [UIColor colorWithRed:255.0/255.0 green:94.0/255.0 blue:58.0/255.0 alpha:1.0];
+    NSArray *colors =  [NSArray arrayWithObjects:(id)colorOne.CGColor, colorTwo.CGColor,nil];
+    
+    NSNumber *stopOne = [NSNumber numberWithFloat:1.0];
+    NSNumber *stopTwo = [NSNumber numberWithFloat:0.6];
+    NSArray *locations = [NSArray arrayWithObjects:stopOne, stopTwo, nil];
+    
+    backgroundLayer.colors = colors;
+    backgroundLayer.locations = locations;
+    
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"colors"];
+    animation.duration = 5.0f;
+    animation.delegate =self;
+    animation.fromValue = (CAGradientLayer *)backgroundLayer.colors;
+    animation.toValue = [NSArray arrayWithObjects:(id)colorTwo.CGColor, colorOne.CGColor,nil];
+    [animation setAutoreverses:YES];
+    [animation setRepeatCount:10000];
+    [backgroundLayer addAnimation:animation forKey:@"animateColors"];
+    
+    [backgroundLayer setBackgroundColor:[UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:1.0].CGColor];
+    
+    [self.layer addSublayer:backgroundLayer];
+}
+
+-(void)addPulseAnimation
+{
     CALayer *eventLayer = [[CALayer alloc] init];
     [eventLayer setCornerRadius:self.frame.size.height/2];
     eventLayer.frame = self.bounds;
@@ -123,9 +231,7 @@
     CABasicAnimation *eventAnimation = [CABasicAnimation animationWithKeyPath:@"transform"];
     // Add ourselves as the delegate so we get the completion callback
     [eventAnimation setDelegate:self];
-    // Set the duration using the number of squares calculated earlier
-    [eventAnimation setDuration:internalNoteLenth];
-    // Set the from and to values using the cellMatrix
+    [eventAnimation setDuration:self.internalNoteLength];
     [eventAnimation setToValue:[NSValue valueWithCATransform3D:CATransform3DMakeScale(2.0, 2.0, 1)]];
     [eventAnimation setAutoreverses:NO];
     // Not totally sure, it was in the book
@@ -137,7 +243,7 @@
     // Add ourselves as the delegate so we get the completion callback
     [eventOpacityAnimation setDelegate:self];
     // Set the duration using the number of squares calculated earlier
-    [eventOpacityAnimation setDuration:internalNoteLenth];
+    [eventOpacityAnimation setDuration:self.internalNoteLength];
     // Set the from and to values using the cellMatrix
     [eventOpacityAnimation setToValue:@(0.0)];
     [eventOpacityAnimation setAutoreverses:NO];
@@ -147,7 +253,7 @@
     [eventOpacityAnimation setRemovedOnCompletion:YES];
     
     CAAnimationGroup *group = [[CAAnimationGroup alloc] init];
-    [group setDuration:internalNoteLenth];
+    [group setDuration:self.internalNoteLength];
     [group setRepeatCount:1.0f];
     [group setDelegate:self];
     [group setValue:eventLayer forKey:@"layer"];
@@ -157,126 +263,7 @@
     
     
     [self.layer insertSublayer:eventLayer atIndex:0];
-    
-    
-    float totalProbability = 0;
-    AYAConnection *selectedConnection;
-    for (AYAConnection *connection in connectionArray) {
-        totalProbability += roundf(connection.probability*10000);
-    }
-    int random =  arc4random_uniform(totalProbability);
-    for (AYAConnection *connection in connectionArray) {
-        if (random<roundf(connection.probability*10000)) {
-            selectedConnection = connection;
-            break;
-        }else{
-            random -= roundf(connection.probability*10000);
-        }
-    }
-    
-    self.nextView = selectedConnection.endView;
-
-    if ([[selectedConnection.lineLayer valueForKeyPath:@"connectionType"] intValue] == 0) {
-        AYANodeView *fromView = selectedConnection.startView;
-        AYANodeView *toView = selectedConnection.endView;
-        CALayer *pulseLayer = [[CALayer alloc] init];
-        [pulseLayer setCornerRadius:25/2];
-        pulseLayer.frame = CGRectMake(self.bounds.size.width/2 - 12, self.bounds.size.height/2 - 12, 25, 25);
-        pulseLayer.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:0.3].CGColor;
-        CABasicAnimation *opacityAnimation = [CABasicAnimation animationWithKeyPath:@"position"];
-        // Add ourselves as the delegate so we get the completion callback
-        [opacityAnimation setDelegate:self];
-        // Set the duration using the number of squares calculated earlier
-        [opacityAnimation setDuration:internalNoteLenth];
-        // Set the from and to values using the cellMatrix
-        [opacityAnimation setToValue:[NSValue valueWithCGPoint:CGPointMake(toView.center.x-fromView.center.x + self.bounds.size.width/2, toView.center.y-fromView.center.y + self.bounds.size.height/2)]];
-        [opacityAnimation setAutoreverses:NO];
-        // Not totally sure, it was in the book
-        [opacityAnimation setFillMode:kCAFillModeRemoved];
-        [opacityAnimation setRepeatCount:1];
-        // animation also has some places for extra information that lets me know what to do when I call the generic completion method.
-        [opacityAnimation setRemovedOnCompletion:YES];
-        [opacityAnimation setValue:pulseLayer forKey:@"layer"];
-        [opacityAnimation setValue:selectedConnection forKey:@"connection"];
-        [pulseLayer addAnimation:opacityAnimation forKey:@"pulse"];
-        
-        [self.layer addSublayer:pulseLayer];
-        pulseLayer = nil;
-    }else if([[selectedConnection.lineLayer valueForKeyPath:@"connectionType"] intValue] == 1){
-        CALayer *pulseLayer = [[CALayer alloc] init];
-        [pulseLayer setCornerRadius:25/2];
-        pulseLayer.frame = CGRectMake(12, 12, 25, 25);
-        pulseLayer.backgroundColor = [UIColor colorWithRed:255.0/255.0 green:149.0/255.0 blue:0.0/255.0 alpha:0.3].CGColor;
-        CAKeyframeAnimation * theAnimation;
-        // Create the animation object, specifying the position property as the key path.
-        theAnimation=[CAKeyframeAnimation animationWithKeyPath:@"position"];
-        theAnimation.path=((CAShapeLayer*)selectedConnection.lineLayer).path;
-        theAnimation.duration=internalNoteLenth;
-        [theAnimation setFillMode:kCAFillModeRemoved];
-        [theAnimation setRepeatCount:1];
-        [theAnimation setDelegate:self];
-        theAnimation.calculationMode = kCAAnimationCubicPaced;
-        // animation also has some places for extra information that lets me know what to do when I call the generic completion method.
-        [theAnimation setRemovedOnCompletion:YES];
-        [theAnimation setValue:pulseLayer forKey:@"layer"];
-        [theAnimation setValue:selectedConnection forKey:@"connection"];
-        [pulseLayer addAnimation:theAnimation forKey:@"pulse"];
-        [self.layer addSublayer:pulseLayer];
-        pulseLayer = nil;
-    }
 }
 
--(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-    if (flag) {
-        [[anim valueForKey:@"layer"] removeAllAnimations];
-        [[anim valueForKey:@"layer"] removeFromSuperlayer];
-//        if ([anim valueForKey:@"connection"]) {
-//            AYAConnection *connection = [anim valueForKey:@"connection"];
-//            [connection.endView recievedEvent];
-//        }
-//        if ([[anim valueForKey:@"notenumber"]intValue]) {
-//    //        [self.delegate noteOff:[[anim valueForKey:@"notenumber"]intValue]];
-//        }
-    }
-}
-
--(void)noteCompleted{
-    [self.delegate noteOff:self.note];
-
-}
-
--(void)scaleTheView:(UIPinchGestureRecognizer*)pinchRecognizer{
-    if (pinchRecognizer.scale>2.0) {
-        [knobControlView removeFromSuperview];
-        knobControlView = [[KnobControlView alloc] initWithFrame:CGRectMake(self.bounds.size.width/2-50,self.bounds.size.height/2-50, 100, 100)];
-        [self addSubview:knobControlView];
-    }else{
-        [knobControlView removeFromSuperview];
-
-    }
-}
-
--(void)tick
-{
-    self.remainingTickCount--;
-    if (self.remainingTickCount == 0) {
-        
-        // We want to get this work off the timer thread
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
-            [self noteCompleted];
-            [self.nextView recievedEvent];
-        });
-
-    }
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

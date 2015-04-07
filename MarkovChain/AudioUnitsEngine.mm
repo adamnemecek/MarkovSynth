@@ -21,7 +21,7 @@
     audioDescription.mFramesPerPacket   = 1;
     audioDescription.mBytesPerFrame     = sizeof(float);
     audioDescription.mBitsPerChannel    = 8 * sizeof(float);
-    audioDescription.mSampleRate        = 22050.0; // NOTE 22050!
+    audioDescription.mSampleRate        = 44100.0; // NOTE 22050!
     return audioDescription;
 }
 // default initializer
@@ -37,11 +37,11 @@
         effectsDictionary = [[NSMutableDictionary alloc] init];
 
         CMiniSynthVoice* pVoice;
-        MAX_VOICES = 16;
-        for(int i=0; i<MAX_VOICES; i++)
+        int max_voices = 16;
+        for(int i=0; i<max_voices; i++)
         {
             pVoice = new CMiniSynthVoice;
-            pVoice->setSampleRate((double)22050);
+            pVoice->setSampleRate((double)44100);
             pVoice->prepareForPlay();
             pVoice->update();
             m_VoicePtrStack1.push_back(pVoice);
@@ -56,17 +56,18 @@
                                 initWithAudioDescription:[AudioUnitsEngine nonInterleavedFloatStereoAudioDescriptionHalfRate]
                                 inputEnabled:NO];
         
-        
+        __block double lastSample = 0.0;
         synthCallback = [AEBlockChannel channelWithBlock:^(const AudioTimeStamp  *time,
                                                                UInt32 frames,
                                                                AudioBufferList *audio) {
+            
             for ( int i=0; i<frames; i++ ) {
                 
                 // do left channel; convert to float -1.0 to +1.0
                 // do the LEFT processing - here is pass-thru
                 double dLeftAccum = 0;
                 
-                for(int j=0; j<MAX_VOICES; j++)
+                for(int j=0; j<max_voices; j++)
                 {
                     double dLeft = 0;
                     double dRight = 0;
@@ -77,6 +78,8 @@
                 
                 float fLeftAccum = float(dLeftAccum);
                 
+
+                
                 for (RLAudioEffect *effect in effectsArray) {
                     [effect processAudioFrameInPlace:(float*)&fLeftAccum];
                 }
@@ -85,6 +88,7 @@
                 ((float*)audio->mBuffers[0].mData)[i] = fLeftAccum;                
                 ((float*)audio->mBuffers[1].mData)[i] = fLeftAccum;
                 
+                lastSample = fLeftAccum;
                 
             }
         }];
@@ -108,7 +112,7 @@
 	m_VoiceIterator1 = m_VoicePtrStack1.begin();
     
 	bool bStealNote = true;
-	for(int i=0; i<MAX_VOICES; i++)
+	for(int i=0; i<16; i++)
 	{
 		pVoice =  m_VoicePtrStack1[i];
 		// if we have a free voice, turn on
@@ -153,7 +157,7 @@
     // find and turn off
 	m_VoiceIterator1 = m_VoicePtrStack1.begin();
     
-	for(int i=0; i<MAX_VOICES; i++)
+	for(int i=0; i<16; i++)
 	{
 		CMiniSynthVoice* pVoice = m_VoicePtrStack1[i];
 		

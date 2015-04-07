@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "AYAConnection.h"
-#import "KnobControlView.h"
 #import "AYANoteTimerProtocol.h" 
 @protocol AYANodeDelegate <NSObject>
 
@@ -18,8 +17,8 @@
 @end
 
 
+
 @interface AYANodeView : UIView <AYANoteTimerDelegate>{
-    KnobControlView *knobControlView;
     NSTimer *noteTimer;
 }
 
@@ -35,7 +34,13 @@
 
 @property float noteLength;
 
+@property float internalNoteLength;
+
 @property int remainingTickCount;
+
+@property (nonatomic) NSMutableArray *noteEvents;
+
+@property AYAConnection *selectedConnection;
 
 @property AYANodeView *nextView;
 

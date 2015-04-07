@@ -13,8 +13,8 @@ public:
 
 	// our synth components: Oscillators and Filters
 	// Four oscillators
-    CWTOscillator m_Osc1;
-    CWTOscillator m_Osc2;
+    CAlgorithmicOscillator m_Osc1;
+    CAlgorithmicOscillator m_Osc2;
 	
 	// 1 filter
 	CMoogLadderFilter m_LPF;
@@ -122,12 +122,12 @@ public:
 		double env1 = m_EG1.doEnvelope();
 //        double env1 = 0.5;
 		
-		// update for attack/decay mods
-		m_LPF.updateFilter();
-
-		// update oscillators
-		m_Osc1.updateOscillator();
-		m_Osc2.updateOscillator();
+//		// update for attack/decay mods
+//		m_LPF.updateFilter();
+//
+//		// update oscillators
+//		m_Osc1.updateOscillator();
+//		m_Osc2.updateOscillator();
 
 		// --- DIGITAL AUDIO ENGINE BLOCK --- //
 		double dOscMix = 0.0;

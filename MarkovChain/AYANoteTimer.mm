@@ -19,12 +19,13 @@
 
 @implementation AYANoteTimer
 
--(id)initWithTempo:(int)tempo andAUEngine:(AudioUnitsEngine *)auEngine
+-(id)initWithTempo:(int)tempo
 {
 
     self = [super init];
     if (self) {
         self.timer = [[RLHighPrecisionTimer alloc] initWithInterval:125 andHighPriority:true andLabel:@"noteTimer" andDelegate:self];
+        self.delegateArray = [NSMutableArray array];
     }
     
     return self;
