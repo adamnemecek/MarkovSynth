@@ -63,7 +63,7 @@
 		6BF32366190AF0E400CE1E00 /* laksin.mid in Resources */ = {isa = PBXBuildFile; fileRef = 6BF32365190AF0E400CE1E00 /* laksin.mid */; };
 		6BF32369190AF4B300CE1E00 /* AYAMidiToMarkovCalc.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BF32368190AF4B300CE1E00 /* AYAMidiToMarkovCalc.m */; };
 		6BFC1FF31909D84400D0ADF9 /* TRPGenericCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BFC1FF21909D84400D0ADF9 /* TRPGenericCollectionViewCell.m */; };
-		D1EFA3562AB443BFA0AC73CA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 215231B2D73E4797BED48EB4 /* libPods.a */; };
+		FB3D51BE8AA25C63472497CA /* libPods-MarkovChain.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 790034F2D6B2128E90049D74 /* libPods-MarkovChain.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,7 +77,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		215231B2D73E4797BED48EB4 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		2F664DD51ACC3D61009904A1 /* AYAVoiceThread.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYAVoiceThread.h; sourceTree = "<group>"; };
 		2F664DD61ACC3D61009904A1 /* AYAVoiceThread.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AYAVoiceThread.cpp; sourceTree = "<group>"; };
 		2F84EB711ACEE12F00781E21 /* VAOnePoleFilter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = VAOnePoleFilter.cpp; sourceTree = "<group>"; };
@@ -86,7 +85,6 @@
 		2F84EB751ACEE1D500781E21 /* MoogLadderFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoogLadderFilter.h; sourceTree = "<group>"; };
 		2F84EB771ACF16F300781E21 /* WTOscillator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WTOscillator.cpp; sourceTree = "<group>"; };
 		2F84EB781ACF16F300781E21 /* WTOscillator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WTOscillator.h; sourceTree = "<group>"; };
-		320720856837C563A4E6E71A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		6B0A498619003F9E007858CA /* KnobControlView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KnobControlView.h; sourceTree = "<group>"; };
 		6B0A498719003F9E007858CA /* KnobControlView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KnobControlView.m; sourceTree = "<group>"; };
 		6B0A498C1900518B007858CA /* AYADrawView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AYADrawView.h; sourceTree = "<group>"; };
@@ -180,7 +178,9 @@
 		6BF32368190AF4B300CE1E00 /* AYAMidiToMarkovCalc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AYAMidiToMarkovCalc.m; sourceTree = "<group>"; };
 		6BFC1FF11909D84400D0ADF9 /* TRPGenericCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TRPGenericCollectionViewCell.h; sourceTree = "<group>"; };
 		6BFC1FF21909D84400D0ADF9 /* TRPGenericCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TRPGenericCollectionViewCell.m; sourceTree = "<group>"; };
-		BF0DB375D0F76418B5239648 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		790034F2D6B2128E90049D74 /* libPods-MarkovChain.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MarkovChain.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A2F4EE80B914CAF102656008 /* Pods-MarkovChain.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkovChain.release.xcconfig"; path = "Pods/Target Support Files/Pods-MarkovChain/Pods-MarkovChain.release.xcconfig"; sourceTree = "<group>"; };
+		C0D274F5FED30FA4FC6C9D0B /* Pods-MarkovChain.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MarkovChain.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MarkovChain/Pods-MarkovChain.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,7 +192,7 @@
 				6B97D88118F75AF700DF1590 /* CoreGraphics.framework in Frameworks */,
 				6B97D88318F75AF700DF1590 /* UIKit.framework in Frameworks */,
 				6B97D87F18F75AF700DF1590 /* Foundation.framework in Frameworks */,
-				D1EFA3562AB443BFA0AC73CA /* libPods.a in Frameworks */,
+				FB3D51BE8AA25C63472497CA /* libPods-MarkovChain.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -209,15 +209,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		26DBE003291105902824FA6A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				320720856837C563A4E6E71A /* Pods.debug.xcconfig */,
-				BF0DB375D0F76418B5239648 /* Pods.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		2F664DD21ACC357E009904A1 /* Filters */ = {
 			isa = PBXGroup;
 			children = (
@@ -383,7 +374,7 @@
 				6B97D89D18F75AF700DF1590 /* MarkovChainTests */,
 				6B97D87D18F75AF700DF1590 /* Frameworks */,
 				6B97D87C18F75AF700DF1590 /* Products */,
-				26DBE003291105902824FA6A /* Pods */,
+				72B12C71CFA12BB2A941F1AD /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -405,7 +396,7 @@
 				6B97D88018F75AF700DF1590 /* CoreGraphics.framework */,
 				6B97D88218F75AF700DF1590 /* UIKit.framework */,
 				6B97D89718F75AF700DF1590 /* XCTest.framework */,
-				215231B2D73E4797BED48EB4 /* libPods.a */,
+				790034F2D6B2128E90049D74 /* libPods-MarkovChain.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -528,6 +519,15 @@
 			name = SynthStuff;
 			sourceTree = "<group>";
 		};
+		72B12C71CFA12BB2A941F1AD /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C0D274F5FED30FA4FC6C9D0B /* Pods-MarkovChain.debug.xcconfig */,
+				A2F4EE80B914CAF102656008 /* Pods-MarkovChain.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -535,11 +535,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6B97D8A718F75AF700DF1590 /* Build configuration list for PBXNativeTarget "MarkovChain" */;
 			buildPhases = (
-				C1DBEC235A26408685E7C4A5 /* Check Pods Manifest.lock */,
+				B257A79BD504487EC4670AA4 /* [CP] Check Pods Manifest.lock */,
 				6B97D87718F75AF700DF1590 /* Sources */,
 				6B97D87818F75AF700DF1590 /* Frameworks */,
 				6B97D87918F75AF700DF1590 /* Resources */,
-				64188894ACFC44718D59EC5E /* Copy Pods Resources */,
+				B01AD28730399538F97A0863 /* [CP] Embed Pods Frameworks */,
+				3A43206542ECE36F2DC67CA9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -579,7 +580,7 @@
 				ORGANIZATIONNAME = AyersAudio;
 				TargetAttributes = {
 					6B97D87A18F75AF700DF1590 = {
-						DevelopmentTeam = SW6CL3NR2J;
+						ProvisioningStyle = Manual;
 					};
 					6B97D89518F75AF700DF1590 = {
 						DevelopmentTeam = SW6CL3NR2J;
@@ -633,34 +634,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		64188894ACFC44718D59EC5E /* Copy Pods Resources */ = {
+		3A43206542ECE36F2DC67CA9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MarkovChain/Pods-MarkovChain-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C1DBEC235A26408685E7C4A5 /* Check Pods Manifest.lock */ = {
+		B01AD28730399538F97A0863 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MarkovChain/Pods-MarkovChain-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B257A79BD504487EC4670AA4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -765,8 +781,8 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INPUT_FILETYPE = automatic;
@@ -779,7 +795,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
@@ -802,7 +818,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -813,7 +829,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 2;
 				VALIDATE_PRODUCT = YES;
@@ -822,11 +839,12 @@
 		};
 		6B97D8A818F75AF700DF1590 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 320720856837C563A4E6E71A /* Pods.debug.xcconfig */;
+			baseConfigurationReference = C0D274F5FED30FA4FC6C9D0B /* Pods-MarkovChain.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -834,19 +852,22 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MarkovChain/MarkovChain-Prefix.pch";
 				INFOPLIST_FILE = "MarkovChain/MarkovChain-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos10.3;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
 		};
 		6B97D8A918F75AF700DF1590 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF0DB375D0F76418B5239648 /* Pods.release.xcconfig */;
+			baseConfigurationReference = A2F4EE80B914CAF102656008 /* Pods-MarkovChain.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "";
+				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -854,8 +875,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MarkovChain/MarkovChain-Prefix.pch";
 				INFOPLIST_FILE = "MarkovChain/MarkovChain-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos10.3;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
